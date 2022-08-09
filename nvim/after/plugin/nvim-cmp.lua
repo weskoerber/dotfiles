@@ -70,6 +70,17 @@ cmp.setup({
         { name = 'nvim_lua' },
         { name = 'path' },
     },
+    sorting = {
+        priority_weight = 1.0,
+        comparators = {
+            cmp.config.compare.locality,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.score,
+            cmp.config.compare.offset,
+            cmp.config.compare.order,
+            cmp.config.compare.scope,
+        },
+    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
