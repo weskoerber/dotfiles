@@ -41,6 +41,13 @@ autocmd('BufWritePre', {
     command = 'Neoformat',
 })
 
+-- Format Rust files
+autocmd('BufWritePre', {
+    group = WesKoerberGroup,
+    pattern = '*.rs',
+    command = 'lua vim.lsp.buf.formatting_sync()',
+})
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
