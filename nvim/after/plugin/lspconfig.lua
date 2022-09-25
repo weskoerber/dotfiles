@@ -55,5 +55,6 @@ lspconfig.gopls.setup(config({
 
 lspconfig.psalm.setup(config())
 
+lspconfig.rust_analyzer.setup(config())
 
 lspconfig.tsserver.setup(config())
