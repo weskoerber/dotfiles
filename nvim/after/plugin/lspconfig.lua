@@ -3,19 +3,28 @@ local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 local lspconfig = require('lspconfig')
 
+local function default_keymap(keymap)
+    nnoremap('gd', function() vim.lsp.buf.definition() end)
+    nnoremap('K', function() vim.lsp.buf.hover() end)
+    nnoremap('<leader>vh', function() vim.lsp.buf.signature_help() end)
+    nnoremap('<leader>vd', function() vim.diagnostic.open_float() end)
+    nnoremap('<leader>vrn', function() vim.lsp.buf.rename() end)
+    nnoremap('[d', function() vim.diagnostic.goto_next() end)
+    nnoremap('[u', function() vim.diagnostic.goto_prev() end)
+    nnoremap('<leader>vca', function() vim.lsp.buf.code_action() end)
+end
+
+local function extend_default_keymap(keymap)
+    default_keymap()
+    if keymap ~= nil then
+        keymap()
+    end
+end
+
 local function config(_config)
     return vim.tbl_deep_extend('force', {
         capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-        on_attach = function()
-            nnoremap('gd', function() vim.lsp.buf.definition() end)
-            nnoremap('K', function() vim.lsp.buf.hover() end)
-            nnoremap('<leader>vh', function() vim.lsp.buf.signature_help() end)
-            nnoremap('<leader>vd', function() vim.diagnostic.open_float() end)
-            nnoremap('<leader>vrn', function() vim.lsp.buf.rename() end)
-            nnoremap('[d', function() vim.diagnostic.goto_next() end)
-            nnoremap('[u', function() vim.diagnostic.goto_prev() end)
-            nnoremap('<leader>vca', function() vim.lsp.buf.code_action() end)
-        end,
+        on_attach = default_keymap,
     }, _config or {})
 end
 
@@ -55,6 +64,10 @@ lspconfig.gopls.setup(config({
 
 lspconfig.psalm.setup(config())
 
-lspconfig.rust_analyzer.setup(config())
+lspconfig.rust_analyzer.setup(config({
+    on_attach = extend_default_keymap(function()
+        nnoremap('<leader>rr', ':RustRun<CR>')
+    end),
+}))
 
 lspconfig.tsserver.setup(config())
