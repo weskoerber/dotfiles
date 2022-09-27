@@ -67,6 +67,7 @@ lspconfig.psalm.setup(config())
 lspconfig.rust_analyzer.setup(config({
     on_attach = extend_default_keymap(function()
         nnoremap('<leader>rr', ':RustRun<CR>')
+        nnoremap('<leader>rb', ':!cargo check<CR>')
     end),
 }))
 
