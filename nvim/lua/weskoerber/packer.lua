@@ -18,6 +18,9 @@ return require('packer').startup(function()
     use('kyazdani42/nvim-tree.lua', { requires = 'nvim-web-devicons', tag = 'nightly' })
     use('lukas-reineke/indent-blankline.nvim')
 
+    -- Git
+    use('airblade/vim-gitgutter')
+
     -- LSP Plugins
     use('neovim/nvim-lspconfig')
     use('hrsh7th/nvim-cmp')

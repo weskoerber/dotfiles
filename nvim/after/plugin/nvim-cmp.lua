@@ -11,9 +11,9 @@ local has_words_before = function()
 end
 
 local source_map = {
-    buffer = '[buff]',
-    nvim_lua = '[nvim]',
     nvim_lsp = '[lsp] ',
+    nvim_lua = '[nvim]',
+    buffer = '[buff]',
     path = '[path]',
 }
 
@@ -59,6 +59,18 @@ cmp.setup({
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
                 luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                local entry = cmp.get_selected_entry()
+                if not entry then
+                    fallback()
+                else
+                    cmp.confirm()
+                end
             else
                 fallback()
             end

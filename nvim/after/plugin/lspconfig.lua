@@ -28,13 +28,22 @@ local function config(_config)
     }, _config or {})
 end
 
-lspconfig.ccls.setup(config({
-    init_options = {
-        cache = {
-            directory = '.ccls-cache',
-        },
-    },
-}));
+-- lspconfig.ccls.setup(config({
+--     on_attach = extend_default_keymap(function()
+--         nnoremap('<leader>rr', ':!c %<CR>')
+--     end),
+--     init_options = {
+--         cache = {
+--             directory = '.ccls-cache',
+--         },
+--     },
+-- }));
+
+lspconfig.clangd.setup(config({
+    on_attach = extend_default_keymap(function()
+        nnoremap('<leader>sh', ':ClangdSwitchSourceHeader<CR>')
+    end)
+}))
 
 -- lspconfig.csharp_ls.setup(config())
 lspconfig.omnisharp.setup(config({
@@ -68,6 +77,7 @@ lspconfig.rust_analyzer.setup(config({
     on_attach = extend_default_keymap(function()
         nnoremap('<leader>rr', ':RustRun<CR>')
         nnoremap('<leader>rb', ':!cargo check<CR>')
+        nnoremap('<leader>rt', ':!cargo test<CR>')
     end),
 }))
 
