@@ -23,6 +23,12 @@ nnoremap('<leader>pw', function()
 end)
 
 -- Find git files
-nnoremap('<leader>pg', function()
+nnoremap('<leader>pgf', function()
     tscope_builtin.git_files()
 end)
+
+-- Git commits
+nnoremap('<leader>pgl', function()
+    tscope_builtin.git_commits()
+end)
+
