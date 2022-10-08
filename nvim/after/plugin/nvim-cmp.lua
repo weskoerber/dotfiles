@@ -30,6 +30,7 @@ cmp.setup({
     formatting = {
         format = lspkind.cmp_format({
             mode = 'symbol_text',
+            maxwidth = 75,
             before = function(entry, vim_item)
                 vim_item.kind = lspkind.presets.codicons[vim_item.kind]
                 if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= '' then
@@ -77,8 +78,13 @@ cmp.setup({
         end, { "i", "s" }),
     },
     sources = {
+        {
+            name = 'nvim_lsp',
+            entry_filter = function(entry, ctx)
+                return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
+            end,
+        },
         { name = 'buffer' },
-        { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'path' },
     },

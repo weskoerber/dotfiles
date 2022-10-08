@@ -42,6 +42,9 @@ end
 lspconfig.clangd.setup(config({
     on_attach = extend_default_keymap(function()
         nnoremap('<leader>sh', ':ClangdSwitchSourceHeader<CR>')
+        nnoremap('<leader>cg', ':!cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build<CR>')
+        nnoremap('<leader>cb', ':!cmake --build build<CR>')
+
     end)
 }))
 
