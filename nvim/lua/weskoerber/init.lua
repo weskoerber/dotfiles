@@ -41,6 +41,13 @@ autocmd('BufWritePre', {
     command = 'Neoformat',
 })
 
+-- Format C/C++ files
+autocmd('BufWritePre', {
+    group = WesKoerberGroup,
+    pattern = '*.c,*.h,*.cpp,*.hpp',
+    command = 'lua vim.lsp.buf.formatting_sync()'
+})
+
 -- Format Rust files
 autocmd('BufWritePre', {
     group = WesKoerberGroup,
