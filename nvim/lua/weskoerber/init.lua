@@ -6,6 +6,7 @@ require('weskoerber.nvim-tree')
 require('weskoerber.packer')
 require('weskoerber.set')
 require('weskoerber.telescope')
+require('weskoerber.winshift')
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})

@@ -13,7 +13,6 @@ return require('packer').startup(function()
         require('nvim-treesitter.install').update({ with_sync = true })
     end })
     use('romgrk/nvim-treesitter-context')
-    use('nvim-telescope/telescope-frecency.nvim', { requires = 'kkharji/sqlite.lua' })
     use('nvim-telescope/telescope.nvim', { requires = 'nvim-lua/plenary.nvim', tag = '0.1.x' })
     use('kyazdani42/nvim-tree.lua', { requires = 'nvim-web-devicons', tag = 'nightly' })
     use('lukas-reineke/indent-blankline.nvim')
@@ -42,9 +41,13 @@ return require('packer').startup(function()
     use('gruvbox-community/gruvbox')
 
     -- Misc. Plugins
-    use('tpope/vim-sleuth') -- Heuristically set buffer opts
+    use('sindrets/winshift.nvim')
 
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
+
+-- Unused/uninstalled
+    -- use('tpope/vim-sleuth') -- Heuristically set buffer opts
+    -- use('nvim-telescope/telescope-frecency.nvim', { requires = 'kkharji/sqlite.lua' })
