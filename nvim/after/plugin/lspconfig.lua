@@ -30,7 +30,7 @@ end
 
 -- lspconfig.ccls.setup(config({
 --     on_attach = extend_default_keymap(function()
---         nnoremap('<leader>rr', ':!c %<CR>')
+--
 --     end),
 --     init_options = {
 --         cache = {
@@ -74,7 +74,16 @@ lspconfig.gopls.setup(config({
     },
 }))
 
-lspconfig.psalm.setup(config())
+-- lspconfig.psalm.setup(config())
+lspconfig.intelephense.setup(config({
+    settings = {
+        intelephense = {
+            telemetry = {
+                enabled = false,
+            },
+        }
+    }
+}))
 
 lspconfig.rust_analyzer.setup(config({
     on_attach = extend_default_keymap(function()

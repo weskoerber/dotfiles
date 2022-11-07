@@ -6,7 +6,6 @@ return require('packer').startup(function()
     use('kyazdani42/nvim-web-devicons')
     use('nvim-lua/plenary.nvim')
     use('nvim-lua/popup.nvim')
-    use('kkharji/sqlite.lua')
 
     -- UI Plugins
     use('nvim-treesitter/nvim-treesitter', { run = function()
@@ -25,9 +24,6 @@ return require('packer').startup(function()
     use('hrsh7th/nvim-cmp')
     use('onsails/lspkind-nvim')
 
-    -- Code Formatters
-    use('sbdchd/neoformat')
-
     -- Snippet Engines
     use('l3mon4d3/luasnip')
 
@@ -42,6 +38,7 @@ return require('packer').startup(function()
 
     -- Misc. Plugins
     use('sindrets/winshift.nvim')
+    use('tpope/vim-sleuth') -- Heuristically set buffer opts
 
     if packer_bootstrap then
         require('packer').sync()
@@ -49,5 +46,4 @@ return require('packer').startup(function()
 end)
 
 -- Unused/uninstalled
-    -- use('tpope/vim-sleuth') -- Heuristically set buffer opts
     -- use('nvim-telescope/telescope-frecency.nvim', { requires = 'kkharji/sqlite.lua' })

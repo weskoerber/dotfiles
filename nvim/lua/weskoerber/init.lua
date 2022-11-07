@@ -30,32 +30,9 @@ autocmd('BufWritePre', {
     command = '%s/\\s\\+$//e',
 })
 
--- Format JS code
+-- Format files with LSP
 autocmd('BufWritePre', {
     group = WesKoerberGroup,
-    pattern = '*.js,*.jsx,*.json,*.ts,*.tsx',
-    command = 'EslintFixAll',
+    pattern = '*.rs,*.go,*.c,*.h,*.cpp,*.hpp,*.js,*.jsx,*.json,*.ts,*.tsx,*.php',
+    command = 'lua vim.lsp.buf.format { async = true }'
 })
-autocmd('BufWritePre', {
-    group = WesKoerberGroup,
-    pattern = '*.js,*.jsx,*.json,*.ts,*.tsx',
-    command = 'Neoformat',
-})
-
--- Format C/C++ files
-autocmd('BufWritePre', {
-    group = WesKoerberGroup,
-    pattern = '*.c,*.h,*.cpp,*.hpp',
-    command = 'lua vim.lsp.buf.formatting_sync()'
-})
-
--- Format Rust files
-autocmd('BufWritePre', {
-    group = WesKoerberGroup,
-    pattern = '*.rs',
-    command = 'lua vim.lsp.buf.formatting_sync()',
-})
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
