@@ -1,0 +1,25 @@
+[user]
+    email = wkoerber@acsd4u.com
+    name = Wes Koerber
+
+[core]
+    editor = nvim
+    autocrlf = input
+    pager = delta
+
+[delta]
+    side-by-side = true
+    syntax-theme = gruvbox-dark
+
+[init]
+    defaultBranch = main
+
+[alias]
+    s = status --short
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+    llog = log --all --oneline --graph --decorate
+    slog = !sh -c '[ -z $1 ] && git llog -n 10 || git llog -n $1' -
+    clog = log --all --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+    clogs = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+    fdiffs = !sh -c 'git diff --staged -U$(wc -l $1)' -
+    fdiff = !sh -c 'git diff -U$(wc -l $1)' -
