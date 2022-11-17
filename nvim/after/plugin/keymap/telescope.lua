@@ -37,3 +37,6 @@ nnoremap('<C-f>s', function()
     tscope_builtin.lsp_document_symbols()
 end)
 
+nnoremap('<C-f>u', function()
+    tscope_builtin.lsp_incoming_calls()
+end)
