@@ -1,3 +1,16 @@
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 return require('packer').startup(function()
     -- Packer itself
     use('wbthomason/packer.nvim')
@@ -8,9 +21,7 @@ return require('packer').startup(function()
     use('nvim-lua/popup.nvim')
 
     -- UI Plugins
-    use('nvim-treesitter/nvim-treesitter', { run = function()
-        require('nvim-treesitter.install').update({ with_sync = true })
-    end })
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('romgrk/nvim-treesitter-context')
     use('nvim-telescope/telescope.nvim', { requires = 'nvim-lua/plenary.nvim', tag = '0.1.x' })
     use('kyazdani42/nvim-tree.lua', { requires = 'nvim-web-devicons', tag = 'nightly' })
@@ -23,6 +34,12 @@ return require('packer').startup(function()
     use('neovim/nvim-lspconfig')
     use('hrsh7th/nvim-cmp')
     use('onsails/lspkind-nvim')
+
+    -- Debuggers
+    use {
+        'sakhnik/nvim-gdb',
+        branch = 'devel'
+    }
 
     -- Snippet Engines
     use('l3mon4d3/luasnip')
@@ -44,6 +61,3 @@ return require('packer').startup(function()
         require('packer').sync()
     end
 end)
-
--- Unused/uninstalled
-    -- use('nvim-telescope/telescope-frecency.nvim', { requires = 'kkharji/sqlite.lua' })

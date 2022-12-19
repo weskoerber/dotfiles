@@ -28,25 +28,25 @@ local function config(_config)
     }, _config or {})
 end
 
--- lspconfig.ccls.setup(config({
---     on_attach = extend_default_keymap(function()
---
---     end),
---     init_options = {
---         cache = {
---             directory = '.ccls-cache',
---         },
---     },
--- }));
-
-lspconfig.clangd.setup(config({
+lspconfig.ccls.setup(config({
     on_attach = extend_default_keymap(function()
-        nnoremap('<leader>sh', ':ClangdSwitchSourceHeader<CR>')
-        nnoremap('<leader>cg', ':!cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build<CR>')
-        nnoremap('<leader>cb', ':!cmake --build build<CR>')
 
-    end)
-}))
+    end),
+    init_options = {
+        cache = {
+            directory = '/tmp/ccls-cache',
+        },
+    },
+}));
+
+-- lspconfig.clangd.setup(config({
+--     on_attach = extend_default_keymap(function()
+--         nnoremap('<leader>sh', ':ClangdSwitchSourceHeader<CR>')
+--         nnoremap('<leader>cg', ':!cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build<CR>')
+--         nnoremap('<leader>cb', ':!cmake --build build<CR>')
+--
+--     end)
+-- }))
 
 -- lspconfig.csharp_ls.setup(config())
 lspconfig.omnisharp.setup(config({
