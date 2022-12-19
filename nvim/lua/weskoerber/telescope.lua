@@ -13,6 +13,11 @@ telescope.setup {
             case_mode = "smart_case",
         },
     },
+    pickers = {
+        find_files = {
+            find_command = { "fd", "--hidden", "--glob", "--no-ignore-vcs", "--ignore-file", "" },
+        },
+    },
 }
 
 require('telescope').load_extension('fzf')
