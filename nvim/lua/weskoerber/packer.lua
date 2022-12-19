@@ -26,6 +26,17 @@ return require('packer').startup(function()
     use('nvim-telescope/telescope.nvim', { requires = 'nvim-lua/plenary.nvim', tag = '0.1.x' })
     use('kyazdani42/nvim-tree.lua', { requires = 'nvim-web-devicons', tag = 'nightly' })
     use('lukas-reineke/indent-blankline.nvim')
+    use {
+        'utilyre/barbecue.nvim',
+        requires = {
+            'neovim/nvim-lspconfig',
+            'smiteshp/nvim-navic',
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function()
+            require('barbecue').setup()
+        end,
+    }
 
     -- Git
     use('airblade/vim-gitgutter')
