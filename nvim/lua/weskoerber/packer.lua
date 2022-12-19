@@ -56,6 +56,10 @@ return require('packer').startup(function()
     -- Misc. Plugins
     use('sindrets/winshift.nvim')
     use('tpope/vim-sleuth') -- Heuristically set buffer opts
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S . -B build -D CMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+    }
 
     if packer_bootstrap then
         require('packer').sync()
