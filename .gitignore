@@ -1,1 +1,13 @@
 .gdb_history
+
+# antigen
+antigen/bundles/
+antigen/init.zsh
+antigen/.resources
+antigen/.zcompdump
+antigen/*.zwc
+antigen/*.log
+
+# zsh
+zsh/.zcompdump
+zsh/*.zwc

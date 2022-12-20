@@ -1,0 +1,84 @@
+#!/bin/sh
+
+############################
+# Setup XDG Base Directory #
+############################
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [ -z "$XDG_CACHE_HOME" ]; then
+    export XDG_CACHE_HOME="$HOME/.cache"
+fi
+
+if [ -z "$XDG_DATA_HOME" ]; then
+    export XDG_DATA_HOME="$HOME/.local/share"
+fi
+
+if [ -z "$XDG_STATE_HOME" ]; then
+    export XDG_STATE_HOME="$HOME/.local/state"
+fi
+
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+    uid=$UID
+    if [ -z "$UID" ]; then
+        uid=$(id -u)
+    fi
+
+    export XDG_RUNTIME_DIR="/run/user/$uid"
+fi
+
+##############
+# Setup PATH #
+##############
+CREATE="1"
+NO_CREATE="0"
+
+# add_path: append a path to the PATH variable
+# $1: the path to append to PATH
+# $2: create the path
+add_path() {
+    if ! [ -d "$1" ]; then
+        if [ -n "$2" ] && [ "$2" != "$NO_CREATE" ]; then
+            mkdir -pv $1
+            p="$1"
+        fi
+    else
+        p="$1"
+    fi
+
+    PATH="$PATH:$p"
+}
+
+add_path "$HOME/.local/bin" "$CREATE"
+add_path "$CARGO_HOME/bin" "$NO_CREATE"
+
+# This adds all subdirs of ~/.local/bin to path
+PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+
+export PATH
+
+######################
+# Setup applications #
+######################
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export BROWSER="brave-beta"
+
+#################
+# Clean up home #
+#################
+export ADOTDIR="$XDG_CONFIG_HOME/antigen"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPATH="$XDG_DATA_HOME/go"
+export HISTFILE="$XDG_DATA_HOME/history"
+
+##########################
+# Other environment vars #
+##########################
+export DOTNET_CLI_TELEMETRY_OUTPUT='true'
+
+if [ -r "$CARGO_HOME/env" ]; then
+    source "$CARGO_HOME/env"
+fi

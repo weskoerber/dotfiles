@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Note: ensure this file sourced after profile
+
+# Command verbosity for safety
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -Iv" \
+    mkdir="mkdir -pv"
+
+# Colorize commands
+alias \
+    ls="ls -hN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    ip="ip -color=auto"
+
+# Abbreviate commands
+alias \
+    fpk="flatpak" \
+    g="git" \
+    v="$EDITOR"

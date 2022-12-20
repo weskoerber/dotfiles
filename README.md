@@ -9,6 +9,7 @@ A collection of configuration files for all my favorite software. Also includes 
 - [Updating](#updating)
 - [Uninstallation](#uninstallation)
 - [Contributing](#contributing)
+- [TODO](#todo)
 - [License](#license)
 
 # Installation
@@ -50,6 +51,15 @@ TODO
 [(Back to top)](#table-of-contents)
 
 TODO
+
+# TODO
+
+- Automate installation of certain applications
+    - cargo
+    - yarn
+    - dotnet
+    - go
+    - composer
 
 # License
 

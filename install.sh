@@ -1,15 +1,9 @@
 #!/bin/sh
 
-# Source the environment variables
-source ./env.sh
-
-NVIM_INSTALL_DIR="${NVIM_INSTALL_DIR:-$HOME/.config/nvim}"
-GIT_CONFIG_DIR="$HOME/.config/git"
-
 # $1: install dir
 # $2: application binary name
 # $3: application pretty name
-function install() {
+install() {
     if [ -h "$1" ]; then
         echo "  $3 is already configured; skipping."
     elif [ -d "$1" ]; then
@@ -20,5 +14,10 @@ function install() {
     fi
 }
 
-install "$NVIM_INSTALL_DIR" "nvim" "Neovim"
-install "$GIT_CONFIG_DIR" "git" "Git"
+install "$HOME/.config/nvim" "nvim" "Neovim"
+install "$HOME/.config/git" "git" "Git"
+install "$HOME/.config/zsh" "zsh" "zsh"
+install "$HOME/.config/antigen" "antigen" "antigen"
+install "$HOME/.config/shell" "shell" "profile, aliasrc"
+
+ln -s "$HOME/.config/shell/profile" "$HOME/.zprofile"
