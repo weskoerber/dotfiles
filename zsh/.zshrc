@@ -12,6 +12,11 @@ if [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/powerlevel10k/powerlevel10k.zsh-th
    source "${XDG_DATA_HOME:-$HOME/.local/share}/powerlevel10k/powerlevel10k.zsh-theme"
 fi
 
+# Source profile
+if [ -f "$HOME/.zprofile" ]; then
+    source "$HOME/.zprofile"
+fi
+
 ############
 # Autoload #
 ############
