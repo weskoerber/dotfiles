@@ -14,6 +14,8 @@ install() {
     fi
 }
 
+mkdir -p "$HOME/.cache/zsh"
+
 install "$HOME/.config/nvim" "nvim" "Neovim"
 install "$HOME/.config/git" "git" "Git"
 install "$HOME/.config/zsh" "zsh" "zsh"
