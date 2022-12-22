@@ -11,6 +11,7 @@ alias \
 
 # Colorize commands
 alias \
+    l="ls -AhlN --color=auto --group-directories-first" \
     ls="ls -hN --color=auto --group-directories-first" \
     grep="grep --color=auto" \
     ip="ip -color=auto"
