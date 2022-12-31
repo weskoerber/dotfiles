@@ -49,8 +49,10 @@ lspconfig.ccls.setup(config({
 -- }))
 
 -- lspconfig.csharp_ls.setup(config())
+-- note: omnisharp v1.38.2 is broken with neovim until this is resolved:
+--   https://github.com/OmniSharp/omnisharp-roslyn/issues/2483
 lspconfig.omnisharp.setup(config({
-    cmd = { 'dotnet', '/opt/omnisharp-linux-x64-net6.0/OmniSharp.dll' },
+    cmd = { 'dotnet', '/opt/omnisharp/OmniSharp.dll' },
     enable_editorconfig_support = true,
     enable_ms_build_load_projects_on_demand = false,
     enable_roslyn_analyzers = false,
