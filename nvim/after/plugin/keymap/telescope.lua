@@ -23,8 +23,13 @@ nnoremap('<C-f>g', function()
 end)
 
 -- Git commits
-nnoremap('<C-f>l', function()
+nnoremap('ggl', function()
     tscope_builtin.git_commits()
+end)
+
+-- Git status
+nnoremap('ggs', function()
+    tscope_builtin.git_status()
 end)
 
 -- Symbols
