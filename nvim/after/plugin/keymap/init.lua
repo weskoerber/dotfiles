@@ -1,9 +1,10 @@
 local Remap = require('weskoerber.keymap')
 local nnoremap = Remap.nnoremap
 
-nnoremap('<C-t>', ':tabnew<CR>')
-nnoremap('<C-w>', ':tabclose<CR>')
-nnoremap('<C-i>', ':tabnex<CR>')
+nnoremap('<leader>ttc', ':tabnew<CR>')
+nnoremap('<leader>ttx', ':tabclose<CR>')
+nnoremap('<leader>ttn', ':tabnex<CR>')
+nnoremap('<leader>ttp', ':tabprevious<CR>')
 
 nnoremap('<C-j>', ':winc j<CR>')
 nnoremap('<C-k>', ':winc k<CR>')

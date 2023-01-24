@@ -17,6 +17,9 @@ telescope.setup {
         find_files = {
             find_command = { "fd", "--hidden", "--glob", "--no-ignore-vcs", "--ignore-file", "" },
         },
+        diagnostics = {
+            bufnr = nil,
+        },
     },
 }
 

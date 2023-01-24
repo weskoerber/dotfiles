@@ -40,3 +40,7 @@ end)
 nnoremap('<C-f>u', function()
     tscope_builtin.lsp_incoming_calls()
 end)
+
+nnoremap('<C-f>d', function()
+    tscope_builtin.diagnostics()
+end)

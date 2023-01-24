@@ -12,6 +12,9 @@
     syntax-theme = gruvbox-dark
     navigate = true
 
+[diff]
+    tool = nvimdiff
+
 [init]
     defaultBranch = main
 
