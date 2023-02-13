@@ -21,7 +21,12 @@ return require('packer').startup(function()
     use('nvim-lua/popup.nvim')
 
     -- UI Plugins
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use { 'nvim-treesitter/nvim-treesitter', {
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }}
     use('romgrk/nvim-treesitter-context')
     use('nvim-telescope/telescope.nvim', { requires = 'nvim-lua/plenary.nvim', tag = '0.1.x' })
     use('kyazdani42/nvim-tree.lua', { requires = 'nvim-web-devicons', tag = 'nightly' })
