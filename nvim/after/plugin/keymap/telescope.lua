@@ -23,12 +23,12 @@ nnoremap('<C-f>g', function()
 end)
 
 -- Git commits
-nnoremap('ggl', function()
+nnoremap('<leader>gl', function()
     tscope_builtin.git_commits()
 end)
 
 -- Git status
-nnoremap('ggs', function()
+nnoremap('<leader>gs', function()
     tscope_builtin.git_status()
 end)
 
