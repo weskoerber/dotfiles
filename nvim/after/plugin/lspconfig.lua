@@ -96,11 +96,3 @@ lspconfig.rust_analyzer.setup(config({
 }))
 
 lspconfig.tsserver.setup(config())
-
-lspconfig.yamlls.setup(config({
-    settings = {
-        schemas = {
-            ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "ims-api.yml",
-        },
-    },
-}))

@@ -15,7 +15,7 @@ telescope.setup {
     },
     pickers = {
         find_files = {
-            find_command = { "fd", "--hidden", "--glob", "--no-ignore-vcs", "--ignore-file", "" },
+            find_command = { "fd", "--hidden", "--glob", "--no-ignore-vcs", },
         },
         diagnostics = {
             bufnr = nil,

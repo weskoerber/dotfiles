@@ -4,7 +4,7 @@ local nnoremap = Remap.nnoremap
 nnoremap('<C-n>', ':tabnew<CR>')
 nnoremap('<C-w>', ':tabclose<CR>')
 nnoremap('<C-]>', ':tabnex<CR>')
-nnoremap('<C-[>', ':tabprevious<CR>')
+-- nnoremap('<C-[>', ':tabprevious<CR>')
 
 nnoremap('<C-j>', ':winc j<CR>')
 nnoremap('<C-k>', ':winc k<CR>')
