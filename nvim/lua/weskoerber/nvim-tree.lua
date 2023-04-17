@@ -1,10 +1,10 @@
 require('nvim-tree').setup({
     renderer = {
         add_trailing = true,
+        root_folder_label = false,
     },
     view = {
         adaptive_size = true,
-        hide_root_folder = true,
         side = 'right',
     },
 })
