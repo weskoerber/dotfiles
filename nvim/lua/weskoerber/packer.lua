@@ -51,6 +51,11 @@ return require('packer').startup(function()
         'sakhnik/nvim-gdb',
         branch = 'devel'
     }
+    use('mfussenegger/nvim-dap')
+    use {
+        'rcarriga/nvim-dap-ui',
+        requires = {'mfussenegger/nvim-dap'}
+    }
 
     -- Snippet Engines
     use('l3mon4d3/luasnip')
