@@ -1,7 +1,9 @@
 local augroup = vim.api.nvim_create_augroup
 WesKoerberGroup = augroup('WesKoerber', {})
 
+require('weskoerber.dapui')
 require('weskoerber.indent-blankline')
+require('weskoerber.nvim-dap')
 require('weskoerber.nvim-tree')
 require('weskoerber.packer')
 require('weskoerber.set')
