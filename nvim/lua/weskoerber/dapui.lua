@@ -43,8 +43,8 @@ dapui.setup({
     },
     {
       elements = {
-        "repl",
         "console",
+        "repl",
       },
       size = 0.25, -- 25% of total lines
       position = "bottom",

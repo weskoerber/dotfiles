@@ -2,7 +2,7 @@ local dap = require('dap')
 
 dap.adapters.coreclr = {
     type = 'executable',
-    command = '~/.local/share/netcoredbg/netcoredbg',
+    command = os.getenv("HOME") .. '/.local/share/netcoredbg/netcoredbg',
     args = {
         '--interpreter=vscode',
     },
