@@ -74,6 +74,7 @@ add_path "$CARGO_HOME/bin" "$NO_CREATE"
 # https://flaviocopes.com/where-npm-install-packages/
 add_path "$HOME/.nvm/versions/node/v16.15.0/bin"
 add_path "$XDG_DATA_HOME/dotnet"
+add_path "$DOTNET_ROOT/tools"
 add_path "$HOME/.yarn/bin"
 
 # This adds all subdirs of ~/.local/bin to path
