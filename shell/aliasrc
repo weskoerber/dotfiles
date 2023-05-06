@@ -21,6 +21,3 @@ alias \
     fpk="flatpak" \
     g="git" \
     v="$EDITOR"
-
-alias \
-    tmux="tmux new-session -s $(basename $(pwd))"
