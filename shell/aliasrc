@@ -12,7 +12,7 @@ alias \
 # Colorize commands
 alias \
     l="ls -AhlN --color=auto --group-directories-first" \
-    ls="ls -hNs --color=auto --group-directories-first" \
+    ls="ls --color=auto --group-directories-first" \
     grep="grep --color=auto" \
     ip="ip -color=auto"
 
@@ -21,3 +21,6 @@ alias \
     fpk="flatpak" \
     g="git" \
     v="$EDITOR"
+
+alias \
+    tmux="tmux new-session -s $(basename $(pwd))"

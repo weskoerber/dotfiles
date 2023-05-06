@@ -21,5 +21,6 @@ install "$HOME/.config/git" "git" "Git"
 install "$HOME/.config/zsh" "zsh" "zsh"
 install "$HOME/.config/antigen" "antigen" "antigen"
 install "$HOME/.config/shell" "shell" "profile, aliasrc"
+install "$HOME/.config/tmux" "tmux" "Tmux"
 
 ln -s "$HOME/.config/shell/profile" "$HOME/.zprofile"

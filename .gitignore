@@ -8,6 +8,9 @@ antigen/.zcompdump
 antigen/*.zwc
 antigen/*.log
 
+# tmux
+tmux/plugins/
+
 # zsh
 zsh/.zcompdump
 zsh/*.zwc
