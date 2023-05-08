@@ -41,7 +41,7 @@ fi
 #####################
 # first run install #
 #####################
-source "${ZDOTDIR:-$HOME/.config/zsh}/first_run"
+source "${ZDOTDIR:-$HOME/.config/zsh}/first_run.sh"
 
 ########################
 ### Load zsh plugins ###
