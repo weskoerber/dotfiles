@@ -68,9 +68,4 @@ if [ $(file_exists $semaphore_file) -ne 0 ]; then
     echo ""
 
     date +"%s" > $semaphore_file
-else
-    echo "First run already completed!"
-    echo "To run first run setup again, remove the following file:"
-    echo "    $semaphore_file"
-    echo ""
 fi
