@@ -39,6 +39,7 @@ return require('packer').startup(function()
     -- Git
     use('airblade/vim-gitgutter')
     use('f-person/git-blame.nvim')
+    use('tpope/vim-fugitive')
 
     -- LSP Plugins
     use('neovim/nvim-lspconfig')

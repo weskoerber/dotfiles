@@ -3,7 +3,7 @@ local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 local lspconfig = require('lspconfig')
 
-local function default_keymap(keymap)
+local function default_keymap()
     nnoremap('gd', function() vim.lsp.buf.definition() end)
     nnoremap('K', function() vim.lsp.buf.hover() end)
     nnoremap('<leader>vh', function() vim.lsp.buf.signature_help() end)
@@ -23,7 +23,6 @@ end
 
 local function config(_config)
     return vim.tbl_deep_extend('force', {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = default_keymap,
     }, _config or {})
 end
@@ -48,18 +47,11 @@ lspconfig.ccls.setup(config({
 --     end)
 -- }))
 
--- lspconfig.csharp_ls.setup(config())
--- note: omnisharp v1.38.2 is broken with neovim until this is resolved:
---   https://github.com/OmniSharp/omnisharp-roslyn/issues/2483
-lspconfig.omnisharp.setup(config({
-    cmd = { 'dotnet', '/opt/omnisharp/OmniSharp.dll' },
-    enable_editorconfig_support = true,
-    enable_ms_build_load_projects_on_demand = false,
-    enable_roslyn_analyzers = false,
-    organize_imports_on_format = true,
-    enable_import_completion = true,
-    sdk_include_prereleases = false,
-    analyze_open_documents_only = false,
+lspconfig.csharp_ls.setup(config({
+    on_attach = function(client)
+        default_keymap()
+        client.server_capabilities.semanticTokensProvider = nil
+    end
 }))
 
 lspconfig.eslint.setup(config())
