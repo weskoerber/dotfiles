@@ -20,4 +20,3 @@ require('treesitter-context').setup({
         },
     },
 })
-

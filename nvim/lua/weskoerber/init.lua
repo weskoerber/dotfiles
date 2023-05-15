@@ -1,15 +1,8 @@
+require('weskoerber.set')
+require('weskoerber.remap')
+
 local augroup = vim.api.nvim_create_augroup
 WesKoerberGroup = augroup('WesKoerber', {})
-
-require('weskoerber.dapui')
-require('weskoerber.indent-blankline')
-require('weskoerber.nvim-dap')
-require('weskoerber.nvim-tree')
-require('weskoerber.packer')
-require('weskoerber.set')
-require('weskoerber.telescope')
-require('weskoerber.winshift')
-require('weskoerber.lualine');
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -33,13 +26,6 @@ autocmd('BufWritePre', {
     command = '%s/\\s\\+$//e',
 })
 
--- Format files with LSP
-autocmd('BufWritePre', {
-    group = WesKoerberGroup,
-    pattern = '*.rs,*.go,*.cs,*.c,*.h,*.cpp,*.hpp,*.js,*.jsx,*.json,*.ts,*.tsx,*.php',
-    command = 'lua vim.lsp.buf.format { async = true }'
-})
-
 -- Parse XAML, props files as XML
 autocmd({ 'BufEnter', 'BufRead', }, {
     group = WesKoerberGroup,
@@ -53,3 +39,10 @@ autocmd({ 'BufEnter', 'BufRead', }, {
     pattern = '*.cake',
     command = 'lua vim.bo.filetype = \'cs\'',
 })
+
+-- Format files with LSP
+-- autocmd('BufWritePre', {
+--     group = WesKoerberGroup,
+--     pattern = '*.rs,*.go,*.cs,*.c,*.h,*.cpp,*.hpp,*.js,*.jsx,*.json,*.ts,*.tsx,*.php',
+--     command = 'lua vim.lsp.buf.format { async = true }'
+-- })
