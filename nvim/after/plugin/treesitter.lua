@@ -50,7 +50,7 @@ require('nvim-treesitter.configs').setup({
         -- Misc
         'comment',
         'diff',
-        'help',
+        -- 'help',
         'http',
         'vim',
     },
