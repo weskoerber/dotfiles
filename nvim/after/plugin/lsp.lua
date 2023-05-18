@@ -56,7 +56,7 @@ lsp.setup_nvim_cmp({
         else
           fallback()
         end
-      end, { 'i', 's', 'c'}
+      end, { 'i', 's', }
     ),
     ['<S-Tab>'] = cmp.mapping(
       function(fallback)
@@ -65,7 +65,7 @@ lsp.setup_nvim_cmp({
         else
           fallback()
         end
-      end, { 'i', 's', 'c'}
+      end, { 'i', 's', }
     ),
   }),
   sorting = {
