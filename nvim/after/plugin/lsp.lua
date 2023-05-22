@@ -10,6 +10,7 @@ lsp.preset({
 lsp.ensure_installed({
   'clangd',
   'csharp_ls',
+  'intelephense',
   'rust_analyzer',
 })
 
