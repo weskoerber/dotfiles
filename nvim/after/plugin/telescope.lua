@@ -15,7 +15,10 @@ require('telescope').setup({
     },
     pickers = {
         find_files = {
-            find_command = { "fd", "--hidden", "--glob", "--no-ignore-vcs", },
+            find_command = { "fd", "--type", "file", "--hidden", "--glob", "--no-ignore-vcs", },
+        },
+        git_files = {
+            find_command = { "fd", "--type", "file", "--hidden", "--glob", },
         },
         diagnostics = {
             bufnr = nil,
