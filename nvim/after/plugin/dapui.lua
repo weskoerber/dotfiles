@@ -1,4 +1,5 @@
-require('dapui').setup({
+local dapui = require('dapui')
+dapui.setup({
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
   mappings = {
     -- Use a table to apply multiple mappings
@@ -90,3 +91,5 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+vim.keymap.set('n', '<F17>', function() dapui.close() end)
