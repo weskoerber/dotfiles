@@ -1,4 +1,4 @@
-source "${XDG_DATA_HOME:-$HOME/.local/share}/antigen/antigen.zsh"
+source "/usr/share/zsh/share/antigen.zsh"
 
 antigen use oh-my-zsh
 
