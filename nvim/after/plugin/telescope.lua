@@ -3,6 +3,7 @@ require('telescope').load_extension('fzf')
 require('telescope').setup({
     defaults = {
         color_devicons = true,
+        layout_strategy = 'flex',
         prompt_prefix = ' > ',
     },
     extensions = {
