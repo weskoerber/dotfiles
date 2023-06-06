@@ -42,6 +42,8 @@ require('lazy').setup({
 
     -- UI Plugins
     {'gruvbox-community/gruvbox'},
+    {'rose-pine/neovim'},
+    {'catppuccin/nvim', name = 'catppuccin'},
     {'kyazdani42/nvim-tree.lua'},
     {'nvim-lualine/lualine.nvim'},
 
