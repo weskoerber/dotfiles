@@ -55,6 +55,12 @@ dap.configurations.cs = {
     },
 }
 
+dap.adapters.php = {
+  type = 'executable',
+  command = 'node',
+  args = { '/usr/lib/node_modules/php-debug/out/phpDebug.js' },
+}
+
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
 vim.keymap.set('n', '<F8>', function() dap.toggle_breakpoint() end)
 vim.keymap.set('n', '<F10>', function() dap.step_over() end)
