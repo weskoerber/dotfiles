@@ -11,11 +11,8 @@ Also includes a script for easy installation.
 - [Uninstallation](#uninstallation)
 - [Contributing](#contributing)
 - [TODO](#todo)
-- [License](#license)
 
 # Installation
-
-[(Back to top)](#table-of-contents)
 
 1. Install all desired programs
 2. [Download](https://www.nerdfonts.com/font-downloads) and install a Nerd
@@ -29,9 +26,13 @@ for installation instructions.
 
 3. Run the `install.sh` script
 
+[(Back to top)](#table-of-contents)
+
 # Screenshots
 
 TODO
+
+[(Back to top)](#table-of-contents)
 
 # Updating
 
@@ -44,8 +45,6 @@ It will skip already symlinked targets, as well as targets that are physical
 directories.
 
 [(Back to top)](#table-of-contents)
-
-TODO
 
 # Uninstallation
 
@@ -60,8 +59,6 @@ If you wish to force removal of config files, even if the target is a physical
 directory, you may provide the `--force` option.
 
 [(Back to top)](#table-of-contents)
-
-TODO
 
 # Contributing
 
@@ -78,10 +75,4 @@ Don't lol
     - go
     - composer
 
-# License
-
-The MIT License (MIT) 2023 - Wes Koerber. Please have a look at the [LICENSE.md](LICENSE.md) for more details.
-
 [(Back to top)](#table-of-contents)
-
-
