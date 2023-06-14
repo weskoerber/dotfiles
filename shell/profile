@@ -33,7 +33,7 @@ fi
 ######################
 export EDITOR="nvim"
 export TERMINAL="gnome-terminal"
-export BROWSER="brave-beta"
+
 
 #################
 # Clean up home #
@@ -71,11 +71,16 @@ add_path() {
 
 add_path "$HOME/.local/bin" "$CREATE"
 add_path "$CARGO_HOME/bin" "$NO_CREATE"
-# https://flaviocopes.com/where-npm-install-packages/
-add_path "$HOME/.nvm/versions/node/v16.15.0/bin"
 add_path "$XDG_DATA_HOME/dotnet"
 add_path "$DOTNET_ROOT/tools"
 add_path "$HOME/.yarn/bin"
+
+node_version=$(node --version 2> /dev/null)
+if [ -n "$node_version" ]; then
+    # https://flaviocopes.com/where-npm-install-packages/
+    add_path "$HOME/.nvm/versions/node/$node_version/bin"
+fi
+
 
 # This adds all subdirs of ~/.local/bin to path
 PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
@@ -89,5 +94,12 @@ export DOTNET_CLI_TELEMETRY_OUTPUT='true'
 
 if [ -r "$CARGO_HOME/env" ]; then
     source "$CARGO_HOME/env"
+fi
+
+#######
+# NVM #
+######
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+    source /usr/share/nvm/init-nvm.sh
 fi
 
