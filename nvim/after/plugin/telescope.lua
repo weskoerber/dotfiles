@@ -21,6 +21,9 @@ require('telescope').setup({
         git_files = {
             find_command = { "fd", "--type", "file", "--hidden", "--glob", },
         },
+        live_grep = {
+            find_command = { 'rg', },
+        },
         diagnostics = {
             bufnr = nil,
         },
