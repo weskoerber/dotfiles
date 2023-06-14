@@ -28,3 +28,4 @@
     clogs = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
     fdiffs = !sh -c 'git diff --staged -U$(wc -l $1)' -
     fdiff = !sh -c 'git diff -U$(wc -l $1)' -
+    cp = cherry-pick
