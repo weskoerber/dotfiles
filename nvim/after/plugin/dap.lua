@@ -46,7 +46,6 @@ dap.configurations.cpp = {
     cwd = '${workspaceFolder}',
     stopAtEntry = true,
     args = {
-        "main.db"
     },
   },
   -- {
