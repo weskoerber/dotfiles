@@ -12,6 +12,7 @@ lsp.ensure_installed({
   'csharp_ls',
   'intelephense',
   'rust_analyzer',
+  'zls',
 })
 
 -- Fix undefined global 'vim'
@@ -115,6 +116,8 @@ lsp.configure('clangd', {
     client.server_capabilities.semanticTokensProvider = nil
   end,
 })
+
+lsp.configure('zls', {})
 
 lsp.setup()
 
