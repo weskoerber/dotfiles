@@ -20,4 +20,5 @@ alias \
 alias \
     fpk="flatpak" \
     g="git" \
-    v="$EDITOR"
+    v="nvim" \
+    lzd="lazydocker"
