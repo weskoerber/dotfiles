@@ -14,3 +14,6 @@ tmux/plugins/
 # zsh
 zsh/.zcompdump
 zsh/*.zwc
+
+# nvim
+nvim/lazy-lock.json
