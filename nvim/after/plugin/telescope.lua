@@ -1,6 +1,9 @@
-require('telescope').load_extension('fzf')
+local builtin = require('telescope.builtin')
+local telescope = require('telescope')
 
-require('telescope').setup({
+telescope.load_extension('fzf')
+
+telescope.setup({
     defaults = {
         color_devicons = true,
         layout_strategy = 'flex',
@@ -29,8 +32,6 @@ require('telescope').setup({
         },
     },
 })
-
-local builtin = require('telescope.builtin')
 
 -- Find a file
 vim.keymap.set('n', '<C-f>f', function()
@@ -64,7 +65,7 @@ end)
 
 -- Symbols
 vim.keymap.set('n', '<C-f>s', function()
-    builtin.lsp_document_symbols()
+    builtin.lsp_dynamic_workspace_symbols()
 end)
 
 vim.keymap.set('n', '<C-f>u', function()
@@ -74,3 +75,8 @@ end)
 vim.keymap.set('n', '<C-f>d', function()
     builtin.diagnostics()
 end)
+
+vim.keymap.set('n', '<C-space>', function()
+    builtin.resume()
+end)
+
