@@ -1,5 +1,6 @@
 require('weskoerber.set')
 require('weskoerber.remap')
+require('weskoerber.lazy')
 
 local augroup = vim.api.nvim_create_augroup
 WesKoerberGroup = augroup('WesKoerber', {})
