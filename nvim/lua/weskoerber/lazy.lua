@@ -88,4 +88,5 @@ require('lazy').setup({
 
     -- Misc
     {'tpope/vim-sleuth'},
+    {'epwalsh/obsidian.nvim'},
 })
