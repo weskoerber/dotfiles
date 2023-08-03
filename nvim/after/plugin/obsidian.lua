@@ -1,8 +1,9 @@
-local config = {
+require('obsidian').setup({
     workspaces = {
-        '~/Documents/notes/personal',
-        '~/Documents/notes/acsd',
+        personal = '~/Documents/notes/personal',
+        work = '~/Documents/notes/acsd',
     },
+    -- default_workspace = 'personal',
     finder = 'telescope.nvim',
 
     -- Optional, completion.
@@ -24,17 +25,17 @@ local config = {
         else
             return "gf"
         end
-    end, { noremap = false, expr = true })
-}
+    end, { noremap = false, expr = true }),
 
-local obsidian = require('obsidian')
-local setup_obsidian = function()
-    for _, val in pairs(config.workspaces) do
-        if vim.fs.normalize(val) == vim.fn.getcwd() then
-            obsidian.setup(vim.tbl_extend('error', config, {dir = val}))
-            break
-        end
-    end
-end
+    vim.keymap.set("n", "<leader>ovt", function()
+        vim.cmd("vertical sbuffer | ObsidianToday")
+    end),
 
-setup_obsidian()
+    vim.keymap.set("n", "<leader>ovy", function()
+        vim.cmd("vertical sbuffer | ObsidianYesterday")
+    end),
+
+    vim.keymap.set("n", "<leader>ovn", function()
+        vim.cmd("vertical sbuffer | ObsidianNew")
+    end)
+})
