@@ -10,7 +10,7 @@ lsp.preset({
 lsp.ensure_installed({
   'clangd',
   'csharp_ls',
-  'intelephense',
+  'phpactor',
   'rust_analyzer',
   'zls',
 })
