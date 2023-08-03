@@ -29,3 +29,4 @@
     fdiffs = !sh -c 'git diff --staged -U$(wc -l $1)' -
     fdiff = !sh -c 'git diff -U$(wc -l $1)' -
     cp = cherry-pick
+    snatch = !sh -c 'git stash && git pull && git stash pop' -
