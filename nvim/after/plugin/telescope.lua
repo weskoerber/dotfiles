@@ -43,11 +43,6 @@ vim.keymap.set('n', '<C-f>a', function()
     builtin.live_grep()
 end)
 
--- Find an exact word
-vim.keymap.set('n', '<C-f>w', function()
-    builtin.grep_string()
-end)
-
 -- Find git files
 vim.keymap.set('n', '<C-f>g', function()
     builtin.git_files()
@@ -65,6 +60,10 @@ end)
 
 -- Symbols
 vim.keymap.set('n', '<C-f>s', function()
+    builtin.lsp_document_symbols()
+end)
+
+vim.keymap.set('n', '<C-f>w', function()
     builtin.lsp_dynamic_workspace_symbols()
 end)
 
@@ -79,4 +78,3 @@ end)
 vim.keymap.set('n', '<C-space>', function()
     builtin.resume()
 end)
-
