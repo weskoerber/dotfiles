@@ -49,13 +49,18 @@ vim.keymap.set('n', '<C-f>g', function()
 end)
 
 -- Git commits
-vim.keymap.set('n', '<leader>gl', function()
+vim.keymap.set('n', '<leader>gc', function()
     builtin.git_commits()
+end)
+
+-- Git branches
+vim.keymap.set('n', '<leader>gb', function()
+    builtin.git_branches()
 end)
 
 -- Git status
 vim.keymap.set('n', '<leader>gs', function()
-    builtin.git_status()
+    builtin.git_stash()
 end)
 
 -- Symbols
