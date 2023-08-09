@@ -1,9 +1,15 @@
 require('obsidian').setup({
     workspaces = {
-        personal = '~/Documents/notes/personal',
-        work = '~/Documents/notes/acsd',
+        {
+            name = 'personal',
+            path = '~/Documents/notes/personal',
+        },
+        {
+            name = 'work',
+            path = '~/Documents/notes/acsd',
+        },
     },
-    -- default_workspace = 'personal',
+    detect_cwd = true,
     finder = 'telescope.nvim',
 
     -- Optional, completion.
