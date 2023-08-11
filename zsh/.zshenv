@@ -1,1 +1,1 @@
-. "/home/wes/.local/share/.cargo/env"
+. "/home/wes/.local/share/cargo/env"
