@@ -38,7 +38,6 @@ export TERMINAL="gnome-terminal"
 #################
 # Clean up home #
 #################
-export ADOTDIR="$XDG_CONFIG_HOME/antigen"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"

@@ -2,31 +2,6 @@
 
 . $(dirname $0)/./utils.sh
 
-install_antigen() {
-    install_dir="${XDG_DATA_HOME:-$HOME/.local/share/antigen}"
-    if [ $(dir_exists $install_dir) -eq 0 ]; then
-        echo "Updating antigen..."
-        rm -rf $install_dir
-    else
-        echo "Installing antigen..."
-    fi
-
-    curl -L -s --create-dirs git.io/antigen-nightly --output "${XDG_DATA_HOME:-$HOME/.local/share}/antigen/antigen.zsh"
-    # chmod +x "${XDG_DATA_HOME:-$HOME/.local/share}/antigen/antigen.zsh"
-}
-
-install_p10k() {
-    install_dir="${XDG_DATA_HOME:-$HOME/.local/share}/powerlevel10"
-    if $(dir_exists $install_dir) -eq 0 ]; then
-        echo "Updating powerlevel10k"
-        rm -rf $install_dir
-    else
-        echo "Installing powerlevel10k..."
-    fi
-
-    git clone --quiet --depth=1 https://github.com/romkatv/powerlevel10k.git $install_dir
-}
-
 get_dotnet_install() {
     install_file="$HOME/.local/bin/dotnet-install"
     if [ $(file_exists $install_file) -eq 0 ]; then
@@ -56,7 +31,6 @@ semaphore_file="${XDG_STATE_HOME:-$HOME/.local/state}/.first_run_complete"
 if [ $(file_exists $semaphore_file) -ne 0 ]; then
     echo "First run detected. Setting things up..."
     echo "--------------------------------------------------------------------------------"
-    # install_antigen
     # get_dotnet_install
     install_tpm
 

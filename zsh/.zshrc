@@ -1,28 +1,54 @@
-#####################
-### powerlevel10k ###
-#####################
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/powerlevel10k/powerlevel10k.zsh-theme" ]; then
-   source "${XDG_DATA_HOME:-$HOME/.local/share}/powerlevel10k/powerlevel10k.zsh-theme"
-fi
-
 # Source profile
 if [ -f "$HOME/.zprofile" ]; then
     source "$HOME/.zprofile"
 fi
 
-############
-# Autoload #
-############
-# autoload -U colors && colors
-# setopt autocd
-# autoload -U compinit && compinit
+# Zsh opts
+autoload -U colors && colors
+autoload -U compinit && compinit -u
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+setopt CORRECT
+setopt CORRECT_ALL
+
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# Key bindings
+export KEYTIMEOUT=1
+bindkey '^R' history-incremental-pattern-search-backward
+
+# vi mode
+bindkey -v
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'left' vi-backward-char
+bindkey -M menuselect 'down' vi-down-line-or-history
+bindkey -M menuselect 'up' vi-up-line-or-history
+bindkey -M menuselect 'right' vi-forward-char
+
+# Fix backspace bug when switching modes
+bindkey "^?" backward-delete-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
 
 ################
 # History file #
@@ -43,13 +69,6 @@ fi
 #####################
 source "${ZDOTDIR:-$HOME/.config/zsh}/first_run.sh"
 
-########################
-### Load zsh plugins ###
-########################
-if [ -f "${ADOTDIR:-$HOME/.config/antigen}/antigenrc" ]; then
-    source "${ADOTDIR:-$HOME/.config/antigen}/antigenrc"
-fi
-
 if [ -z "$LS_COLORS" ]; then
     if ! [ -f "$HOME/.dir_colors" ]; then
         echo "TERM alacritty" > "$HOME/.dir_colors"
@@ -59,5 +78,11 @@ if [ -z "$LS_COLORS" ]; then
     eval $(dircolors -b "$HOME/.dir_colors")
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+eval "$(starship init zsh)"
+
+fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
+source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# This line must stay at the end of zshrc!
+source ~/.config/zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

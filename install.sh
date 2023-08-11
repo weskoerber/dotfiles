@@ -24,7 +24,6 @@ install_all() {
   install "$HOME/.config/nvim" "nvim" "Neovim"
   install "$HOME/.config/git" "git" "Git"
   install "$HOME/.config/zsh" "zsh" "zsh"
-  install "$HOME/.config/antigen" "antigen" "antigen"
   install "$HOME/.config/shell" "shell" "profile, aliasrc"
   install "$HOME/.config/tmux" "tmux" "Tmux"
 
