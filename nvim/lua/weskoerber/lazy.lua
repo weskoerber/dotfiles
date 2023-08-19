@@ -48,6 +48,12 @@ require('lazy').setup({
         "folke/tokyonight.nvim",
         lazy = false,
     },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    { 'RRethy/vim-illuminate' },
+
     -- {'catppuccin/nvim', name = 'catppuccin'},
     { 'kyazdani42/nvim-tree.lua' },
     { 'nvim-lualine/lualine.nvim' },
