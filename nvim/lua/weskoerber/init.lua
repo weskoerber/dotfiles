@@ -40,10 +40,3 @@ autocmd({ 'BufEnter', 'BufRead', }, {
     pattern = '*.cake',
     command = 'lua vim.bo.filetype = \'cs\'',
 })
-
--- Format files with LSP
-autocmd('BufWritePre', {
-    group = WesKoerberGroup,
-    pattern = '*.rs,*.go,*.cs,*.c,*.h,*.cpp,*.hpp,*.js,*.jsx,*.json,*.ts,*.tsx,*.php',
-    command = 'lua vim.lsp.buf.format { async = true }'
-})

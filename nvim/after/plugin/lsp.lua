@@ -31,32 +31,45 @@ lsp.set_sign_icons({
 })
 
 local cmp = require('cmp')
+cmp.setup({
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  }
+})
+
 lsp.setup_nvim_cmp({
+  formatting = {
+    -- changing the order of fields so the icon is the first
+    fields = { 'menu', 'abbr', 'kind' },
+
+    -- here is where the change happens
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        luasnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+        nvim_lua = 'Π',
+      }
+
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
+  },
   mapping = cmp.mapping.preset.insert({
     ['<C-k>'] = cmp.mapping.scroll_docs(-4),
     ['<C-j>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping({
-      i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-        })
-        else
-          fallback()
-        end
-      end,
-      s = cmp.mapping.confirm({ select = true }),
-      c = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }),
-    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
         else
           fallback()
         end
@@ -65,7 +78,7 @@ lsp.setup_nvim_cmp({
     ['<S-Tab>'] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
         else
           fallback()
         end
@@ -75,12 +88,14 @@ lsp.setup_nvim_cmp({
   sorting = {
     priority_weight = 1.0,
     comparators = {
-      cmp.config.compare.locality,
-      cmp.config.compare.recently_used,
-      cmp.config.compare.score,
+      cmp.config.compare.exact,
       cmp.config.compare.offset,
-      cmp.config.compare.order,
+      cmp.config.compare.recently_used,
       cmp.config.compare.scope,
+      cmp.config.compare.score,
+      require("clangd_extensions.cmp_scores"),
+      cmp.config.compare.locality,
+      cmp.config.compare.order,
     },
   },
 })
@@ -103,6 +118,7 @@ end
 
 lsp.on_attach(function(_, bufnr)
   default_keymap(bufnr, false)
+  vim.lsp.buf.format({ async = true })
 end)
 
 lsp.configure('clangd', {
@@ -115,6 +131,9 @@ lsp.configure('clangd', {
     default_keymap(bufnr, opts.remap)
     vim.keymap.set('n', '<leader>gh', function() vim.cmd('ClangdSwitchSourceHeader') end, opts);
 
+    require("clangd_extensions.inlay_hints").setup_autocmd()
+    require("clangd_extensions.inlay_hints").set_inlay_hints()
+
     client.server_capabilities.semanticTokensProvider = nil
   end,
 })
@@ -123,6 +142,8 @@ lsp.configure('zls', {})
 
 lsp.setup()
 
+require('clangd_extensions').setup()
+
 vim.diagnostic.config({
-    virtual_text = true,
+  virtual_text = true,
 })
