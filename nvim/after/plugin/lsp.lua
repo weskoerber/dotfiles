@@ -20,12 +20,14 @@ lsp.nvim_workspace()
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
-  sign_icons = {
-    error = 'E',
-    warn = 'W',
-    hint = 'H',
-    info = 'I',
-  },
+})
+
+lsp.set_sign_icons({
+  error = "",
+  warning = "",
+  hint = "",
+  information = "",
+  other = "",
 })
 
 local cmp = require('cmp')
@@ -96,10 +98,9 @@ local default_keymap = function(bufnr, remap)
   vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
   vim.keymap.set('n', '[u', function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
 end
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
   default_keymap(bufnr, false)
 end)
 
