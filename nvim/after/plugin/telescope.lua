@@ -1,5 +1,8 @@
 local builtin = require('telescope.builtin')
 local telescope = require('telescope')
+local actions = require('telescope.actions')
+
+local trouble = require('trouble')
 
 telescope.load_extension('fzf')
 
@@ -8,6 +11,14 @@ telescope.setup({
         color_devicons = true,
         layout_strategy = 'flex',
         prompt_prefix = ' > ',
+        mappings = {
+            n = {
+                ['<C-q>'] = function(prompt_bufnr)
+                    actions.smart_send_to_qflist(prompt_bufnr)
+                    trouble.open('quickfix')
+                end,
+            },
+        },
     },
     extensions = {
         fzf = {
