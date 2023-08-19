@@ -53,6 +53,7 @@ require('lazy').setup({
         dependencies = { "nvim-lua/plenary.nvim" },
     },
     { 'RRethy/vim-illuminate' },
+    { 'numToStr/Comment.nvim' },
 
     -- {'catppuccin/nvim', name = 'catppuccin'},
     { 'kyazdani42/nvim-tree.lua' },
