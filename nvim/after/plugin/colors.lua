@@ -8,7 +8,12 @@
 --
 -- vim.cmd('colorscheme rose-pine')
 
-require('catppuccin').setup({
-    flavour = 'macchiato',
+-- require('catppuccin').setup({
+--     flavour = 'macchiato',
+-- })
+-- vim.cmd('colorscheme catppuccin')
+
+require('tokyonight').setup({
+    style = 'moon',
 })
-vim.cmd('colorscheme catppuccin')
+vim.cmd('colorscheme tokyonight')
