@@ -118,7 +118,7 @@ end
 
 lsp.on_attach(function(_, bufnr)
   default_keymap(bufnr, false)
-  vim.lsp.buf.format({ async = true })
+  lsp.buffer_autoformat()
 end)
 
 lsp.configure('clangd', {
@@ -143,6 +143,9 @@ lsp.configure('zls', {})
 lsp.setup()
 
 require('clangd_extensions').setup()
+
+local rust_lsp = lsp.build_options('rust_analyzer', {})
+require('rust-tools').setup({ server = rust_lsp })
 
 vim.diagnostic.config({
   virtual_text = true,
