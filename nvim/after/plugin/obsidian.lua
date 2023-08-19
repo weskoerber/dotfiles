@@ -10,6 +10,7 @@ require('obsidian').setup({
         },
     },
     detect_cwd = true,
+    disable_frontmatter = true,
     finder = 'telescope.nvim',
 
     -- Optional, completion.
