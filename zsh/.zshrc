@@ -8,8 +8,6 @@ autoload -U colors && colors
 autoload -U compinit && compinit -u
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 
-setopt CORRECT
-setopt CORRECT_ALL
 
 zmodload zsh/complist
 compinit

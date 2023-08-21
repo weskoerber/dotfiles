@@ -41,6 +41,12 @@ require('lazy').setup({
     },
     { 'nvim-treesitter/nvim-treesitter-context' },
 
+    -- Json5
+    {
+        'Joakker/lua-json5',
+        build = './install.sh',
+    },
+
     -- UI Plugins
     { 'gruvbox-community/gruvbox' },
     { 'rose-pine/neovim' },
@@ -54,6 +60,11 @@ require('lazy').setup({
     },
     { 'RRethy/vim-illuminate' },
     { 'numToStr/Comment.nvim' },
+    {
+        'glepnir/dashboard-nvim',
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+        event = 'VimEnter',
+    },
 
     -- {'catppuccin/nvim', name = 'catppuccin'},
     { 'kyazdani42/nvim-tree.lua' },

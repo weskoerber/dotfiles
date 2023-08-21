@@ -40,3 +40,10 @@ autocmd({ 'BufEnter', 'BufRead', }, {
     pattern = '*.cake',
     command = 'lua vim.bo.filetype = \'cs\'',
 })
+
+-- Parse json files with jsonc parser
+autocmd({'BufEnter', 'BufRead'}, {
+    group = WesKoerberGroup,
+    pattern = '*.json,*.jsonc',
+    command = 'set filetype=jsonc'
+})
