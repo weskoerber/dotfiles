@@ -10,6 +10,7 @@ telescope.setup({
     defaults = {
         color_devicons = true,
         layout_strategy = 'flex',
+        sorting_strategy = 'ascending',
         prompt_prefix = ' > ',
         mappings = {
             n = {
