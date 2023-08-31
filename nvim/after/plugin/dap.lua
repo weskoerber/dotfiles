@@ -1,5 +1,7 @@
 local dap = require('dap')
 
+require('dap.ext.vscode').json_decode = require('json5').parse
+
 -- C
 dap.adapters.cppdbg = {
   id = 'cppdbg',
