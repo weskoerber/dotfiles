@@ -1,12 +1,12 @@
 require('obsidian').setup({
     workspaces = {
         {
-            name = 'personal',
-            path = '~/Documents/notes/personal',
-        },
-        {
             name = 'work',
             path = '~/Documents/notes/acsd',
+        },
+        {
+            name = 'personal',
+            path = '~/Documents/notes/personal',
         },
     },
     detect_cwd = true,

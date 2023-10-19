@@ -112,5 +112,5 @@ require('lazy').setup({
 
     -- Misc
     { 'tpope/vim-sleuth' },
-    { 'weskoerber/obsidian.nvim', branch = 'feat/multiple-vaults' },
+    { 'epwalsh/obsidian.nvim', branch = 'main' },
 })
