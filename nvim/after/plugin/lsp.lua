@@ -93,7 +93,7 @@ lsp.setup_nvim_cmp({
       cmp.config.compare.recently_used,
       cmp.config.compare.scope,
       cmp.config.compare.score,
-      require("clangd_extensions.cmp_scores"),
+      -- require("clangd_extensions.cmp_scores"),
       cmp.config.compare.locality,
       cmp.config.compare.order,
     },
@@ -131,18 +131,22 @@ lsp.configure('clangd', {
     default_keymap(bufnr, opts.remap)
     vim.keymap.set('n', '<leader>gh', function() vim.cmd('ClangdSwitchSourceHeader') end, opts);
 
-    require("clangd_extensions.inlay_hints").setup_autocmd()
-    require("clangd_extensions.inlay_hints").set_inlay_hints()
+    -- require("clangd_extensions.inlay_hints").setup_autocmd()
+    -- require("clangd_extensions.inlay_hints").set_inlay_hints()
 
     client.server_capabilities.semanticTokensProvider = nil
+
+    require('dap.ext.vscode').load_launchjs()
   end,
 })
+
+lsp.configure('phpactor', {})
 
 lsp.configure('zls', {})
 
 lsp.setup()
 
-require('clangd_extensions').setup()
+-- require('clangd_extensions').setup()
 
 local rust_lsp = lsp.build_options('rust_analyzer', {})
 require('rust-tools').setup({ server = rust_lsp })

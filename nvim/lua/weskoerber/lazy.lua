@@ -102,7 +102,7 @@ require('lazy').setup({
             { 'hrsh7th/cmp-buffer' },   -- Required
             { 'hrsh7th/cmp-path' },     -- Required
             { 'L3MON4D3/LuaSnip' },     -- Required
-            { 'https://git.sr.ht/~p00f/clangd_extensions.nvim' },
+            -- { 'https://git.sr.ht/~p00f/clangd_extensions.nvim' },
         }
     },
     {
