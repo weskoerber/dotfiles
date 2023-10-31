@@ -48,12 +48,15 @@ require('lazy').setup({
     },
 
     -- UI Plugins
-    { 'gruvbox-community/gruvbox' },
-    { 'rose-pine/neovim' },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-    },
+    { 'rktjmp/lush.nvim' },
+    { 'savq/melange-nvim' },
+    -- { 'gruvbox-community/gruvbox' },
+    -- { 'rose-pine/neovim' },
+    -- {'catppuccin/nvim', name = 'catppuccin'},
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false,
+    -- },
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -66,7 +69,6 @@ require('lazy').setup({
         event = 'VimEnter',
     },
 
-    -- {'catppuccin/nvim', name = 'catppuccin'},
     { 'kyazdani42/nvim-tree.lua' },
     { 'nvim-lualine/lualine.nvim' },
 

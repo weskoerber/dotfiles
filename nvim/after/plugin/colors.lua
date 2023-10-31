@@ -13,7 +13,10 @@
 -- })
 -- vim.cmd('colorscheme catppuccin')
 
-require('tokyonight').setup({
-    style = 'moon',
-})
-vim.cmd('colorscheme tokyonight')
+-- require('tokyonight').setup({
+--     style = 'moon',
+-- })
+-- vim.cmd('colorscheme tokyonight')
+
+vim.opt.termguicolors = true
+vim.cmd.colorscheme 'melange'
