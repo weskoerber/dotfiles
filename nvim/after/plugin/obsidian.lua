@@ -9,7 +9,6 @@ require('obsidian').setup({
             path = '~/Documents/notes/personal',
         },
     },
-    detect_cwd = true,
     disable_frontmatter = true,
     finder = 'telescope.nvim',
 
