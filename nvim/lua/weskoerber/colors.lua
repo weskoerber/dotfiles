@@ -17,20 +17,6 @@ local function setup_lualine(theme)
     lualine.setup(lualine_config)
 end
 
----Returns keys from a table
----@param substr string|null If not nil, filters keys with provided substring
----@param t table Table from which to extract keys
----@return table
-local function get_keys(substr, t)
-    local keys = {}
-    for key, _ in pairs(t) do
-        if substr == nil or string.len(substr) == 0 or string.find(key, substr) then
-            table.insert(keys, key)
-        end
-    end
-    return keys
-end
-
 Color.overrides = {
     catppuccin = function()
         require('catppuccin').setup({
