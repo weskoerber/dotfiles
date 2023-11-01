@@ -9,11 +9,11 @@ $git_state\
 $git_commit\
 $sudo\
 $shell\
-$character\
 $fill\
 $cmd_duration\
 $username\
 $hostname
+$character\
 """
 
 [cmd_duration]
