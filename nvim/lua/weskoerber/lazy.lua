@@ -49,19 +49,25 @@ require('lazy').setup({
 
     -- UI Plugins
     { 'rktjmp/lush.nvim' },
+    { "ellisonleao/gruvbox.nvim" },
+    { 'Mofiqul/vscode.nvim' },
+    {
+        'catppuccin/nvim',
+        name = 'catppuccin'
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+    },
     { 'savq/melange-nvim' },
-    -- { 'gruvbox-community/gruvbox' },
-    -- { 'rose-pine/neovim' },
-    -- {'catppuccin/nvim', name = 'catppuccin'},
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     lazy = false,
-    -- },
+    {
+        'rose-pine/neovim',
+        name = 'rose-pine'
+    },
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
-    { 'RRethy/vim-illuminate' },
     { 'numToStr/Comment.nvim' },
     {
         'glepnir/dashboard-nvim',
