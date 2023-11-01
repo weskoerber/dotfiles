@@ -29,7 +29,7 @@ install_all() {
   install "$HOME/.config/kitty" "kitty" "Kitty"
   install "$HOME/.config/starship.toml" "starship.toml" "Starship"
 
-  ln -s "$HOME/.config/shell/profile" "$HOME/.zprofile"
+  install "$HOME/.zprofile" "shell/profile" "Zsh profile"
 }
 
 # $1: install dir
