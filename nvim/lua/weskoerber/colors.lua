@@ -1,8 +1,12 @@
 local lualine_config = require('weskoerber.lualine_config')
 local lualine = require('lualine')
 
+---@class Color
+---@field overrides table<function> Color sheme overrides
+local Color = {}
+
 ---Configures lualine theme
----@param theme string
+---@param theme string Theme name
 local function setup_lualine(theme)
     if lualine_config.options == nil then
         lualine_config.options = { theme = theme }
@@ -13,7 +17,21 @@ local function setup_lualine(theme)
     lualine.setup(lualine_config)
 end
 
-return {
+---Returns keys from a table
+---@param substr string|null If not nil, filters keys with provided substring
+---@param t table Table from which to extract keys
+---@return table
+local function get_keys(substr, t)
+    local keys = {}
+    for key, _ in pairs(t) do
+        if substr == nil or string.len(substr) == 0 or string.find(key, substr) then
+            table.insert(keys, key)
+        end
+    end
+    return keys
+end
+
+Color.overrides = {
     catppuccin = function()
         require('catppuccin').setup({
             flavour = 'macchiato',
@@ -52,10 +70,25 @@ return {
         vim.cmd('colorscheme tokyonight')
         setup_lualine('tokyonight')
     end,
-    vscode = function()
-        require('vscode').setup()
-        vim.o.background = "dark" -- or "light" for light mode
-        require('vscode').load()
-        setup_lualine('vscode')
-    end
 }
+
+---Changes the colorsheme
+---@param color string
+Color.change = function(color)
+    if Color.overrides[color] ~= nil then
+        Color.overrides[color]()
+        return
+    end
+
+    vim.cmd('colorscheme ' .. color)
+    setup_lualine(color)
+end
+
+vim.api.nvim_create_user_command('Color', function(data)
+    Color.change(data.fargs[1])
+end, {
+    nargs = 1,
+    complete = 'color'
+})
+
+return Color
