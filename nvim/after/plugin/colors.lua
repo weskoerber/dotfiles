@@ -1,4 +1,4 @@
 local color = require('weskoerber.colors')
 
-color.change('vscode')
+color.change('gruvbox')
 
