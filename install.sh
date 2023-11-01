@@ -26,6 +26,7 @@ install_all() {
   install "$HOME/.config/zsh" "zsh" "zsh"
   install "$HOME/.config/shell" "shell" "profile, aliasrc"
   install "$HOME/.config/tmux" "tmux" "Tmux"
+  install "$HOME/.config/kitty" "kitty" "Kitty"
 
   ln -s "$HOME/.config/shell/profile" "$HOME/.zprofile"
 }
