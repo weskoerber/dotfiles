@@ -1,0 +1,20 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_commit\
+$sudo\
+$shell\
+$character\
+$fill\
+$cmd_duration\
+$username\
+$hostname
+"""
+
+[cmd_duration]
+format = "took [$duration](bold yellow)\n"
