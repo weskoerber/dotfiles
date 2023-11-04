@@ -96,20 +96,20 @@ require('lazy').setup({
     -- LSP Plugins
     {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
+        branch = 'v3.x',
         dependencies = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },             -- Required
+            { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            { 'williamboman/mason-lspconfig.nvim' },
             { 'simrat39/rust-tools.nvim' },
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'hrsh7th/cmp-buffer' },   -- Required
-            { 'hrsh7th/cmp-path' },     -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'L3MON4D3/LuaSnip' },
             -- { 'https://git.sr.ht/~p00f/clangd_extensions.nvim' },
         }
     },

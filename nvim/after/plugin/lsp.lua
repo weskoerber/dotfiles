@@ -1,4 +1,33 @@
 local lsp = require('lsp-zero')
+local mason = require('mason')
+local lspconfig = require('mason-lspconfig')
+local nvim_lspconfig = require('lspconfig')
+
+mason.setup()
+
+local mason_tools = {
+  'cpptools',
+}
+
+vim.api.nvim_create_user_command('MasonInstallAll', function()
+  vim.cmd('MasonInstall ' .. table.concat(mason_tools))
+end, {})
+
+local default_keymap = function(bufnr, remap)
+  local opts = {
+    buffer = bufnr,
+    remap = remap,
+  }
+
+  vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+  vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set('n', '<leader>vh', function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set('n', '[u', function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
+end
 
 lsp.preset({
   name = 'minimal',
@@ -7,16 +36,44 @@ lsp.preset({
   suggest_lsp_servers = false,
 })
 
-lsp.ensure_installed({
-  'clangd',
-  'csharp_ls',
-  'phpactor',
-  'rust_analyzer',
-  'zls',
-})
+lspconfig.setup({
+  ensure_installed = {
+    'clangd',
+    'csharp_ls',
+    'phpactor',
+    'rust_analyzer',
+    'zls',
+  },
+  handlers = {
+    lsp.default_setup,
+    clangd = function()
+      nvim_lspconfig.clangd.setup({
+        cmd = {
+          'clangd',
+          '--background-index',
+          '--clang-tidy',
+          '--completion-style=bundled',
+        },
+        on_attach = function(client, bufnr)
+          local opts = {
+            buffer = bufnr,
+            remap = false,
+          }
 
--- Fix undefined global 'vim'
-lsp.nvim_workspace()
+          default_keymap(bufnr, opts.remap)
+          vim.keymap.set('n', '<leader>gh', function() vim.cmd('ClangdSwitchSourceHeader') end, opts);
+
+          -- client.server_capabilities.semanticTokensProvider = nil
+
+          require('dap.ext.vscode').load_launchjs()
+        end,
+      })
+    end,
+    lua_ls = function()
+      lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+    end,
+  }
+})
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -42,7 +99,8 @@ cmp.setup({
   }
 })
 
-lsp.setup_nvim_cmp({
+
+cmp.setup({
   formatting = {
     -- changing the order of fields so the icon is the first
     fields = { 'menu', 'abbr', 'kind' },
@@ -100,49 +158,12 @@ lsp.setup_nvim_cmp({
   },
 })
 
-local default_keymap = function(bufnr, remap)
-  local opts = {
-    buffer = bufnr,
-    remap = remap,
-  }
-
-  vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set('n', '<leader>vh', function() vim.lsp.buf.signature_help() end, opts)
-  vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-  vim.keymap.set('n', '[u', function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-end
 
 lsp.on_attach(function(_, bufnr)
   default_keymap(bufnr, false)
   lsp.buffer_autoformat()
 end)
 
-lsp.configure('clangd', {
-  on_attach = function(client, bufnr)
-    local opts = {
-      buffer = bufnr,
-      remap = false,
-    }
-
-    default_keymap(bufnr, opts.remap)
-    vim.keymap.set('n', '<leader>gh', function() vim.cmd('ClangdSwitchSourceHeader') end, opts);
-
-    -- require("clangd_extensions.inlay_hints").setup_autocmd()
-    -- require("clangd_extensions.inlay_hints").set_inlay_hints()
-
-    client.server_capabilities.semanticTokensProvider = nil
-
-    require('dap.ext.vscode').load_launchjs()
-  end,
-})
-
-lsp.configure('phpactor', {})
-
-lsp.configure('zls', {})
 
 lsp.setup()
 
