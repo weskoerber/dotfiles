@@ -74,9 +74,9 @@ require('lazy').setup({
         dependencies = { { 'nvim-tree/nvim-web-devicons' } },
         event = 'VimEnter',
     },
-
     { 'kyazdani42/nvim-tree.lua' },
     { 'nvim-lualine/lualine.nvim' },
+    { 'akinsho/toggleterm.nvim' },
 
     -- Git
     { 'airblade/vim-gitgutter' },
