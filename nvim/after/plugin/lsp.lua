@@ -40,6 +40,7 @@ lspconfig.setup({
   ensure_installed = {
     'clangd',
     'csharp_ls',
+    'lua_ls',
     'phpactor',
     'rust_analyzer',
     'zls',
@@ -70,7 +71,7 @@ lspconfig.setup({
       })
     end,
     lua_ls = function()
-      lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+      nvim_lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
     end,
   }
 })
@@ -89,35 +90,21 @@ lsp.set_sign_icons({
 
 local cmp = require('cmp')
 cmp.setup({
-  preselect = 'item',
   completion = {
     completeopt = 'menu,menuone,noinsert'
   },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  }
-})
-
-
-cmp.setup({
   formatting = {
-    -- changing the order of fields so the icon is the first
-    fields = { 'menu', 'abbr', 'kind' },
+    format = require('lspkind').cmp_format({
+      mode = 'symbol_text',  -- show only symbol annotations
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
-    -- here is where the change happens
-    format = function(entry, item)
-      local menu_icon = {
-        nvim_lsp = 'λ',
-        luasnip = '⋗',
-        buffer = 'Ω',
-        path = '🖫',
-        nvim_lua = 'Π',
-      }
-
-      item.menu = menu_icon[entry.source.name]
-      return item
-    end,
+      -- The function below will be called before any actual modifications from lspkind
+      -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+      before = function(entry, vim_item)
+        return vim_item
+      end
+    })
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-k>'] = cmp.mapping.scroll_docs(-4),
@@ -143,21 +130,25 @@ cmp.setup({
       end, { 'i', 's', }
     ),
   }),
+  preselect = cmp.PreselectMode.Item,
   sorting = {
     priority_weight = 1.0,
     comparators = {
       cmp.config.compare.exact,
       cmp.config.compare.offset,
       cmp.config.compare.recently_used,
-      cmp.config.compare.scope,
+      cmp.config.compare.scopes,
       cmp.config.compare.score,
       -- require("clangd_extensions.cmp_scores"),
       cmp.config.compare.locality,
       cmp.config.compare.order,
     },
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 })
-
 
 lsp.on_attach(function(_, bufnr)
   default_keymap(bufnr, false)

@@ -113,6 +113,7 @@ require('lazy').setup({
             -- { 'https://git.sr.ht/~p00f/clangd_extensions.nvim' },
         }
     },
+    { 'onsails/lspkind.nvim' },
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
