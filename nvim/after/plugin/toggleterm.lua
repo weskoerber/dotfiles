@@ -13,4 +13,4 @@ local lazygit = Terminal:new({
     },
 })
 
-vim.keymap.set('n', '<leader>g', function() lazygit:toggle() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-g>g', function() lazygit:toggle() end, { noremap = true, silent = true })
