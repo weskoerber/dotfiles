@@ -52,7 +52,7 @@ lspconfig.setup({
         cmd = {
           'clangd',
           '--background-index',
-          '--clang-tidy',
+          --'--clang-tidy',
           '--completion-style=bundled',
         },
         on_attach = function(client, bufnr)
