@@ -2,6 +2,7 @@ local lsp = require('lsp-zero')
 local mason = require('mason')
 local lspconfig = require('mason-lspconfig')
 local nvim_lspconfig = require('lspconfig')
+local luasnip = require('luasnip')
 
 mason.setup()
 
@@ -12,6 +13,12 @@ local mason_tools = {
 vim.api.nvim_create_user_command('MasonInstallAll', function()
   vim.cmd('MasonInstall ' .. table.concat(mason_tools))
 end, {})
+
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 local default_keymap = function(bufnr, remap)
   local opts = {
@@ -52,8 +59,8 @@ lspconfig.setup({
         cmd = {
           'clangd',
           '--background-index',
-          --'--clang-tidy',
-          '--completion-style=bundled',
+          '--clang-tidy',
+          '--completion-style=detailed',
         },
         on_attach = function(client, bufnr)
           local opts = {
@@ -63,8 +70,6 @@ lspconfig.setup({
 
           default_keymap(bufnr, opts.remap)
           vim.keymap.set('n', '<leader>gh', function() vim.cmd('ClangdSwitchSourceHeader') end, opts);
-
-          -- client.server_capabilities.semanticTokensProvider = nil
 
           require('dap.ext.vscode').load_launchjs()
         end,
@@ -115,6 +120,10 @@ cmp.setup({
       function(fallback)
         if cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
         else
           fallback()
         end
@@ -124,6 +133,8 @@ cmp.setup({
       function(fallback)
         if cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
