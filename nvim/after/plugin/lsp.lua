@@ -7,6 +7,7 @@ local luasnip = require('luasnip')
 mason.setup()
 
 local mason_tools = {
+  'cmake-language-server',
   'cpptools',
 }
 
