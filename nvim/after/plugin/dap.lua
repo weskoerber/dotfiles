@@ -6,7 +6,7 @@ require('dap.ext.vscode').json_decode = require('json5').parse
 dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
-    command = os.getenv("HOME") .. '/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+    command = vim.fs.normalize('~/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7'),
 }
 
 dap.configurations.c = {
