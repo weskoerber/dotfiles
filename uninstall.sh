@@ -47,6 +47,10 @@ uninstall() {
   fi
 }
 
+uninstall_scripts() {
+  fd -e sh . .local/bin -x rm -v ~/{}
+}
+
 # process_options
 for arg in $@;
 do

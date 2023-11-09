@@ -46,6 +46,10 @@ install() {
   fi
 }
 
+install_scripts() {
+  fd -a -e sh .local/bin -x ln -s {} $HOME/.local/bin
+}
+
 # process_options
 for arg in $@;
 do
@@ -64,6 +68,7 @@ done
 if [ $g_all -eq 1 ]; then
   echo "installing all"
   install_all
+  install_scripts
 elif [ $# -lt 3 ]; then
   usage
   exit 1
