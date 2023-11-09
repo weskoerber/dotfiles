@@ -2,6 +2,7 @@
 
 g_args=$@
 g_force=0
+g_scripts=0
 
 usage() {
   target=$(basename $0)
@@ -10,6 +11,7 @@ usage() {
   printf "$(tput bold)OPTIONS:$(tput sgr0)\n"
   printf "  --force, -f    Remove config, even if it's not a symlink.\n"
   printf "  --help, -h     Print usage\n"
+  printf "  --scripts, -s  Uninstall scripts and exit\n"
   printf "  --usage        Print usage\n\n"
   printf "$(tput bold)PATH:$(tput sgr0)\n"
   printf "  Path to the target config (e.g. ~/.config/tmux)\n\n"
@@ -63,8 +65,17 @@ do
       g_force=1
       shift 1
       ;;
+    "--scripts" | "-s")
+      g_scripts=1
+      shift 1
+      ;;
   esac
 done
+
+if [ $g_scripts -eq 1 ]; then
+  uninstall_scripts
+  exit 0
+fi
 
 if [ $# -lt 3 ]; then
   usage

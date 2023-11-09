@@ -1,6 +1,7 @@
 #!/bin/sh
 
 g_all=0
+g_scripts=0
 
 usage() {
   target=$(basename $0)
@@ -8,6 +9,7 @@ usage() {
   printf "%s $(tput bold)[OPTIONS] <PATH> <BINARY> <NAME>$(tput sgr0)\n\n" "$target"
   printf "$(tput bold)OPTIONS:$(tput sgr0)\n"
   printf "  --all, -a      Install all configs\n"
+  printf "  --scripts, -s  Install scripts and exit\n"
   printf "  --help, -h     Print usage\n"
   printf "  --usage        Print usage\n\n"
   printf "$(tput bold)PATH:$(tput sgr0)\n"
@@ -47,7 +49,7 @@ install() {
 }
 
 install_scripts() {
-  fd -a -e sh .local/bin -x ln -s {} $HOME/.local/bin
+  fd -a -e sh . .local/bin -x ln -s {} $HOME/.local/bin
 }
 
 # process_options
@@ -62,14 +64,25 @@ do
       g_all=1
       shift 1
       ;;
+    "--scripts" | "-s")
+      g_scripts=1
+      shift 1
+      ;;
   esac
 done
 
 if [ $g_all -eq 1 ]; then
   echo "installing all"
   install_all
+fi
+
+if [ $g_scripts -eq 1 ]; then
+  echo "installing scripts"
   install_scripts
-elif [ $# -lt 3 ]; then
+  exit 0
+fi
+
+if [ $# -lt 3 ]; then
   usage
   exit 1
 else
