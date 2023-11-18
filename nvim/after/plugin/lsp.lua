@@ -44,6 +44,8 @@ lsp.preset({
   suggest_lsp_servers = false,
 })
 
+nvim_lspconfig.gdscript.setup({})
+
 lspconfig.setup({
   ensure_installed = {
     'clangd',
