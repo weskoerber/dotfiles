@@ -16,7 +16,7 @@ vim.opt.backup = false
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. '/.local/share/nvim/undodir'
 
-vim.opt.hlsearch=false
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.ignorecase = true
@@ -39,3 +39,9 @@ vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
 
 vim.opt.mouse = 'nv'
+
+vim.opt.listchars = {
+    space = '·',
+    tab = '⇥ ',
+}
+vim.opt.list = true
