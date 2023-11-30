@@ -25,8 +25,13 @@ alias \
 
 man() {
     if [ -z "${1}" ]; then
-        /bin/man
-    else
+       /bin/man
+       return
+    fi
+
+    if /bin/man -w "${1}" 2> /dev/null; then
         nvim -c "Man ${1} | only!"
+    else
+        /bin/man "${1}"
     fi
 }
