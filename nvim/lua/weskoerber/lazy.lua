@@ -70,6 +70,11 @@ require('lazy').setup({
     },
     { 'numToStr/Comment.nvim' },
     {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+    },
+    {
         'glepnir/dashboard-nvim',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } },
         event = 'VimEnter',
