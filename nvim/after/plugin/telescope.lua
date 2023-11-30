@@ -59,6 +59,16 @@ vim.keymap.set('n', '<C-f>g', function()
     builtin.git_files()
 end)
 
+-- Find man pages
+vim.keymap.set('n', '<C-f>m', function()
+    builtin.man_pages({ sections = { 'ALL' } })
+end)
+
+-- Find help pages
+vim.keymap.set('n', '<C-f>h', function()
+    builtin.help_tags()
+end)
+
 -- Git commits
 vim.keymap.set('n', '<C-g>c', function()
     builtin.git_commits()
