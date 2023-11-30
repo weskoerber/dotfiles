@@ -22,3 +22,11 @@ alias \
     g="git" \
     v="nvim" \
     lzd="lazydocker"
+
+man() {
+    if [ -z "${1}" ]; then
+        /bin/man
+    else
+        nvim -c "Man ${1} | only!"
+    fi
+}
