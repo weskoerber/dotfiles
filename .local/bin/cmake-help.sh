@@ -9,19 +9,39 @@ try_get_page() {
     if [ $? -ne 0 ]; then
         page=""
     fi
-
-    return $?
 }
 
-try_get_page "command" ||
-    try_get_page "variable" ||
-    try_get_page "property" ||
-    try_get_page "module" ||
-    try_get_page "policy"
+try_get_page "command"
+if [ -n "$page" ]; then
+    less <<< $page
+    exit 0
+fi
+
+try_get_page "variable"
+if [ -n "$page" ]; then
+    less <<< $page
+    exit 0
+fi
+
+try_get_page "property"
+if [ -n "$page" ]; then
+    less <<< $page
+    exit 0
+fi
+
+try_get_page "module" ||
+if [ -n "$page" ]; then
+    less <<< $page
+    exit 0
+fi
+
+try_get_page "policy"
+if [ -n "$page" ]; then
+    less <<< $page
+    exit 0
+fi
 
 if [ -z "$page" ]; then
     echo "Error: Page not found"
     exit 1
 fi
-
-less <<< $page
