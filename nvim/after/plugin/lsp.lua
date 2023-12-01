@@ -73,6 +73,7 @@ lspconfig.setup({
 
           default_keymap(bufnr, opts.remap)
           vim.keymap.set('n', '<leader>gh', function() vim.cmd('ClangdSwitchSourceHeader') end, opts);
+          vim.keymap.set('n', '<leader>gs', function() vim.cmd('vert sb | ClangdSwitchSourceHeader') end, opts);
 
           require('dap.ext.vscode').load_launchjs()
         end,
