@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 -- Buffer navigation
 vim.keymap.set('n', '<leader>wj', ':winc j<CR>')
