@@ -23,6 +23,7 @@ alias \
     v="nvim" \
     lzd="lazydocker"
 
+# Use neovim as a man pager!
 man() {
     if [ -z "${1}" ]; then
        /bin/man
@@ -33,5 +34,15 @@ man() {
         nvim -c "Man ${1} | only!"
     else
         /bin/man "${1}"
+    fi
+}
+
+# Copy file to clipboard
+cpc() {
+    if [ -n "${1}" ] && [ -f $1 ]; then
+        wl-copy < $1
+    else
+        printf "No such file or directory: '%s'\n" $1
+        return 1
     fi
 }
