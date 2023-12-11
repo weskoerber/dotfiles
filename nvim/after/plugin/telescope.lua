@@ -104,6 +104,10 @@ vim.keymap.set('n', '<C-f>d', function()
     builtin.diagnostics()
 end)
 
+vim.keymap.set('n', '<C-f>b', function()
+    builtin.buffers()
+end)
+
 vim.keymap.set('n', '<C-space>', function()
     builtin.resume()
 end)
