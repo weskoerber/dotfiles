@@ -159,6 +159,13 @@ cmp.setup({
       cmp.config.compare.order,
     },
   },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
