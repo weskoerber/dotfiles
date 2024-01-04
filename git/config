@@ -7,6 +7,9 @@
     autocrlf = input
     pager = delta --max-line-length $COLUMNS --paging=always
 
+[rebase]
+	autoStash = true
+
 [delta]
     side-by-side = false
     syntax-theme = gruvbox-dark
