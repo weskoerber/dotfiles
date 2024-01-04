@@ -136,6 +136,7 @@ require('lazy').setup({
             -- { 'https://git.sr.ht/~p00f/clangd_extensions.nvim' },
         }
     },
+    { 'mfussenegger/nvim-lint' },
     { 'onsails/lspkind.nvim' },
     {
         "folke/trouble.nvim",
