@@ -50,8 +50,8 @@ lspconfig.setup({
   ensure_installed = {
     'clangd',
     'csharp_ls',
+    'intelephense',
     'lua_ls',
-    'phpactor',
     'rust_analyzer',
     'tsserver',
     'zls',
