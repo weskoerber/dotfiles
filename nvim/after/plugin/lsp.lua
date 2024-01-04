@@ -53,6 +53,7 @@ lspconfig.setup({
     'lua_ls',
     'phpactor',
     'rust_analyzer',
+    'tsserver',
     'zls',
   },
   handlers = {
