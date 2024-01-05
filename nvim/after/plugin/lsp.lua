@@ -50,7 +50,10 @@ lspconfig.setup({
   ensure_installed = {
     'clangd',
     'csharp_ls',
+    'cssls',
     'intelephense',
+    'html',
+    'htmx',
     'lua_ls',
     'rust_analyzer',
     'tsserver',
