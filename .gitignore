@@ -17,3 +17,6 @@ zsh/*.zwc
 
 # nvim
 nvim/lazy-lock.json
+
+# Lagygit
+lazygit/state.yml

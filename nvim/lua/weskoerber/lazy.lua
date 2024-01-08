@@ -97,7 +97,6 @@ require('lazy').setup({
     -- Git
     { 'airblade/vim-gitgutter' },
     { 'f-person/git-blame.nvim' },
-    { 'tpope/vim-fugitive' },
 
     -- Debuggers
     {
