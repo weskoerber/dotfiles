@@ -7,6 +7,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_commit\
+$git_status\
 $sudo\
 $shell\
 $fill\
@@ -18,3 +19,13 @@ $character\
 
 [cmd_duration]
 format = "took [$duration](bold yellow)\n"
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+conflicted = '🏳'
+modified = '!'
+untracked = '?'
+staged = '+'
+deleted = '-'
