@@ -8,4 +8,4 @@ vim.api.nvim_create_user_command('Lazygit', function(opts)
     }):toggle()
 end, {})
 
-vim.keymap.set('n', '<leader>gs', vim.cmd.Lazygit, {});
+vim.keymap.set('n', '<leader>gg', vim.cmd.Lazygit, {});

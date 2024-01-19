@@ -51,9 +51,13 @@ zle -N zle-keymap-select
 ################
 # History file #
 ################
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=1000000000
+SAVEHIST=1000000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+HISTTIMEFORMAT="[%F %T]"
+setopt inc_append_history
+setopt extended_history
+setopt hist_find_no_dups
 
 ################
 # Load aliases #
@@ -78,6 +82,10 @@ fi
 
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh

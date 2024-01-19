@@ -31,7 +31,7 @@ dapui.setup({
   layouts = {
     {
       elements = {
-      -- Elements can be strings or table with id and size keys.
+        -- Elements can be strings or table with id and size keys.
         {
           id = "breakpoints",
           size = 0.25,
@@ -84,8 +84,8 @@ dapui.setup({
     },
   },
   floating = {
-    max_height = nil, -- These can be integers or a float between 0 and 1.
-    max_width = nil, -- Floats will be treated as percentage of your screen.
+    max_height = nil,  -- These can be integers or a float between 0 and 1.
+    max_width = nil,   -- Floats will be treated as percentage of your screen.
     border = "single", -- Border style. Can be "single", "double" or "rounded"
     mappings = {
       close = { "q", "<Esc>" },
@@ -110,4 +110,13 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
-vim.keymap.set('n', '<F17>', function() dapui.close() end)
+local dapui_open = true
+vim.keymap.set('n', '<F17>', function()
+  if dapui_open then
+    dapui.close()
+    dapui_open = false
+  else
+    dapui.open()
+    dapui_open = true
+  end
+end)

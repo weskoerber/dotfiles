@@ -75,11 +75,6 @@ require('lazy').setup({
         event = "VeryLazy",
         config = function() require('nvim-surround').setup() end
     },
-    {
-        'glepnir/dashboard-nvim',
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
-        event = 'VimEnter',
-    },
     { 'kyazdani42/nvim-tree.lua' },
     { 'nvim-lualine/lualine.nvim' },
     {
@@ -95,6 +90,7 @@ require('lazy').setup({
     { 'akinsho/toggleterm.nvim' },
 
     -- Git
+    { 'tpope/vim-fugitive' },
     { 'airblade/vim-gitgutter' },
     { 'f-person/git-blame.nvim' },
 
