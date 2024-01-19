@@ -80,7 +80,6 @@ if [ -z "$LS_COLORS" ]; then
     eval $(dircolors -b "$HOME/.dir_colors")
 fi
 
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 

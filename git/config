@@ -28,8 +28,14 @@
     llog = log --all --oneline --graph --decorate
     slog = !sh -c '[ -z $1 ] && git llog -n 10 || git llog -n $1' -
     clog = log --all --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+    glog = log --all --graph --date=short --abbrev=8 --pretty=format:"%C(#689d6a)%h%x20%C(#98971a)%ad%x20%C(#d79921)%an%C(#cc241d)%d%x20%C(#ebdbb2)%s"
     clogs = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
     fdiffs = !sh -c 'git diff --staged -U$(wc -l $1)' -
     fdiff = !sh -c 'git diff -U$(wc -l $1)' -
     cp = cherry-pick
     snatch = !sh -c 'git stash && git pull && git stash pop' -
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
