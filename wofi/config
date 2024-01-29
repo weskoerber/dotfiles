@@ -1,0 +1,19 @@
+# allow_images = true
+# allow_markup = true
+image_size = 24
+
+hide_scroll = true
+
+prompt =
+
+mode=drun
+insensitive = true
+matching = fuzzy
+parse_search = true
+
+width = 50%
+
+key_down = Alt_L-j
+key_up = Alt_L-k
+key_expand = Alt_L-l
+key_hide_search = minus

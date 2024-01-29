@@ -1,0 +1,8 @@
+# vim: ft=neomuttrc
+
+set real_name = "Wes Koerber"
+
+set imap_deflate = yes
+set imap_qresync = yes
+
+set ssl_force_tls = yes

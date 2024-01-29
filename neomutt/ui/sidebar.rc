@@ -1,0 +1,5 @@
+# vim: ft=neomuttrc
+
+set mail_check_stats = yes
+set sidebar_visible
+set sidebar_format = "%D%* %<N?%N/>%<S?%S>"

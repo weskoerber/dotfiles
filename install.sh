@@ -31,6 +31,12 @@ install_all() {
   install "$HOME/.config/kitty" "kitty" "Kitty"
   install "$HOME/.config/starship.toml" "starship.toml" "Starship"
   install "$HOME/.config/lazygit" "lazygit" "Lazygit"
+  install "$HOME/.config/neomutt" "neomutt" "Neomutt"
+  mkdir -p "$HOME/.local/share/neomutt/mail/"
+
+  install "$HOME/.config/hypr" "hypr" "Hyprland"
+  install "$HOME/.config/wofi" "wofi" "Wofi"
+  install "$HOME/.config/waybar" "waybar" "Waybar"
 
   install "$HOME/.zprofile" "shell/profile" "Zsh profile"
 }
