@@ -1,0 +1,4 @@
+# vim: filetype=neomuttrc
+
+set sidebar_visible
+set sidebar_format = "%D %> %N/%o (%S)"

@@ -46,4 +46,5 @@ bind browser,index,query j next-entry
 bind browser,index,query gg first-entry
 bind browser,index,query G last-entry
 
-bind alias,attach,browser,compose,index,pager q exit
+bind index,attach,pager,browser,query,alias,compose q exit
+bind index,attach,pager,browser,query,alias,compose \Co exit
