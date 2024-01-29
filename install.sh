@@ -57,7 +57,10 @@ install() {
 
 install_scripts() {
   prefix="$HOME/.local/bin"
-  local_prefix=".local/bin"
+  local_prefix=$(dirname $(realpath $0))
+  local_prefix="${local_prefix%/}/.local/bin"
+
+  echo "${local_prefix}"
 
   for name in $(fd -e sh . .local/bin -x basename); do
     dest="${prefix%/}/${name}"
