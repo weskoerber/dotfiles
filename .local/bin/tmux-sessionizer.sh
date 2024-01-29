@@ -4,12 +4,17 @@ basedir=$(pwd)          # Sets the base directory for the find command
 depth=0                 # Max depth to look
 noswitch=0              # 0=stay in current session, 1=switch to new session
 git=0                   # 0=git worktrees only, 1=all directories
+# running=0               # 1=list running sessions only
 verbose=0               # 1=show verbose output
 exec=""                 # command to exec after attaching to tmux session
 
+elog() {
+    echo "err: $1" >&2
+}
+
 vlog() {
     if [ $verbose -ne 0 ]; then
-        echo "$1" >&2
+        echo "dbg: $1" >&2
     fi
 }
 
@@ -35,6 +40,10 @@ for arg in "${@}"; do
             noswitch=1
             shift 1
             ;;
+        # -r | --running)
+        #     runnning=1
+        #     shift 1
+        #     ;;
         -v | --verbose)
             verbose=1
             shift 1
@@ -44,7 +53,7 @@ for arg in "${@}"; do
                 exec=$@
                 break
             else
-                echo "unrecognized argument: '${1}'" >&2
+                vlog "unrecognized argument: '${1}'"
                 exit 1
             fi
             ;;
@@ -70,6 +79,7 @@ cmdstring="${cmdstring} ${basedir}"          # finalize cmdstring
 selected_dir=$(eval $cmdstring | fzf)        # get fzf selection
 selected_dir=${selected_dir%.git/*}          # strip .git subdir when git=1
 new_session=$(basename "$selected_dir")      # name session the directory name
+# new_session="${new_session// /_}"            # replace spaces with underscores
 
 if [ -z "$selected_dir" ]; then
     vlog "nothing selected"
@@ -82,7 +92,12 @@ if [ $? -ne 0 ]; then
     vlog "creating session '$new_session' in '$selected_dir'"
 
     # tmux is not running, create and attach to session
-    tmux new-session -s $new_session -c $selected_dir $exec > /dev/null 2>&1
+    tmux new-session -s "$new_session" -c "$selected_dir" $exec > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        elog "failed creating session '$new_session' in '$selected_dir'"
+        exit 1
+    fi
+
     exit 0
 fi
 
@@ -103,12 +118,16 @@ if [ -n "$TMUX" ]; then
 fi
 
 
-tmux has-session -t $new_session > /dev/null 2>&1
+tmux has-session -t "$new_session" > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     # tmux session does not exist; create it
     vlog "creating session '$new_session' in '$selected_dir'"
 
-    tmux new-session -d -s $new_session -c $selected_dir $exec > /dev/null 2>&1
+    tmux new-session -d -s "$new_session" -c "$selected_dir" $exec > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        elog "failed creating session '$new_session' in '$selected_dir'"
+        exit 1
+    fi
 else
     vlog "session '$new_session' exists"
 fi
@@ -117,9 +136,13 @@ if [ $noswitch -eq 0 ]; then
     # attach to new session
     if [ -z "$current_session" ]; then
         vlog "attaching to session '$new_session'"
-        tmux attach-session -t $new_session > /dev/null 2>&1
+        tmux attach-session -t "$new_session" > /dev/null 2>&1
     else
         vlog "switching client to session '$new_session'"
-        tmux switch-client -t $new_session > /dev/null 2>&1
+        tmux switch-client -t "$new_session" > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            elog "failed switching client to session '$new_session'"
+            exit 1
+        fi
     fi
 fi
