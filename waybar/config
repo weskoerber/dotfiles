@@ -23,11 +23,11 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "  {:%Y-%m-%d %H:%M}"
+        "format": "{:%Y-%m-%d %H:%M} "
     },
     "cpu": {
         "interval": 1,
-        "format": " {usage:2}%",
+        "format": "{usage:2}% ",
         "states": {
             "low": 0,
             "med": 40,
@@ -35,12 +35,12 @@
             "crit": 85
         },
         // "tooltip": false
-        "tooltip-format": "load: {load}",
-        "on-click": "kitty btop"
+        "tooltip-format": "load: {load:<4}",
+        "on-click": "kitty btop --preset 1"
     },
     "memory": {
         "interval": 1,
-        "format": "  {used:0.2f} GiB",
+        "format": "{used:.2f} GiB ",
         "on-click": "kitty btop"
     },
     "battery": {
@@ -76,12 +76,13 @@
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
     },
     "network": {
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{essid}\n  on {ifname}\n  via {gwaddr}",
+        "interval": 1,
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "󰈀",
+        "tooltip-format-wifi": "{essid}\non {ifname}\n  with {ipaddr}{cidr}\n  via {gwaddr}",
+        "tooltip-format-ethernet": "ethernet\n  on {ifname}\n  with {ipaddr}/{cidr}\n  via {gwaddr}",
         "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "⚠  (N/A%) ",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-disconnected": "󱞐"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
