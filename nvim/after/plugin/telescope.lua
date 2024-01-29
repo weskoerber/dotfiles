@@ -10,6 +10,11 @@ telescope.setup({
     defaults = {
         color_devicons = true,
         layout_strategy = 'flex',
+        layout_config = {
+            flex = {
+                flip_columns = 130,
+            },
+        },
         prompt_prefix = ' > ',
         mappings = {
             i = {
