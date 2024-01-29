@@ -56,7 +56,22 @@ install() {
 }
 
 install_scripts() {
-  fd -a -e sh . .local/bin -x ln -s {} $HOME/.local/bin
+  prefix="$HOME/.local/bin"
+  local_prefix=".local/bin"
+
+  for name in $(fd -e sh . .local/bin -x basename); do
+    dest="${prefix%/}/${name}"
+    src="${local_prefix%/}/${name}"
+
+    if [ -h "$dest" ]; then
+      echo "  $name is already installed; skipping."
+    elif [ -f "$dest" ]; then
+      echo "! Found local script $name. (Re)move $dest and retry."
+    else
+      echo "+ Installing script $name."
+      ln -s "$src" "$dest"
+    fi
+  done
 }
 
 # process_options
