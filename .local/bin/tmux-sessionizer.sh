@@ -4,7 +4,7 @@ basedir=$(pwd)          # Sets the base directory for the find command
 depth=0                 # Max depth to look
 noswitch=0              # 0=stay in current session, 1=switch to new session
 git=0                   # 0=git worktrees only, 1=all directories
-# running=0               # 1=list running sessions only
+running=0               # 1=list running sessions only
 verbose=0               # 1=show verbose output
 exec=""                 # command to exec after attaching to tmux session
 
@@ -40,10 +40,10 @@ for arg in "${@}"; do
             noswitch=1
             shift 1
             ;;
-        # -r | --running)
-        #     runnning=1
-        #     shift 1
-        #     ;;
+        -r | --running)
+            running=1
+            shift 1
+            ;;
         -v | --verbose)
             verbose=1
             shift 1
@@ -60,44 +60,36 @@ for arg in "${@}"; do
     esac
 done
 
-cmdstring="fd --type directory"
+if [ $running -eq 0 ]; then
+    vlog "filter directories"
 
-if [ $depth -eq 1 ]; then
-    cmdstring="${cmdstring} --maxdepth ${depth}"
-fi
+    cmdstring="fd --type directory"
 
-if [ $git -eq 1 ]; then
-    # if git=1, we're looking for git worktrees only
-    cmdstring="${cmdstring} --unrestricted --glob '.git'"
-else
-    # otherwise, find all subdirs
-    cmdstring="${cmdstring} ."
-fi
-
-cmdstring="${cmdstring} ${basedir}"          # finalize cmdstring
-
-selected_dir=$(eval $cmdstring | fzf)        # get fzf selection
-selected_dir=${selected_dir%.git/*}          # strip .git subdir when git=1
-new_session=$(basename "$selected_dir")      # name session the directory name
-# new_session="${new_session// /_}"            # replace spaces with underscores
-
-if [ -z "$selected_dir" ]; then
-    vlog "nothing selected"
-    exit 0
-fi
-
-pgrep tmux > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-    vlog "tmux is not running"
-    vlog "creating session '$new_session' in '$selected_dir'"
-
-    # tmux is not running, create and attach to session
-    tmux new-session -s "$new_session" -c "$selected_dir" $exec > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        elog "failed creating session '$new_session' in '$selected_dir'"
-        exit 1
+    if [ $depth -eq 1 ]; then
+        cmdstring="${cmdstring} --maxdepth ${depth}"
     fi
 
+    if [ $git -eq 1 ]; then
+        # if git=1, we're looking for git worktrees only
+        cmdstring="${cmdstring} --unrestricted --glob '.git'"
+    else
+        # otherwise, find all subdirs
+        cmdstring="${cmdstring} ."
+    fi
+
+    cmdstring="${cmdstring} ${basedir}"          # finalize cmdstring
+
+    selected_dir=$(eval $cmdstring | fzf)        # get fzf selection
+    selected_dir=${selected_dir%.git/*}          # strip .git subdir when git=1
+    new_session=$(basename "$selected_dir")      # name session the directory name
+    # new_session="${new_session// /_}"            # replace spaces with underscores
+else
+    vlog "filter runnning sessions"
+    new_session=$(tmux list-sessions | awk '{print substr($1, 0, length($1)-1)}' | fzf)
+fi
+
+if [ -z "$new_session" ] && [ -z "$selected_dir" ]; then
+    vlog "nothing selected"
     exit 0
 fi
 
@@ -117,6 +109,20 @@ if [ -n "$TMUX" ]; then
     vlog "currently attached to session '$current_session'"
 fi
 
+pgrep tmux > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    vlog "tmux is not running"
+    vlog "creating session '$new_session' in '$selected_dir'"
+
+    # tmux is not running, create and attach to session
+    tmux new-session -s "$new_session" -c "$selected_dir" $exec > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        elog "failed creating session '$new_session' in '$selected_dir'"
+        exit 1
+    fi
+
+    exit 0
+fi
 
 tmux has-session -t "$new_session" > /dev/null 2>&1
 if [ $? -ne 0 ]; then
