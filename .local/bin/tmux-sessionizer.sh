@@ -2,9 +2,16 @@
 
 basedir=$(pwd)          # Sets the base directory for the find command
 depth=0                 # Max depth to look
-reattach=0              # 0=switch to new session, 1=stay in current session
+noswitch=0              # 0=stay in current session, 1=switch to new session
 git=0                   # 0=git worktrees only, 1=all directories
+verbose=0               # 1=show verbose output
 exec=""                 # command to exec after attaching to tmux session
+
+vlog() {
+    if [ $verbose -ne 0 ]; then
+        echo "$1" >&2
+    fi
+}
 
 for arg in "${@}"; do
     if [ -z "$1" ]; then
@@ -24,8 +31,12 @@ for arg in "${@}"; do
             git=1
             shift 1
             ;;
-        -r | --reattach)
-            reattach=1
+        -n | --noswitch)
+            noswitch=1
+            shift 1
+            ;;
+        -v | --verbose)
+            verbose=1
             shift 1
             ;;
         *)
@@ -33,7 +44,7 @@ for arg in "${@}"; do
                 exec=$@
                 break
             else
-                echo "unrecognized argument: '${1}'"
+                echo "unrecognized argument: '${1}'" >&2
                 exit 1
             fi
             ;;
@@ -61,29 +72,54 @@ selected_dir=${selected_dir%.git/*}          # strip .git subdir when git=1
 new_session=$(basename "$selected_dir")      # name session the directory name
 
 if [ -z "$selected_dir" ]; then
-    exit 0 # nothing was selected
+    vlog "nothing selected"
+    exit 0
 fi
 
 pgrep tmux > /dev/null 2>&1
 if [ $? -ne 0 ]; then
+    vlog "tmux is not running"
+    vlog "creating session '$new_session' in '$selected_dir'"
+
     # tmux is not running, create and attach to session
     tmux new-session -s $new_session -c $selected_dir $exec > /dev/null 2>&1
     exit 0
 fi
 
+current_session=""
 if [ -n "$TMUX" ]; then
     # we're currently inside a tmux session.
     # detach first as to not nest sessions, saving the current session name
+
     current_session=$(tmux display-message -p '#S')
+
+    if [ "$current_session" == "$new_session" ]; then
+        vlog "client is already attached to session '$new_session'"
+
+        exit 0
+    fi
+
+    vlog "currently attached to session '$current_session'"
 fi
+
 
 tmux has-session -t $new_session > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     # tmux session does not exist; create it
+    vlog "creating session '$new_session' in '$selected_dir'"
+
     tmux new-session -d -s $new_session -c $selected_dir $exec > /dev/null 2>&1
+else
+    vlog "session '$new_session' exists"
 fi
 
-if [ $reattach -eq 0 ]; then
+if [ $noswitch -eq 0 ]; then
     # attach to new session
-    tmux switch-client -t $new_session > /dev/null 2>&1
+    if [ -z "$current_session" ]; then
+        vlog "attaching to session '$new_session'"
+        tmux attach-session -t $new_session > /dev/null 2>&1
+    else
+        vlog "switching client to session '$new_session'"
+        tmux switch-client -t $new_session > /dev/null 2>&1
+    fi
 fi
