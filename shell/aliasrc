@@ -46,3 +46,31 @@ cpc() {
         return 1
     fi
 }
+
+sd() {
+    for arg in "$@"; do
+        case "$1" in
+            -g | --git)
+                git=1
+                shift
+                ;;
+            -v | --verbose)
+                verbose=1
+                shift
+                ;;
+            *)
+                echo "unrecognized argument: '$1'" >&2
+                return 1
+                ;;
+        esac
+    done
+
+    cmdstring="fd --no-ignore -t d"
+    selected_dir=$(fd --no-ignore -t d | fzf)
+
+    if [ -z "$selected_dir" ]; then
+        exit 0
+    fi
+
+    cd $selected_dir
+}
