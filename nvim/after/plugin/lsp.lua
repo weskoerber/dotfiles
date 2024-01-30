@@ -57,7 +57,7 @@ lspconfig.setup({
     'lua_ls',
     'rust_analyzer',
     'tsserver',
-    'zls',
+    -- 'zls', -- mason has old version
   },
   handlers = {
     lsp.default_setup,
@@ -88,6 +88,8 @@ lspconfig.setup({
     end,
   }
 })
+
+nvim_lspconfig.zls.setup({})
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -122,6 +124,8 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-k>'] = cmp.mapping.scroll_docs(-4),
     ['<C-j>'] = cmp.mapping.scroll_docs(4),
+    ['<C-S-k>'] = cmp.mapping.scroll_docs(-1),
+    ['<C-S-j>'] = cmp.mapping.scroll_docs(1),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping(
