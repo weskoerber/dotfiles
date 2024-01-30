@@ -6,7 +6,7 @@ noswitch=0              # 0=stay in current session, 1=switch to new session
 git=0                   # 0=git worktrees only, 1=all directories
 running=0               # 1=list running sessions only
 verbose=0               # 1=show verbose output
-exec=""                 # command to exec after attaching to tmux session
+exec=""                 # tmux exec command or path to new session directory
 
 elog() {
     echo "err: $1" >&2
@@ -60,7 +60,12 @@ for arg in "${@}"; do
     esac
 done
 
-if [ $running -eq 0 ]; then
+if [ -d "$exec" ]; then
+    vlog "specified directory '$exec'"
+    selected_dir=$(realpath $exec)
+    new_session=$(basename $selected_dir)
+    exec=""
+elif [ $running -eq 0 ]; then
     vlog "filter directories"
 
     cmdstring="fd --type directory"
