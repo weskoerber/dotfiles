@@ -8,8 +8,8 @@
 
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "clock", "tray"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
 
     "hyprland/window": {
         "max-length": 50
@@ -21,9 +21,8 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%Y-%m-%d %H:%M} "
+        "tooltip-format": "<big>{:%B %d, %Y}</big>\n\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M}"
     },
     "cpu": {
         "interval": 1,
@@ -82,7 +81,9 @@
         "tooltip-format-wifi": "{essid}\non {ifname}\n  with {ipaddr}{cidr}\n  via {gwaddr}",
         "tooltip-format-ethernet": "ethernet\n  on {ifname}\n  with {ipaddr}/{cidr}\n  via {gwaddr}",
         "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "󱞐"
+        "format-disconnected": "󱞐",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Disconnected"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
