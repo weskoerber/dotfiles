@@ -1,0 +1,6 @@
+[Unit]
+Description=Pacman package updates service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/package-updates.sh -s

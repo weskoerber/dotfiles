@@ -1,0 +1,9 @@
+[Unit]
+Description=Pacman package updates timer
+
+[Timer]
+OnUnitActiveSec=1h
+OnBootSec=10s
+
+[Install]
+WantedBy=timers.target

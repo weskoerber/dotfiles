@@ -2,16 +2,39 @@
 
 g_all=0
 g_scripts=0
+g_services=0
+g_verbose=0
+
+fc_red=$(tput setaf 9)
+f_reset=$(tput sgr0)
+
+info() {
+  echo "inf: ${1}" >&2
+}
+
+vlog() {
+  [ $g_verbose -eq 1 ] && echo "vrb: ${1}" >&2
+}
+
+elog() {
+  echo "${fc_red}err: ${1}${f_reset}" >&1
+}
+
+die() {
+  elog "${1}"
+  exit 1
+}
 
 usage() {
   target=$(basename $0)
   printf "%s - %s\n\n" "$target" "Install configs"
   printf "%s $(tput bold)[OPTIONS] <PATH> <BINARY> <NAME>$(tput sgr0)\n\n" "$target"
   printf "$(tput bold)OPTIONS:$(tput sgr0)\n"
-  printf "  --all, -a      Install all configs\n"
-  printf "  --scripts, -s  Install scripts and exit\n"
-  printf "  --help, -h     Print usage\n"
-  printf "  --usage        Print usage\n\n"
+  printf "  --all, -a       Install all configs\n"
+  printf "  --scripts, -s   Install scripts and exit\n"
+  printf "  --services, -t  Install systemd services and exit (requires root)\n"
+  printf "  --help, -h      Print usage\n"
+  printf "  --usage         Print usage\n\n"
   printf "$(tput bold)PATH:$(tput sgr0)\n"
   printf "  Path to the target config (e.g. ~/.config/tmux)\n\n"
   printf "$(tput bold)BINARY$(tput sgr0):\n"
@@ -32,7 +55,10 @@ install_all() {
   install "$HOME/.config/starship.toml" "starship.toml" "Starship"
   install "$HOME/.config/lazygit" "lazygit" "Lazygit"
   install "$HOME/.config/neomutt" "neomutt" "Neomutt"
+
   mkdir -p "$HOME/.local/share/neomutt/mail/"
+  touch "$HOME/.local/share/neomutt/mail/wes@weskoerber.com"
+  touch "$HOME/.local/share/neomutt/mail/wkoerber@acsd4u.com"
 
   install "$HOME/.config/hypr" "hypr" "Hyprland"
   install "$HOME/.config/wofi" "wofi" "Wofi"
@@ -77,6 +103,38 @@ install_scripts() {
   done
 }
 
+install_services() {
+  if [ $(id -u) -ne $(id -u root) ]; then
+    die "This script requires root"
+  fi
+
+  prefix="/etc/systemd"
+  local_prefix=$(dirname $(realpath $0))
+
+  vlog "Installing service scripts"
+  scripts=$(fd -t f . ./systemd/scripts -x basename)
+  for script in $scripts; do
+    dst="/usr/local/bin/${script}"
+    src="${local_prefix%/}/systemd/scripts/${script}"
+    vlog "  installing ${script}"
+    ln -sf $src $dst
+  done
+
+  vlog "Installing system services"
+
+  services=$(fd -t f . ./systemd/system -x basename)
+  for service in $services; do
+    dst="${prefix%/}/system/${service}"
+    src="${local_prefix%/}/systemd/system/${service}"
+
+    vlog "  installing ${service}"
+    ln -sf $src $dst
+
+    vlog "  reloading systemd daemon"
+    systemctl daemon-reload
+  done
+}
+
 # process_options
 for arg in $@;
 do
@@ -93,18 +151,33 @@ do
       g_scripts=1
       shift 1
       ;;
+    "--services" | "-t")
+      g_services=1
+      shift 1
+      ;;
+    "--verbose" | "-v")
+      g_verbose=1
+      shift 1
+      ;;
   esac
 done
 
 if [ $g_all -eq 1 ]; then
   echo "installing all"
   install_all
+  exit 0
 fi
 
 if [ $g_scripts -eq 1 ]; then
   echo "installing scripts"
   install_scripts
   exit 0
+fi
+
+if [ $g_services -eq 1 ]; then
+  info "Installing system services"
+  install_services
+  exit $?
 fi
 
 if [ $# -lt 3 ]; then
