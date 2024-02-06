@@ -8,8 +8,7 @@ service=0
 # 1: read update count to stdout
 count=0
 
-updates=$(pacman -Sy > /dev/null && pacman -Qu)
-num_updates=$(echo $updates | wc -l)
+updates=$(pacman -Sy > /dev/null && pacman -Qu | wc -l)
 
 # State file
 statefile='/var/local/package-updates'
@@ -34,7 +33,7 @@ fi
 
 # Process flags
 if [ $service -eq 1 ]; then
-   echo "${num_updates}" > $statefile
+   echo "${updates}" > $statefile
 fi
 
-echo "Available package updates: ${num_updates}"
+echo "Available package updates: ${updates}"
