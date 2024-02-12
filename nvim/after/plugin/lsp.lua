@@ -103,6 +103,8 @@ lsp.set_sign_icons({
   other = "",
 })
 
+vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { strikethrough = true })
+
 local cmp = require('cmp')
 cmp.setup({
   completion = {
