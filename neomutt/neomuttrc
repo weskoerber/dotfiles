@@ -1,5 +1,8 @@
 # vim: ft=neomuttrc
 
+source "./colors/colors-gruvbox-shuber.muttrc"
+source "./colors/colors-gruvbox-shuber-extended.muttrc"
+
 set editor = "nvim"
 
 set header_cache = "~/.cache/neomutt/headers"
