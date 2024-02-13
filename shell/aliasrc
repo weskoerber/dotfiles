@@ -12,7 +12,7 @@ alias \
 # Colorize commands
 alias \
     l="eza -Al --no-quotes --color=auto --group-directories-first" \
-    ls="eza --color=auto --group-directories-first --git --icons --long --octal-permissions --no-permissions --mounts --time-style='+%Y %b %d %H:%M'" \
+    ls="eza --color=auto --group-directories-first --git --icons --long --octal-permissions --no-permissions --mounts --time-style='+%Y-%m-%d %H:%M'" \
     grep="grep --color=auto" \
     ip="ip -color=auto"
 
