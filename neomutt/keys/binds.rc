@@ -33,6 +33,7 @@ bind index \Cj sidebar-next
 bind index \Ck sidebar-prev
 bind index \Ci sidebar-open
 bind index dr recall-message
+bind index <f5> imap-fetch-mail
 
 ### PAGER ###
 bind pager / search

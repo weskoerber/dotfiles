@@ -10,3 +10,4 @@ set ssl_force_tls = yes
 
 set mail_check_stats_interval = 60
 set mail_check_stats
+set mail_check = 30
