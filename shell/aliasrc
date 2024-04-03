@@ -74,3 +74,30 @@ sd() {
 
     cd $selected_dir
 }
+
+gogit() {
+    remote=$1
+
+    if [ -z "$1" ]; then
+        remote="origin"
+    fi
+
+    url="$(git remote get-url ${remote})"
+
+    case "${url}" in
+        http://*)
+            echo "using http"
+            ;;
+        https://*)
+            echo "using https"
+            ;;
+        *)
+            echo "Unsupported protocol (likely: ${url}" >&2
+            return 1
+            ;;
+    esac
+
+    firefox --new-tab "${url}"
+}
+
+source $XDG_CONFIG_HOME/shell/functions/hexdate

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+hexdate() {
+    date --date @$(printf '%d' $1) +'%Y-%m-%dT%H:%M:%S%z'
+}
