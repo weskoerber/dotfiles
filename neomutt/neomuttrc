@@ -7,7 +7,7 @@ set editor = "nvim"
 
 set header_cache = "~/.cache/neomutt/headers"
 
-set mailcap_path = "mailcap"
+set mailcap_path = "~/.config/neomutt/mailcap"
 
 set edit_headers = yes
 
