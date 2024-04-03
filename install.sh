@@ -65,6 +65,8 @@ install_all() {
   install "$HOME/.config/waybar" "waybar" "Waybar"
 
   install "$HOME/.zprofile" "shell/profile" "Zsh profile"
+
+  install "$HOME/.config/zls.json" "zls/zls.json" "Zls config"
 }
 
 # $1: install dir

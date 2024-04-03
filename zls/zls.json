@@ -1,0 +1,6 @@
+{
+    "enable_inlay_hints": false,
+    "enable_build_on_save": false,
+    "warn_style": true,
+    "highlight_global_var_declarations": true
+}
