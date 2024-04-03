@@ -9,6 +9,10 @@ require('obsidian').setup({
             path = '~/Documents/notes/personal',
         },
     },
+    -- Where to put new notes created from completion. Valid options are
+    --  * "current_dir" - put new notes in same directory as the current buffer.
+    --  * "notes_subdir" - put new notes in the default notes subdirectory.
+    new_notes_location = "current_dir",
     disable_frontmatter = true,
     finder = 'telescope.nvim',
 
@@ -18,10 +22,6 @@ require('obsidian').setup({
         nvim_cmp = true,
         -- Trigger completion at 2 chars
         min_chars = 1,
-        -- Where to put new notes created from completion. Valid options are
-        --  * "current_dir" - put new notes in same directory as the current buffer.
-        --  * "notes_subdir" - put new notes in the default notes subdirectory.
-        new_notes_location = "current_dir"
     },
     -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
     -- see also: 'follow_url_func' config option below.
