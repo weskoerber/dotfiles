@@ -49,7 +49,7 @@ nvim_lspconfig.gdscript.setup({})
 lspconfig.setup({
   ensure_installed = {
     'clangd',
-    'csharp_ls',
+    -- 'csharp_ls', -- doesn't work right
     'cssls',
     'intelephense',
     'html',
@@ -89,6 +89,7 @@ lspconfig.setup({
   }
 })
 
+nvim_lspconfig.csharp_ls.setup({})
 nvim_lspconfig.zls.setup({})
 
 lsp.set_preferences({
