@@ -185,7 +185,7 @@ elif [ $running -eq 0 ]; then
     selected_dir=$(eval $cmdstring | fzf)        # get fzf selection
     selected_dir=${selected_dir%.git/*}          # strip .git subdir when git=1
     new_session=$(basename "$selected_dir")      # name session the directory name
-    # new_session="${new_session// /_}"            # replace spaces with underscores
+    new_session=${new_session//./_}
 else
     vlog "filter runnning sessions"
     new_session=$(tmux list-sessions | awk '{print substr($1, 0, length($1)-1)}' | fzf)
