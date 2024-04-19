@@ -48,6 +48,7 @@ require('lazy').setup({
     },
 
     -- UI Plugins
+    { "lukas-reineke/indent-blankline.nvim",    main = "ibl", opts = {} },
     { 'rktjmp/lush.nvim' },
     { "ellisonleao/gruvbox.nvim" },
     { 'Mofiqul/vscode.nvim' },
