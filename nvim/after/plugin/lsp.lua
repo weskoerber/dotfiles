@@ -133,31 +133,10 @@ cmp.setup({
     ['<C-S-k>'] = cmp.mapping.scroll_docs(-1),
     ['<C-S-j>'] = cmp.mapping.scroll_docs(1),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ['<Tab>'] = cmp.mapping(
-      function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, { 'i', 's', }
-    ),
-    ['<S-Tab>'] = cmp.mapping(
-      function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { 'i', 's', }
-    ),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = false }),
+    ['<C-Space>'] = cmp.mapping.complete({}),
   }),
   preselect = cmp.PreselectMode.Item,
   sorting = {
