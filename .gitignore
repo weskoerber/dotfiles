@@ -1,12 +1,9 @@
-.gdb_history
+# private items
+.local/bin/smbmount.sh
+.local/bin/hvovpn.sh
 
-# antigen
-antigen/bundles/
-antigen/init.zsh
-antigen/.resources
-antigen/.zcompdump
-antigen/*.zwc
-antigen/*.log
+# gdb
+.gdb_history
 
 # tmux
 tmux/plugins/
@@ -17,6 +14,3 @@ zsh/*.zwc
 
 # nvim
 nvim/lazy-lock.json
-
-# Lagygit
-lazygit/state.yml
