@@ -53,7 +53,6 @@ install_all() {
   install "$HOME/.config/tmux" "tmux" "Tmux"
   install "$HOME/.config/kitty" "kitty" "Kitty"
   install "$HOME/.config/starship.toml" "starship.toml" "Starship"
-  install "$HOME/.config/lazygit" "lazygit" "Lazygit"
 
   install "$HOME/.config/hypr" "hypr" "Hyprland"
   install "$HOME/.config/wofi" "wofi" "Wofi"

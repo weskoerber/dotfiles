@@ -49,22 +49,8 @@ require('lazy').setup({
 
     -- UI Plugins
     { "lukas-reineke/indent-blankline.nvim",    main = "ibl", opts = {} },
-    { 'rktjmp/lush.nvim' },
     { "ellisonleao/gruvbox.nvim" },
     { 'Mofiqul/vscode.nvim' },
-    {
-        'catppuccin/nvim',
-        name = 'catppuccin'
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-    },
-    { 'savq/melange-nvim' },
-    {
-        'rose-pine/neovim',
-        name = 'rose-pine'
-    },
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -79,16 +65,13 @@ require('lazy').setup({
     { 'kyazdani42/nvim-tree.lua' },
     { 'nvim-lualine/lualine.nvim' },
     {
-        'weskoerber/barbar.nvim',
-        branch = 'fix/render-update',
+        'romgrk/barbar.nvim',
         dependencies = {
             'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
             'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
         },
         init = function() vim.g.barbar_auto_setup = false end,
-        version = '^1.0.0', -- optional: only update when a new 1.x version is released
     },
-    { 'akinsho/toggleterm.nvim' },
 
     -- Git
     { 'tpope/vim-fugitive' },

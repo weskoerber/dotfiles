@@ -1,4 +1,0 @@
-# yaml-language-server: $schema=https://json.schemastore.org/lazygit.json
-
-gui:
-  showFileTree: false
