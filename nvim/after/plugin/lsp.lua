@@ -89,7 +89,9 @@ lspconfig.setup({
 })
 
 nvim_lspconfig.csharp_ls.setup({})
-nvim_lspconfig.zls.setup({})
+nvim_lspconfig.zls.setup({
+  capabilities = lsp.get_capabilities(),
+})
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
