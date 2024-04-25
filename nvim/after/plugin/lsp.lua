@@ -57,7 +57,6 @@ lspconfig.setup({
     'lua_ls',
     'rust_analyzer',
     'tsserver',
-    -- 'zls', -- mason has old version
   },
   handlers = {
     lsp.default_setup,
