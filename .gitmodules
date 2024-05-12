@@ -10,3 +10,6 @@
 [submodule "neomutt/colors"]
 	path = neomutt/colors
 	url = https://github.com/shuber2/mutt-gruvbox
+[submodule "zsh/plugins/powerlevel10k"]
+	path = zsh/plugins/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
