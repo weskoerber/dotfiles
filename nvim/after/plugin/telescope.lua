@@ -49,70 +49,27 @@ telescope.setup({
     },
 })
 
--- Find a file
-vim.keymap.set('n', '<C-f>f', function()
-    builtin.find_files()
-end)
+-- files/buffers
+vim.keymap.set('n', '<leader>fa', function() builtin.live_grep() end)
+vim.keymap.set('n', '<leader>fb', function() builtin.buffers() end)
+vim.keymap.set('n', '<leader>fd', function() builtin.find_files() end)
+vim.keymap.set('n', '<leader>ff', function() builtin.current_buffer_fuzzy_find() end)
 
--- Find a line with the specified text
-vim.keymap.set('n', '<C-f>a', function()
-    builtin.live_grep()
-end)
+-- git
+vim.keymap.set('n', '<leader>gb', function() builtin.git_branches() end)
+vim.keymap.set('n', '<leader>gc', function() builtin.git_commits() end)
+vim.keymap.set('n', '<leader>gf', function() builtin.git_files() end)
+vim.keymap.set('n', '<leader>gs', function() builtin.git_stash() end)
 
--- Find git files
-vim.keymap.set('n', '<C-f>g', function()
-    builtin.git_files()
-end)
+-- lsp
+vim.keymap.set('n', '<leader>ld', function() builtin.diagnostics() end)
+vim.keymap.set('n', '<leader>li', function() builtin.lsp_implementations() end)
+vim.keymap.set('n', '<leader>ls', function() builtin.lsp_document_symbols() end)
+vim.keymap.set('n', '<leader>lu', function() builtin.lsp_incoming_calls() end)
+vim.keymap.set('n', '<leader>lw', function() builtin.lsp_dynamic_workspace_symbols() end)
 
--- Find man pages
-vim.keymap.set('n', '<C-f>m', function()
-    builtin.man_pages({ sections = { 'ALL' } })
-end)
+-- integration
+vim.keymap.set('n', '<leader>fm', function() builtin.man_pages({ sections = { 'ALL' } }) end)
+vim.keymap.set('n', '<leader>fh', function() builtin.help_tags() end)
 
--- Find help pages
-vim.keymap.set('n', '<C-f>h', function()
-    builtin.help_tags()
-end)
-
--- Git commits
-vim.keymap.set('n', '<C-g>c', function()
-    builtin.git_commits()
-end)
-
--- Git branches
-vim.keymap.set('n', '<C-g>b', function()
-    builtin.git_branches()
-end)
-
--- Git status
-vim.keymap.set('n', '<C-g>s', function()
-    builtin.git_stash()
-end)
-
--- Symbols
-vim.keymap.set('n', '<C-f>s', function()
-    builtin.lsp_document_symbols()
-end)
-
-vim.keymap.set('n', '<C-f>w', function()
-    builtin.lsp_dynamic_workspace_symbols()
-end)
-
-vim.keymap.set('n', '<C-f>i', function()
-    builtin.lsp_implementations()
-end)
-vim.keymap.set('n', '<C-f>u', function()
-    builtin.lsp_incoming_calls()
-end)
-
-vim.keymap.set('n', '<C-f>d', function()
-    builtin.diagnostics()
-end)
-
-vim.keymap.set('n', '<C-f>b', function()
-    builtin.buffers()
-end)
-
-vim.keymap.set('n', '<C-space>', function()
-    builtin.resume()
-end)
+vim.keymap.set('n', '<C-space>', function() builtin.resume() end)
