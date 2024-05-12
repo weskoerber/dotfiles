@@ -9,12 +9,8 @@ alias \
     rm="rm -Iv" \
     mkdir="mkdir -pv"
 
-# Colorize commands
 alias \
-    l="eza -Al --no-quotes --color=auto --group-directories-first" \
-    ls="eza --color=auto --group-directories-first --git --icons --long --octal-permissions --no-permissions --mounts --time-style='+%Y-%m-%d %H:%M'" \
-    grep="grep --color=auto" \
-    ip="ip -color=auto"
+    ls="ls --color=auto --group-directories-first --time-style=long-iso" \
 
 # Abbreviate commands
 alias \
@@ -22,20 +18,6 @@ alias \
     g="git" \
     v="nvim" \
     lzd="lazydocker"
-
-# Use neovim as a man pager!
-man() {
-    if [ -z "${1}" ]; then
-       /bin/man
-       return
-    fi
-
-    if /bin/man -w "${1}" 2> /dev/null; then
-        nvim -c "Man ${1} | only!"
-    else
-        /bin/man "${1}"
-    fi
-}
 
 # Copy file to clipboard
 cpc() {
