@@ -54,6 +54,7 @@ vim.keymap.set('n', '<leader>fa', function() builtin.live_grep() end)
 vim.keymap.set('n', '<leader>fb', function() builtin.buffers() end)
 vim.keymap.set('n', '<leader>fd', function() builtin.find_files() end)
 vim.keymap.set('n', '<leader>ff', function() builtin.current_buffer_fuzzy_find() end)
+vim.keymap.set('n', '<leader>fo', function() builtin.oldfiles() end)
 
 -- git
 vim.keymap.set('n', '<leader>gb', function() builtin.git_branches() end)
