@@ -1,11 +1,14 @@
-vim.keymap.set('n', '<leader>gg', function()
-    local windows = vim.api.nvim_list_wins()
-    for _, v in pairs(windows) do
-        local status, _ = pcall(vim.api.nvim_win_get_var, v, 'fugitive_status')
+local toggle_fugitive = function()
+    local winids = vim.api.nvim_list_wins()
+    for _, id in pairs(winids) do
+        -- you can omit the underscore `_` if it's the second variable.
+        local status = pcall(vim.api.nvim_win_get_var, id, "fugitive_status")
         if status then
-            vim.api.nvim_win_close(v, false)
+            vim.api.nvim_win_close(id, false)
             return
         end
     end
-    vim.cmd [[Git]]
-end, { desc = '[G]it to[G]gle' })
+    vim.cmd("Git")
+end
+
+vim.keymap.set('n', '<leader>gg', toggle_fugitive)
