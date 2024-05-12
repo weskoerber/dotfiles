@@ -2,6 +2,10 @@ if [ -n "$ZPROF" ]; then
     zmodload zsh/zprof
 fi
 
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Source profile
 if [ -f "$HOME/.zprofile" ]; then
     source "$HOME/.zprofile"
@@ -87,9 +91,7 @@ if [ -z "$LS_COLORS" ]; then
     eval $(dircolors -b "$HOME/.dir_colors")
 fi
 
-eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-
 
 fpath=(/home/wes/Documents/repos/scripts/zvm/completions/ $fpath)
 fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
@@ -97,9 +99,11 @@ fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# This line must stay at the end of zshrc!
 source ~/.config/zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 if [ -n "$ZPROF" ]; then
     mkdir -p "$HOME/.var/log/zsh" > /dev/null
