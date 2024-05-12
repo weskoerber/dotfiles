@@ -1,17 +1,24 @@
+if [ -n "$ZPROF" ]; then
+    zmodload zsh/zprof
+fi
+
 # Source profile
 if [ -f "$HOME/.zprofile" ]; then
     source "$HOME/.zprofile"
 fi
 
-# Zsh opts
-autoload -U colors && colors
-autoload -U compinit && compinit -u
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**'
+zstyle ':completion:*' squeeze-slashes true
+zstyle :compinstall filename '/home/wes/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit
 
 zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
 
 # Key bindings
 export KEYTIMEOUT=1
@@ -83,11 +90,18 @@ fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
+
+fpath=(/home/wes/Documents/repos/scripts/zvm/completions/ $fpath)
+fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
+
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-
-fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # This line must stay at the end of zshrc!
 source ~/.config/zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [ -n "$ZPROF" ]; then
+    mkdir -p "$HOME/.var/log/zsh" > /dev/null
+    zprof > "$HOME/.var/log/zsh/zprof_$(date +'%s')"
+fi
