@@ -11,6 +11,10 @@ if [ -f "$HOME/.zprofile" ]; then
     source "$HOME/.zprofile"
 fi
 
+fpath=($XDG_CONFIG_HOME/zsh/plugins/zvm/completions/ $fpath)
+fpath=($XDG_CACHE_HOME/zsh/plugins/zsh-users/zsh-completions/src $fpath)
+fpath=($XDG_CONFIG_HOME/zsh/plugins/zig-shell-completions $fpath)
+
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' file-sort name
 zstyle ':completion:*' menu select=1
@@ -92,9 +96,6 @@ if [ -z "$LS_COLORS" ]; then
 fi
 
 eval "$(zoxide init zsh)"
-
-fpath=(/home/wes/Documents/repos/scripts/zvm/completions/ $fpath)
-fpath=(~/.config/zsh/plugins/zsh-users/zsh-completions/src $fpath)
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
