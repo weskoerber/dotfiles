@@ -13,3 +13,9 @@
 [submodule "zsh/plugins/powerlevel10k"]
 	path = zsh/plugins/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
+[submodule "zsh/plugins/zig-shell-completions"]
+	path = zsh/plugins/zig-shell-completions
+	url = https://github.com/ziglang/shell-completions
+[submodule "zsh/plugins/zvm"]
+	path = zsh/plugins/zvm
+	url = https://github.com/weskoerber/zvm
