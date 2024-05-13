@@ -13,7 +13,7 @@ parse_search = true
 
 width = 50%
 
-key_down = Alt_L-j
-key_up = Alt_L-k
-key_expand = Alt_L-l
+key_down = Alt-j
+key_up = Alt-k
+key_expand = Alt-l
 key_hide_search = minus
