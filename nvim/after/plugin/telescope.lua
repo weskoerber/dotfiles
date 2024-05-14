@@ -59,7 +59,7 @@ vim.keymap.set('n', '<leader>fo', function() builtin.oldfiles() end)
 -- git
 vim.keymap.set('n', '<leader>gb', function() builtin.git_branches() end)
 vim.keymap.set('n', '<leader>gc', function() builtin.git_commits() end)
-vim.keymap.set('n', '<leader>gf', function() builtin.git_files() end)
+vim.keymap.set('n', '<leader>fg', function() builtin.git_files() end)
 vim.keymap.set('n', '<leader>gs', function() builtin.git_stash() end)
 
 -- lsp
