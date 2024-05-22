@@ -10,8 +10,7 @@ alias \
     mkdir="mkdir -pv"
 
 alias \
-    cd='z' \
-    ls="ls --color=auto --group-directories-first --time-style=long-iso" \
+    ls="ls --color=auto --group-directories-first --time-style=long-iso"
 
 # Abbreviate commands
 alias \
