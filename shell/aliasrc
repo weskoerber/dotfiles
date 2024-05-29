@@ -86,4 +86,9 @@ gogit() {
     firefox --new-tab "${url}"
 }
 
+# path lines - split each directory in PATH into newlines
+pathl() {
+    echo "$PATH" | sed 's/:/\n/g'
+}
+
 source $XDG_CONFIG_HOME/shell/functions/hexdate
