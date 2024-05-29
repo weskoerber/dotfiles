@@ -62,41 +62,36 @@ export SAVEHIST=$HISTSIZE
 ##############
 # Setup PATH #
 ##############
-CREATE="1"
-NO_CREATE="0"
 
-# add_path: append a path to the PATH variable
-# $1: the path to append to PATH
-# $2: create the path
-add_path() {
-    if ! [ -d "$1" ]; then
-        if [ -n "$2" ] && [ "$2" != "$NO_CREATE" ]; then
-            mkdir -pv $1
-            p="$1"
-        fi
-    else
-        p="$1"
-    fi
+# Append "$1" to $PATH when not already in.
+# Taken from /etc/profile
+append_path () {
+    test -d "$1" || return 1
 
-    PATH="$PATH:$p"
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
 }
 
-add_path "$HOME/.local/bin" "$CREATE"
-add_path "$CARGO_HOME/bin" "$NO_CREATE"
-add_path "$XDG_DATA_HOME/dotnet"
-add_path "$DOTNET_ROOT/tools"
-add_path "$HOME/.yarn/bin"
-add_path "$COMPOSER_HOME/vendor/bin"
+# append_path "$HOME/.local/bin"
+append_path "$CARGO_HOME/bin"
+append_path "$XDG_DATA_HOME/dotnet"
+append_path "$DOTNET_ROOT/tools"
+append_path "$HOME/.yarn/bin"
+append_path "$COMPOSER_HOME/vendor/bin"
 
 node_version=$(node --version 2> /dev/null)
 if [ -n "$node_version" ]; then
     # https://flaviocopes.com/where-npm-install-packages/
-    add_path "$HOME/.nvm/versions/node/$node_version/bin"
+    append_path "$HOME/.nvm/versions/node/$node_version/bin"
 fi
 
 
-# This adds all subdirs of ~/.local/bin to path
-PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+# This adds ~/.local/bin and all immediate subdirs (non-recursively) to PATH
+PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
 
 export PATH
 
