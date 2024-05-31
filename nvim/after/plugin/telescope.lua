@@ -2,7 +2,7 @@ local builtin = require('telescope.builtin')
 local telescope = require('telescope')
 local actions = require('telescope.actions')
 
-local trouble = require('trouble.providers.telescope')
+local trouble = require("trouble.sources.telescope")
 
 telescope.load_extension('fzf')
 
@@ -18,10 +18,10 @@ telescope.setup({
         prompt_prefix = ' > ',
         mappings = {
             i = {
-                ['<C-q>'] = trouble.smart_open_with_trouble,
+                ['<C-q>'] = trouble.open,
             },
             n = {
-                ['<C-q>'] = trouble.smart_open_with_trouble,
+                ['<C-q>'] = trouble.open,
             },
         },
     },
