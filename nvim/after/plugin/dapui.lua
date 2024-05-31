@@ -100,6 +100,11 @@ dapui.setup({
 
 
 local dap = require('dap')
+
+vim.keymap.set('n', '<space>?', function()
+  dapui.eval(nil, { enter = true })
+end);
+
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
