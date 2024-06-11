@@ -31,8 +31,10 @@ fi
 ######################
 # Setup applications #
 ######################
+export BROWSER="firefox"
 export EDITOR="nvim"
-export TERMINAL="kitty"
+export TERM="kitty"
+export TERMINAL="$TERM"
 export MANWIDTH=999
 export MANPAGER="nvim +Man!"
 
@@ -112,6 +114,8 @@ if [ -f /usr/share/nvm/init-nvm.sh ]; then
 fi
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-    mkdir -p "$HOME/.var/log/hypr"
-    exec Hyprland > "$HOME/.var/log/hypr/hyprland.log" 2> "$HOME/.var/log/hypr/hyprland_err.log"
+    # mkdir -p "$HOME/.var/log/hypr"
+    # exec Hyprland > "$HOME/.var/log/hypr/hyprland.log" 2> "$HOME/.var/log/hypr/hyprland_err.log"
+    mkdir -p "$HOME/.var/log/sway"
+    exec sway > "$HOME/.var/log/sway/sway.log" 2> "$HOME/.var/log/sway/sway_err.log"
 fi
