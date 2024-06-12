@@ -7,11 +7,15 @@
     "spacing": 0,
 
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    // "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["custom/package-updates", "pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
 
-    "hyprland/window": {
+    // "hyprland/window": {
+    //     "max-length": 50
+    // },
+    "sway/workspaces": {
         "max-length": 50
     },
 
