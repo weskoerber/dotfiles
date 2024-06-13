@@ -4,7 +4,13 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-### Variables
+#
+# Startup applications:
+#
+exec /usr/lib/polkit-kde-authentication-agent-1
+
+#
+# Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -236,14 +242,19 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-
+
 #
 # Appearance:
 #
-default_border none
-default_floating_border none
-titlebar_padding 1
-titlebar_border_thickness 0
-font IosevkaTerm Nerd Font Mono Regular 0.001
+default_border pixel 2
+default_floating_border pixel 2
+client.focused #000000 #ebdbb2 #000000
+client.urgent #000000 #cc241d #000000
+
+gaps inner 10
 
 #
 # Status Bar:
