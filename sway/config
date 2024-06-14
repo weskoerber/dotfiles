@@ -251,7 +251,7 @@ bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-
 #
 default_border pixel 2
 default_floating_border pixel 2
-client.focused #000000 #ebdbb2 #000000
+client.focused #000000 #ebdbb2 #000000 #b8bb26
 client.urgent #000000 #cc241d #000000
 
 gaps inner 10
