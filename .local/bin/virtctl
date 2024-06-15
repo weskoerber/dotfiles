@@ -1,0 +1,81 @@
+#!/bin/sh
+
+usage() {
+    name=$(basename "$0")
+    bold=$(tput bold)
+    uline=$(tput smul)
+    reset=$(tput sgr0)
+    cat <<EOF
+Easily control modular libvirt daemons
+
+${bold}${uline}Usage:${reset} ${bold}${name}${reset} [COMMAND] ...${reset}
+
+${bold}${uline}Commands:${reset}
+    ${bold}start${reset}            Start all available daemons
+    ${bold}stop${reset}             Stop all available daemons
+    ${bold}enable [--now]${reset}   Enable all available daemons
+    ${bold}disable [--now]${reset}  Disable all available daemons"
+EOF
+}
+
+if [ $# -lt 1 ]; then
+    echo 'error: missing argument' >&2
+    exit 1
+fi
+
+case $1 in
+    -h|--help)
+        usage
+        exit 0
+        ;;
+esac
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo 'error: this command must be run as root' >&2
+    exit 1
+fi
+
+cmd=''
+now=0
+
+case $1 in
+    start)
+        cmd='start'
+        ;;
+    stop)
+        cmd='stop'
+        ;;
+    enable)
+        cmd='enable'
+        if [ -n "$2" ]; then
+            now=1
+        fi
+        ;;
+    disable)
+        cmd='disable'
+        if [ -n "$2" ]; then
+            now=1
+        fi
+        ;;
+    *)
+        echo "error: invalid argument '${1}'" >&2
+        exit 1
+        ;;
+esac
+
+if [ -z "$cmd" ]; then
+    echo 'error: unknown error (empty cmd)' >&1
+    exit 1
+fi
+
+drivers=$(systemctl list-unit-files | awk '{print $1}' | grep -oP '(?<=^virt)[a-z]+' | uniq)
+
+cmd="systemctl ${cmd}"
+if [ $now -eq 1 ]; then
+    cmd="${cmd} --now"
+fi
+
+for driver in $drivers; do
+    exec_cmd="${cmd} virt${driver}.service virt${driver}-admin.socket virt${driver}-ro.socket virt${driver}.socket"
+    eval "$exec_cmd"
+done
