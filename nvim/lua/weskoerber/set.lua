@@ -40,7 +40,7 @@ vim.opt.cursorline = true
 
 vim.opt.mouse = 'nv'
 
-vim.opt.conceallevel = 2
+-- vim.opt.conceallevel = 2
 
 vim.opt.listchars = {
     space = '·',

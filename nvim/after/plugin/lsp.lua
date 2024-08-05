@@ -178,9 +178,6 @@ lsp.setup()
 
 -- require('clangd_extensions').setup()
 
-local rust_lsp = lsp.build_options('rust_analyzer', {})
-require('rust-tools').setup({ server = rust_lsp })
-
 vim.diagnostic.config({
   virtual_text = true,
 })

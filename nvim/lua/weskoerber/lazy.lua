@@ -101,7 +101,6 @@ require('lazy').setup({
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
-            { 'simrat39/rust-tools.nvim' },
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
