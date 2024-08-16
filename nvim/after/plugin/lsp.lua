@@ -91,6 +91,13 @@ lspconfig.setup({
 nvim_lspconfig.csharp_ls.setup({})
 nvim_lspconfig.zls.setup({
   capabilities = lsp.get_capabilities(),
+  on_new_config = function(new_config, new_root_dir)
+    local zls_global_cfg = vim.fs.normalize('~/.config/zls.json')
+    local zls_local_cfg = vim.fs.joinpath(new_root_dir, 'zls.json')
+    local zls_cfg = vim.fn.filereadable(zls_local_cfg) == 1 and zls_local_cfg or zls_global_cfg
+
+    new_config.cmd = { 'zls', '--config-path', zls_cfg }
+  end,
 })
 
 lsp.set_preferences({
