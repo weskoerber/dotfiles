@@ -59,6 +59,7 @@ install_all() {
   install "$HOME/.config/wofi" "wofi" "Wofi"
   install "$HOME/.config/waybar" "waybar" "Waybar"
   install "$HOME/.config/mako" "mako" "Mako"
+  install "$HOME/.config/swappy" "swappy" "Swappy"
 
   install "$HOME/.zprofile" "shell/profile" "Zsh profile"
 
