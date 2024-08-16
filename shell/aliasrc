@@ -23,6 +23,9 @@ alias \
 alias \
     kssh="kitten ssh"
 
+alias \
+    sv="swappy -f "
+
 # Copy file to clipboard
 cpc() {
     if [ -n "${1}" ] && [ -f $1 ]; then
