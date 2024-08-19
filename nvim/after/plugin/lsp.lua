@@ -177,7 +177,8 @@ cmp.setup({
 lsp.on_attach(function(_, bufnr)
   default_keymap(bufnr, false)
   lsp.buffer_autoformat()
-  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr });
+  vim.api.nvim_create_user_command('InlayHintToggle',
+    function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, {})
 end)
 
 
