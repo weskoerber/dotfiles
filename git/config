@@ -5,7 +5,6 @@
 [core]
     editor = nvim
     autocrlf = input
-    pager = delta --max-line-length $COLUMNS --paging=always
 
 [rebase]
 	autoStash = true
