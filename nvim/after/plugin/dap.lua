@@ -2,94 +2,41 @@ local dap = require('dap')
 
 require('dap.ext.vscode').json_decode = require('json5').parse
 
--- C
+-- LLVM
 dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
     command = vim.fs.normalize('~/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7'),
 }
 
-dap.configurations.c = {
+dap.adapters.lldb = {
+    id = 'lldb',
+    type = 'executable',
+    name = 'lldb',
+    command = '/usr/bin/lldb-dap'
+}
+
+local cfg_llvm = {
     {
         name = "Launch file",
-        type = "cppdbg",
+        type = "lldb",
         request = "launch",
-        program = function()
-            return vim.fn.input('Path to C executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-        cwd = '${workspaceFolder}',
-        stopAtEntry = true,
-        args = {
-        },
-    },
-    {
-        name = 'Attach to gdbserver :1234',
-        type = 'cppdbg',
-        request = 'launch',
-        MIMode = 'gdb',
-        miDebuggerServerAddress = 'localhost:1234',
-        miDebuggerPath = '/usr/bin/gdb',
-        cwd = '${workspaceFolder}',
+        MIMode = 'lldb',
+        miDebuggerPath = '/usr/bin/lldb',
         program = function()
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
-    },
-}
-
-dap.configurations.cpp = {
-    {
-        name = "Launch file",
-        type = "cppdbg",
-        request = "launch",
-        program = function()
-            return vim.fn.input('Path to C++ executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
         cwd = '${workspaceFolder}',
         stopAtEntry = true,
         args = {
         },
-    },
-
-    {
-        name = 'Attach to gdbserver :1234',
-        type = 'cppdbg',
-        request = 'launch',
-        MIMode = 'gdb',
-        miDebuggerServerAddress = 'localhost:1234',
-        miDebuggerPath = '/usr/bin/gdb',
-        cwd = '${workspaceFolder}',
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-    },
+    }
 }
 
-dap.configurations.zig = {
-    {
-        name = "Launch file",
-        type = "cppdbg",
-        request = "launch",
-        program = function()
-            return vim.fn.input('Path to zig executable: ', vim.fn.getcwd() .. '/zig-out/bin/', 'file')
-        end,
-        cwd = '${workspaceFolder}',
-        stopAtEntry = true,
-        args = {
-        },
-    },
-    {
-        name = 'Attach to gdbserver :1234',
-        type = 'cppdbg',
-        request = 'launch',
-        MIMode = 'gdb',
-        miDebuggerServerAddress = 'localhost:1234',
-        miDebuggerPath = '/usr/bin/gdb',
-        cwd = '${workspaceFolder}',
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/zig-out/bin/', 'file')
-        end,
-    },
-}
+dap.configurations.c = cfg_llvm
+dap.configurations.cpp = cfg_llvm
+dap.configurations.rust = cfg_llvm
+dap.configurations.zig = cfg_llvm
 
 -- -- C#
 dap.adapters.coreclr = {
