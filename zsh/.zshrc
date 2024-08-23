@@ -2,14 +2,11 @@ if [ -n "$ZPROF" ]; then
     zmodload zsh/zprof
 fi
 
+export GPG_TTY=$(tty)
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# Source profile
-# if [ -f "$HOME/.zprofile" ]; then
-#     source "$HOME/.zprofile"
-# fi
 
 fpath=($XDG_CACHE_HOME/zsh/plugins/zsh-users/zsh-completions/src $fpath)
 fpath=($XDG_CONFIG_HOME/zsh/plugins/zig-shell-completions $fpath)
