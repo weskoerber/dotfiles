@@ -30,6 +30,9 @@ zmodload zsh/complist
 # Key bindings
 export KEYTIMEOUT=1
 bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^I'   complete-word       # tab          | complete
+bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
+
 
 # vi mode
 bindkey -v
