@@ -94,8 +94,6 @@ if [ -z "$LS_COLORS" ]; then
     eval $(dircolors -b "$HOME/.dir_colors")
 fi
 
-eval "$(zoxide init zsh)"
-
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
