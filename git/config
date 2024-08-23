@@ -1,6 +1,7 @@
 [user]
     email = wes@weskoerber.com
     name = Wes Koerber
+	signingkey = C5328283A360641D
 
 [core]
     editor = nvim
@@ -38,3 +39,5 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[commit]
+	gpgsign = true
