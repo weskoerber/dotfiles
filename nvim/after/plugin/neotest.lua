@@ -18,6 +18,7 @@ neotest.setup({
 vim.keymap.set('n', '<leader>no', neotest.output_panel.toggle)
 vim.keymap.set('n', '<leader>ns', neotest.summary.toggle)
 vim.keymap.set('n', '<leader>nr', neotest.run.run)
+vim.keymap.set('n', '<leader>na', function() neotest.run.run(vim.fn.expand('%')) end)
 vim.keymap.set('n', '<leader>nK', neotest.output.open)
 
 vim.keymap.set('n', '<leader>nj', neotest.jump.next)
