@@ -127,4 +127,15 @@ require('lazy').setup({
 
     -- Misc
     { 'tpope/vim-sleuth' },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            'rouge8/neotest-rust',
+            { 'weskoerber/neotest-zig', branch = 'feat/zig-0.14' },
+        }
+    },
 })
