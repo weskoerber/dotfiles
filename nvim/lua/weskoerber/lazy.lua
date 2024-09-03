@@ -135,7 +135,7 @@ require('lazy').setup({
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
             'rouge8/neotest-rust',
-            { 'weskoerber/neotest-zig', branch = 'feat/zig-0.14' },
+            'lawrence-laz/neotest-zig',
         }
     },
 })
