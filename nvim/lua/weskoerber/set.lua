@@ -62,3 +62,11 @@ vim.keymap.set('n', 'gx', function()
     vim.cmd.hsplit()
     vim.lsp.buf.definition()
 end)
+
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#vacuum
+vim.filetype.add {
+    pattern = {
+        ['openapi.*%.ya?ml'] = 'yaml.openapi',
+        ['openapi.*%.json'] = 'json.openapi',
+    },
+}
