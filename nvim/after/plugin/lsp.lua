@@ -85,6 +85,17 @@ lspconfig.setup({
     lua_ls = function()
       nvim_lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
     end,
+    rust_analyzer = function()
+      nvim_lspconfig.rust_analyzer.setup({
+        settings = {
+          ['rust-analyzer'] = {
+            check = {
+              command = 'clippy',
+            },
+          },
+        },
+      })
+    end,
   }
 })
 
