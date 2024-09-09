@@ -57,7 +57,7 @@ lspconfig.setup({
     'htmx',
     'lua_ls',
     'rust_analyzer',
-    'tsserver',
+    'ts_ls',
   },
   handlers = {
     lsp.default_setup,
