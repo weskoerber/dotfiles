@@ -9,6 +9,11 @@ verbose=0               # 1=show verbose output
 exec=""                 # tmux exec command or path to new session directory
 filter=""               # directory filter
 
+die() {
+    elog "$1"
+    exit 1
+}
+
 elog() {
     echo "err: $1" >&2
 }
@@ -188,7 +193,8 @@ elif [ $running -eq 0 ]; then
     new_session=${new_session//./_}
 else
     vlog "filter runnning sessions"
-    new_session=$(tmux list-sessions | awk '{print substr($1, 0, length($1)-1)}' | fzf)
+    running_sessions=$(tmux list-sessions 2> /dev/null) || die "no sessions"
+    new_session=$(echo "$running_sessions" | awk '{print substr($1, 0, length($1)-1)}' | fzf)
 fi
 
 if [ -z "$new_session" ] && [ -z "$selected_dir" ]; then
