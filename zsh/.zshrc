@@ -24,29 +24,6 @@ compinit
 
 zmodload zsh/complist
 
-# Key bindings
-export KEYTIMEOUT=1
-bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^I'   complete-word       # tab          | complete
-bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
-
-
-# vi mode
-bindkey -v
-
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'left' vi-backward-char
-bindkey -M menuselect 'down' vi-down-line-or-history
-bindkey -M menuselect 'up' vi-up-line-or-history
-bindkey -M menuselect 'right' vi-forward-char
-
-# Fix backspace bug when switching modes
-bindkey "^?" backward-delete-char
-
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
@@ -99,6 +76,36 @@ source /usr/share/fzf/completion.zsh
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+
+# Key bindings
+export KEYTIMEOUT=1
+# bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^I'   complete-word       # tab          | complete
+bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
+
+bindkey -r "^T"
+bindkey -s "^Tr" "tmux-sessionizer.sh -r^M"
+bindkey -s "^Tn" "tmux-sessionizer.sh^M"
+
+bindkey -ar "^T"
+bindkey -as "^Tr" "itmux-sessionizer.sh -r^M"
+bindkey -as "^Tn" "itmux-sessionizer.sh^M"
+
+# vi mode
+bindkey -v
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'left' vi-backward-char
+bindkey -M menuselect 'down' vi-down-line-or-history
+bindkey -M menuselect 'up' vi-up-line-or-history
+bindkey -M menuselect 'right' vi-forward-char
+
+# Fix backspace bug when switching modes
+bindkey "^?" backward-delete-char
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
