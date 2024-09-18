@@ -243,8 +243,17 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+
+# Audio
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Mic
+# bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle # This opens fuzzel for some reason?
 
 #
 # Appearance:
