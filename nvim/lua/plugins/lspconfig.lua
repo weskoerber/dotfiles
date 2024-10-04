@@ -56,6 +56,6 @@ return {
         })
 
         require('lsp_lines').setup()
-        vim.diagnostic.config({ virtual_text = true, virtual_lines = true })
+        vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
     end,
 }
