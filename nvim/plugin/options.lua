@@ -1,29 +1,42 @@
-local o = vim.opt
+local opt = vim.opt
 
-o.number = true
-o.relativenumber = true
+opt.termguicolors = true
 
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
-o.expandtab = true
-o.smartindent = true
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+vim.cmd([[hi cursorline gui=none guifg=none guibg=none]])
 
-o.wrap = false
+opt.pumheight = 8
 
-o.swapfile = false
-vim.opt.backup = false
-vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. '/.local/share/nvim/undodir'
+opt.errorbells = false
 
-o.ignorecase = true
-o.smartcase = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.smartindent = true
 
-o.signcolumn = 'yes'
+opt.wrap = false
 
-o.listchars = {
+opt.swapfile = false
+opt.backup = false
+opt.undofile = true
+opt.undodir = os.getenv("HOME") .. '/.local/share/nvim/undodir'
+
+opt.hlsearch = false
+opt.incsearch = true
+
+opt.ignorecase = true
+opt.smartcase = true
+
+opt.textwidth = 80
+opt.colorcolumn = '+0'
+opt.signcolumn = 'yes'
+
+opt.listchars = {
     space = '·',
     tab = '⇥ ',
     eol = '⏎',
 }
-o.list = true
+opt.list = true

@@ -13,6 +13,26 @@ return {
             file_ignore_patterns = {
                 'Cargo.lock',
             },
+            layout_strategy = 'flex',
+            layout_config = {
+                flex = {
+                    flip_columns = 130,
+                },
+            },
+        },
+    },
+    pickers = {
+        find_files = {
+            find_command = { "fd", "--type", "file", "--hidden", "--glob", "--no-ignore-vcs", },
+        },
+        git_files = {
+            find_command = { "fd", "--type", "file", "--hidden", "--glob", },
+        },
+        live_grep = {
+            find_command = { 'rg', },
+        },
+        diagnostics = {
+            bufnr = nil,
         },
     },
     config = function()

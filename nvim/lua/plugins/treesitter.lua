@@ -1,50 +1,52 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    config = function()
-        local configs = require('nvim-treesitter.configs')
+    build = ':TSUpdate',
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
+    lazy = vim.fn.argc(-1) == 0,
+    opts = {
+        ensure_installed = {
+            'c',
+            'cpp',
+            'c_sharp',
+            'rust',
 
-        configs.setup({
-            ensure_installed = {
-                'c',
-                'cpp',
-                'c_sharp',
-                'rust',
+            'bash',
+            'javascript',
+            'lua',
+            'php',
+            'phpdoc',
+            'sql',
 
-                'bash',
-                'javascript',
-                'lua',
-                'php',
-                'phpdoc',
-                'sql',
+            'git_rebase',
+            'gitattributes',
+            'gitcommit',
+            'gitignore',
+            'git_config',
 
-                'git_rebase',
-                'gitattributes',
-                'gitcommit',
-                'gitignore',
-                'git_config',
+            'cmake',
+            'make',
 
-                'cmake',
-                'make',
+            'json',
+            'jsonc',
+            'markdown',
+            'markdown_inline',
+            'toml',
+            'yaml',
 
-                'json',
-                'jsonc',
-                'markdown',
-                'markdown_inline',
-                'toml',
-                'yaml',
-
-                'comment',
-                'diff',
-                'http',
-                'vim',
-                'vimdoc',
-            },
-            sync_install = false,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = { 'markdown' },
-            },
-            indent = { enable = true },
-        })
+            'comment',
+            'diff',
+            'http',
+            'vim',
+            'vimdoc',
+        },
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = { 'markdown' },
+        },
+        indent = { enable = true },
+        sync_install = false,
+    },
+    config = function(_, opts)
+        require('nvim-treesitter.configs').setup(opts)
     end,
 }
