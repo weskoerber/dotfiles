@@ -19,6 +19,11 @@ return {
                     flip_columns = 130,
                 },
             },
+            mappings = {
+                n = {
+                    ['dd'] = require('telescope.actions').delete_buffer,
+                },
+            },
         },
     },
     pickers = {

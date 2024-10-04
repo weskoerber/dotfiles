@@ -18,6 +18,7 @@ return {
         end
 
         local servers = {
+            clangd = {},
             lua_ls = {
                 settings = {
                     Lua = {
@@ -73,7 +74,14 @@ return {
 
         local conform = require('conform')
         conform.setup({
+            format_on_save = {
+                timeout_ms = 30000, -- yuck; looking at you, zigfmt
+                lsp_format = 'fallback',
+            },
             formatters_by_ft = {
+                c = { 'clang_format' },
+                cpp = { 'clang_format' },
+                zig = { 'zigfmt' },
             },
         })
 

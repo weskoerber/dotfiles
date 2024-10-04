@@ -19,11 +19,12 @@ end, {})
 return {
     'tpope/vim-fugitive',
     keys = {
-        {'<leader>gg', '<cmd>FugitiveToggle<cr>'},
+        { '<leader>gg', '<cmd>FugitiveToggle<cr>' },
     },
     config = function()
         vim.keymap.set('n', '<leader>gf', '<cmd>Git fetch<cr>')
         vim.keymap.set('n', '<leader>gy', '<cmd>Git push --force<cr>') -- yeet
         vim.keymap.set('n', '<leader>gY', '<cmd>Git push --force<cr>') -- YEET
+        vim.keymap.set('n', '<leader>gnb', ':Git switch -c ');
     end,
 }
