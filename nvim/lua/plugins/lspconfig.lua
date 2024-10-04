@@ -18,17 +18,39 @@ return {
         end
 
         local servers = {
-            zls = {}
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        -- i don't think i need this if i specify the library
+                        -- below
+                        -- diagnostics = {
+                        --     globals = { 'vim' },
+                        -- },
+                        runtime = {
+                            version = 'LuaJIT',
+                        },
+                        workspace = {
+                            checkThirdParty = false,
+                            library = {
+                                vim.env.VIMRUNTIME,
+                            },
+                        },
+                    },
+                },
+            },
+            zls = {
+                manual_install = true,
+            },
         }
 
-        local servers_to_install = vim.tbl_filter(function(key)
-            local t = servers[key]
-            if type(t) == 'table' then
-                return not t.manual_install
-            else
-                return t
-            end
-        end, vim.tbl_keys(servers))
+        -- local servers_to_install = vim.tbl_filter(function(key)
+        --     local t = servers[key]
+        --     if type(t) == 'table' then
+        --         return not t.manual_install
+        --     else
+        --         return t
+        --     end
+        -- end, vim.tbl_keys(servers))
 
         for name, config in pairs(servers) do
             config = vim.tbl_deep_extend('force', {}, { capabilities = capabilities }, config)

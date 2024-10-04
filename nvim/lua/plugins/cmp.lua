@@ -6,6 +6,7 @@ return {
         { 'https://codeberg.org/FelipeLema/cmp-async-path' },
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lsp-signature-help',
+        'hrsh7th/cmp-nvim-lua',
         'onsails/lspkind.nvim',
     },
     opts = function()
@@ -59,6 +60,7 @@ return {
                 { name = 'buffer' },
                 { name = 'nvim_lsp' },
                 { name = 'nvim_lsp_signature_help' },
+                { name = 'nvim_lua', option = { include_deprecated = true } },
             },
             window = {
                 completion = cmp.config.window.bordered(),
