@@ -5,6 +5,7 @@ return {
         'williamboman/mason-lspconfig.nvim',
         { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
         'stevearc/conform.nvim',
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
     config = function()
@@ -16,6 +17,8 @@ return {
         else
             capabilities = vim.lsp.protocol.make_client_capabilities()
         end
+
+        local tools = {}
 
         local servers = {
             clangd = {},
@@ -39,19 +42,38 @@ return {
                     },
                 },
             },
+            rust_analyzer = {
+                settings = {
+                    ['rust_analyzer'] = {
+                        check = {
+                            command = { 'clippy' },
+                        },
+                    },
+                },
+            },
             zls = {
                 manual_install = true,
             },
         }
 
-        -- local servers_to_install = vim.tbl_filter(function(key)
-        --     local t = servers[key]
-        --     if type(t) == 'table' then
-        --         return not t.manual_install
-        --     else
-        --         return t
-        --     end
-        -- end, vim.tbl_keys(servers))
+        local servers_to_install = vim.tbl_filter(function(key)
+            local t = servers[key]
+            if type(t) == 'table' then
+                return not t.manual_install
+            else
+                return t
+            end
+        end, vim.tbl_keys(servers))
+
+        local mason = require('mason')
+        mason.setup()
+
+        local ensure_installed = {}
+        vim.list_extend(ensure_installed, servers_to_install)
+        vim.list_extend(ensure_installed, tools)
+
+        local mti = require('mason-tool-installer')
+        mti.setup({ ensure_installed = ensure_installed })
 
         for name, config in pairs(servers) do
             config = vim.tbl_deep_extend('force', {}, { capabilities = capabilities }, config)

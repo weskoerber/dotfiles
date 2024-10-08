@@ -1,5 +1,3 @@
-local utils = require('utils')
-
 vim.api.nvim_create_user_command('FugitiveToggle', function()
     local found_buf = false
 
