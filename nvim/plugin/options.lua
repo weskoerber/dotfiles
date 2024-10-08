@@ -40,3 +40,9 @@ opt.listchars = {
     eol = '⏎',
 }
 opt.list = true
+
+vim.filetype.add({
+    extension = {
+        wxs = 'xml',
+    },
+})
