@@ -10,6 +10,10 @@ return {
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
     config = function()
         local lspconfig = require('lspconfig')
+        local mason = require('mason')
+        local mason_registry = require('mason-registry')
+        local mti = require('mason-tool-installer')
+        local conform = require('conform')
 
         local capabilities = nil
         if pcall(require, 'cmp_nvim_lsp') then
@@ -19,6 +23,8 @@ return {
         end
 
         local tools = {}
+
+        mason.setup()
 
         local servers = {
             clangd = {},
@@ -39,6 +45,28 @@ return {
                                 vim.env.VIMRUNTIME,
                             },
                         },
+                    },
+                },
+            },
+            omnisharp = {
+                cmd = {
+                    vim.fs.normalize(
+                        vim.fs.joinpath(
+                            mason_registry.get_package('omnisharp'):get_install_path(),
+                            'omnisharp'
+                        )
+                    )
+                },
+                server_capabilities = {
+                    semanticTokensProvider = vim.NIL,
+                },
+                settings = {
+                    FormattingOptions = {
+                        EnableEditorConfigSupport = true,
+                        OrganizeImports = true,
+                    },
+                    Sdk = {
+                        IncludePrereleases = true,
                     },
                 },
             },
@@ -65,14 +93,10 @@ return {
             end
         end, vim.tbl_keys(servers))
 
-        local mason = require('mason')
-        mason.setup()
-
         local ensure_installed = {}
         vim.list_extend(ensure_installed, servers_to_install)
         vim.list_extend(ensure_installed, tools)
 
-        local mti = require('mason-tool-installer')
         mti.setup({ ensure_installed = ensure_installed })
 
         for name, config in pairs(servers) do
@@ -91,10 +115,23 @@ return {
                 vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, { buffer = 0 })
                 vim.keymap.set('n', '[u', function() vim.diagnostic.goto_prev() end, { buffer = 0 })
                 vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, { buffer = 0 })
+
+                local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
+                local settings = servers[client.name]
+
+                if settings.server_capabilities then
+                    for k, v in pairs(settings.server_capabilities) do
+                        if v == vim.NIL then
+                            ---@diagnostic disable-next-line: cast-local-type
+                            v = nil
+                        end
+
+                        client.server_capabilities[k] = v
+                    end
+                end
             end,
         })
 
-        local conform = require('conform')
         conform.setup({
             format_on_save = {
                 timeout_ms = 30000, -- yuck; looking at you, zigfmt
