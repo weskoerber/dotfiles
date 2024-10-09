@@ -30,6 +30,7 @@ opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
 
+opt.scrolloff = 8
 opt.textwidth = 80
 opt.colorcolumn = '+0'
 opt.signcolumn = 'yes'
