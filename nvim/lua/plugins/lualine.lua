@@ -1,5 +1,5 @@
 return {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    branch = 'fix_hl_inheritence',
     opts = {},
 }
