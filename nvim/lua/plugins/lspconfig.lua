@@ -28,6 +28,7 @@ return {
 
         local servers = {
             clangd = {},
+            intelephense = {},
             lua_ls = {
                 settings = {
                     Lua = {
@@ -133,18 +134,45 @@ return {
         })
 
         conform.setup({
+            notify_on_error = true,
             format_on_save = {
                 timeout_ms = 30000, -- yuck; looking at you, zigfmt
                 lsp_format = 'fallback',
+                async = false,
             },
             formatters_by_ft = {
                 c = { 'clang_format' },
                 cpp = { 'clang_format' },
+                php = { 'php_cs_fixer' },
                 zig = { 'zigfmt' },
+            },
+            formatters = {
+                php_cs_fixer = function()
+                    return {
+                        command = require('conform.util').find_executable({
+                            'vendor/bin/php-cs-fixer',
+                        }, 'php-cs-fixer'),
+                        args = {
+                            'fix',
+                            '$FILENAME',
+                            '--quiet',
+                            '--config=.cs.php'
+                        },
+                    }
+                end,
             },
         })
 
         require('lsp_lines').setup()
         vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+
+        vim.keymap.set('', '<leader>ll', function()
+            local config = vim.diagnostic.config() or {}
+            if config.virtual_text then
+                vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+            else
+                vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+            end
+        end, { desc = 'Toggle lsp_lines' })
     end,
 }
