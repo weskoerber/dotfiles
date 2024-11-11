@@ -166,7 +166,7 @@ return {
         require('lsp_lines').setup()
         vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
 
-        vim.keymap.set('', '<leader>ll', function()
+        vim.keymap.set('n', '<leader>ll', function()
             local config = vim.diagnostic.config() or {}
             if config.virtual_text then
                 vim.diagnostic.config { virtual_text = false, virtual_lines = true }
@@ -174,5 +174,9 @@ return {
                 vim.diagnostic.config { virtual_text = true, virtual_lines = false }
             end
         end, { desc = 'Toggle lsp_lines' })
+
+        vim.keymap.set('n', '<leader>lh', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end)
     end,
 }
