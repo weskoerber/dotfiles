@@ -37,6 +37,7 @@ export TERM="kitty"
 export TERMINAL="$TERM"
 export MANWIDTH=999
 export MANPAGER="nvim +Man!"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 #################
 # Clean up home #
@@ -116,8 +117,6 @@ fi
 ################
 # Run programs #
 ################
-
-pgrep ssh-agent || eval "$(ssh-agent -s)"
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
     # mkdir -p "$HOME/.var/log/hypr"
