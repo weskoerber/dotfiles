@@ -19,6 +19,11 @@ alias \
     v="nvim" \
     lzd="lazydocker"
 
+alias \
+    zb="zig build" \
+    zbr="zig build run" \
+    zbt="zig build test"
+
 # https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-or-functional-keys-like-arrow-keys-don-t-work
 alias \
     kssh="kitten ssh"
