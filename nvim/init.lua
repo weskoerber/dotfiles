@@ -15,6 +15,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+require('weskoerber.keymaps')
+
 require('lazy').setup({
     spec = {
         { import = 'plugins' },
@@ -23,5 +25,3 @@ require('lazy').setup({
         notify = false,
     },
 })
-
-require('weskoerber.keymaps')
