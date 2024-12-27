@@ -134,7 +134,7 @@ return {
         })
 
         conform.setup({
-            notify_on_error = true,
+            notify_on_error = false,
             format_on_save = {
                 timeout_ms = 30000, -- yuck; looking at you, zigfmt
                 lsp_format = 'fallback',
