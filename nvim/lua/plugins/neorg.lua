@@ -7,7 +7,15 @@ return {
     keys = {
         { '<leader>ni',      '<cmd>Neorg index<CR>', },
         { '<leader>nr',      '<cmd>Neorg return<CR>', },
+        { '<leader>njn',     '<cmd>Neorg journal today<CR>', },
+        { '<leader>njj',     '<cmd>Neorg journal custom<CR>', },
+        { '<leader>njy',     '<cmd>Neorg journal yesterday<CR>', },
+        { '<leader>njt',     '<cmd>Neorg journal tomorrow<CR>', },
         { '<localleader>nn', '<Plug>(neorg.dirman.new-note)', },
+        { '<localleader>tc', '<Plug>(neorg.qol.todo-items.todo.task-cancelled)', },
+        { '<localleader>td', '<Plug>(neorg.qol.todo-items.todo.task-done)', },
+        { '<localleader>tp', '<Plug>(neorg.qol.todo-items.todo.task-pending)', },
+        { '<localleader>tu', '<Plug>(neorg.qol.todo-items.todo.task-undone)', },
         { 'gd',              '<Plug>(neorg.esupports.hop.hop-link)' },
         { '>>',              '<Plug>(neorg.promo.promote.nested)' },
         { '<<',              '<Plug>(neorg.promo.demote.nested)' },
@@ -33,12 +41,13 @@ return {
                     },
                 },
             },
-            ['core.completion'] = {
-                config = {
-                    engine = 'nvim-cmp',
-                }
-            },
-            ['core.integrations.nvim-cmp'] = {},
+            -- ['core.completion'] = {
+            --     config = {
+            --         engine = 'nvim-cmp',
+            --     }
+            -- },
+            ['core.export'] = {},
+            -- ['core.integrations.nvim-cmp'] = {},
         },
     },
 }
