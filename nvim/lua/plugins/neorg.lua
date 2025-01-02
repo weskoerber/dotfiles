@@ -2,7 +2,8 @@ return {
     'nvim-neorg/neorg',
     build = ':Neorg sync-parsers',
     dependencies = {
-        'nvim-lua/plenary.nvim'
+        'nvim-lua/plenary.nvim',
+        'nvim-neorg/neorg-telescope',
     },
     keys = {
         { '<leader>ni',      '<cmd>Neorg index<CR>', },
@@ -21,6 +22,7 @@ return {
         { '<<',              '<Plug>(neorg.promo.demote.nested)' },
         { '>.',              '<Plug>(neorg.promo.promote)' },
         { '<,',              '<Plug>(neorg.promo.demote)' },
+        { '<leader>fn',      '<Plug>(neorg.telescope.find_norg_files)' },
     },
     opts = {
         load = {
@@ -48,6 +50,7 @@ return {
             -- },
             ['core.export'] = {},
             -- ['core.integrations.nvim-cmp'] = {},
+            ['core.integrations.telescope'] = {},
         },
     },
 }
