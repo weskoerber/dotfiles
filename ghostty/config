@@ -1,6 +1,6 @@
 background-opacity = 0.90
 font-family = IosevkaTerm NFM
-font-size = 18
+font-size = 12
 gtk-titlebar = false
 theme = GruvboxDark
 window-padding-x = 10

@@ -3,7 +3,7 @@ return {
     dependencies = {
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
-        { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+        -- { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
         'stevearc/conform.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
@@ -163,17 +163,17 @@ return {
             },
         })
 
-        require('lsp_lines').setup()
-        vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+        -- require('lsp_lines').setup()
+        -- vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
 
-        vim.keymap.set('n', '<leader>ll', function()
-            local config = vim.diagnostic.config() or {}
-            if config.virtual_text then
-                vim.diagnostic.config { virtual_text = false, virtual_lines = true }
-            else
-                vim.diagnostic.config { virtual_text = true, virtual_lines = false }
-            end
-        end, { desc = 'Toggle lsp_lines' })
+        -- vim.keymap.set('n', '<leader>ll', function()
+        --     local config = vim.diagnostic.config() or {}
+        --     if config.virtual_text then
+        --         vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+        --     else
+        --         vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+        --     end
+        -- end, { desc = 'Toggle lsp_lines' })
 
         vim.keymap.set('n', '<leader>lh', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
