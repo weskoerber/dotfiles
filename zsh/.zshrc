@@ -78,8 +78,8 @@ case "$os_name" in;
         source /usr/share/fzf/completion.zsh
         ;;
     'Debian GNU/Linux')
-        source /usr/share/fzf/doc/examples/key-bindings.zsh
-        source /usr/share/fzf/doc/examples/completion.zsh
+        source /usr/share/doc/fzf/examples/key-bindings.zsh
+        source /usr/share/doc/fzf/examples/completion.zsh
         ;;
 esac
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
