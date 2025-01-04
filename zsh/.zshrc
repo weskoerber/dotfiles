@@ -71,8 +71,17 @@ if [ -z "$LS_COLORS" ]; then
     eval $(dircolors -b "$HOME/.dir_colors")
 fi
 
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+os_name="$(cat /etc/os-release | sed -nE 's/^NAME="(.*)"$/\1/p')"
+case "$os_name" in;
+    'Arch Linux')
+        source /usr/share/fzf/key-bindings.zsh
+        source /usr/share/fzf/completion.zsh
+        ;;
+    'Debian GNU/Linux')
+        source /usr/share/fzf/doc/examples/key-bindings.zsh
+        source /usr/share/fzf/doc/examples/completion.zsh
+        ;;
+esac
 source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
