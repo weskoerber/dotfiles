@@ -36,6 +36,8 @@ opt.textwidth = 80
 opt.colorcolumn = '+0'
 opt.signcolumn = 'yes'
 
+opt.splitright = true
+
 opt.listchars = {
     space = '·',
     tab = '⇥ ',

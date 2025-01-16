@@ -1,4 +1,5 @@
 return {
+    event = 'VeryLazy',
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
@@ -10,11 +11,9 @@ return {
             'mtime',
         },
         keymaps = {
-            ['<c-p>'] = {
-                callback = function()
-                    require('oil').open_preview({ vertical = true, split = 'botright' })
-                end
-            },
+            ['<c-p>'] = { 'actions.preview', opts = { vertical = true, split = 'belowright' } },
+            ['<c-s>'] = { 'actions.select', opts = { vertical = true } },
+            ['<c-h>'] = { 'actions.select', opts = { horizontal = true, split = 'belowright' } },
             ['yp'] = {
                 callback = function()
                     require('oil.actions').copy_entry_path.callback()
