@@ -40,15 +40,23 @@ return {
             bufnr = nil,
         },
     },
-    config = function()
+    config = function(opts)
         local telescope = require('telescope')
         local builtin = require('telescope.builtin')
 
         telescope.load_extension('fzf')
 
+        telescope.setup(opts)
+
         -- files/buffers
         vim.keymap.set('n', '<leader>fa', function() builtin.live_grep() end)
-        vim.keymap.set('n', '<leader>fb', function() builtin.buffers() end)
+        vim.keymap.set('n', '<leader>fb', function()
+            builtin.buffers({
+                sort_mru = true,
+                sort_lastused = true,
+                initial_mode = 'normal'
+            })
+        end)
         vim.keymap.set('n', '<leader>fd', function() builtin.find_files() end)
         vim.keymap.set('n', '<leader>ff', function() builtin.current_buffer_fuzzy_find() end)
         vim.keymap.set('n', '<leader>fo', function() builtin.oldfiles() end)
