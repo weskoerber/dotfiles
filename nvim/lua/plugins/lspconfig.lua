@@ -27,6 +27,7 @@ return {
         mason.setup()
 
         local servers = {
+            bashls = {},
             clangd = {},
             intelephense = {},
             lua_ls = {
@@ -49,6 +50,7 @@ return {
                     },
                 },
             },
+            html = {},
             omnisharp = {
                 cmd = {
                     vim.fs.normalize(
