@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 opt.termguicolors = true
-opt.conceallevel = 2
+opt.conceallevel = 3
 
 opt.number = true
 opt.relativenumber = true
