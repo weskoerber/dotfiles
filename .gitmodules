@@ -19,3 +19,6 @@
 [submodule "zsh/plugins/zvm"]
 	path = zsh/plugins/zvm
 	url = https://github.com/weskoerber/zvm
+[submodule "ghostty/shaders"]
+	path = ghostty/shaders
+	url = https://github.com/m-ahdal/ghostty-shaders
