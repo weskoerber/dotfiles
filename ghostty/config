@@ -1,7 +1,30 @@
+################################################################################
+#### Appearance                                                              ####
+################################################################################
 background-opacity = 0.90
-font-family = IosevkaTerm NFM
+font-family = TX-02
 font-size = 12
 gtk-titlebar = false
 theme = GruvboxDark
 window-padding-x = 10
 window-padding-y = 10
+
+################################################################################
+#### Splits                                                                 ####
+################################################################################
+# Nav
+keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+j=goto_split:bottom
+keybind = ctrl+alt+k=goto_split:top
+
+# Resize
+keybind = ctrl+shift+l=resize_split:right,20
+keybind = ctrl+shift+h=resize_split:left,20
+keybind = ctrl+shift+j=resize_split:down,20
+keybind = ctrl+shift+k=resize_split:up,20
+
+keybind = ctrl+shift+alt+l=resize_split:right,60
+keybind = ctrl+shift+alt+h=resize_split:left,60
+keybind = ctrl+shift+alt+j=resize_split:down,60
+keybind = ctrl+shift+alt+k=resize_split:up,60
