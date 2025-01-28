@@ -7,7 +7,8 @@ alias \
     cp="cp -iv" \
     mv="mv -iv" \
     rm="rm -Iv" \
-    mkdir="mkdir -pv"
+    mkdir="mkdir -pv" \
+    up="cd .."
 
 alias \
     ls="ls --color=auto --group-directories-first --time-style=long-iso"
