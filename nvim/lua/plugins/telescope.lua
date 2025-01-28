@@ -8,24 +8,6 @@ return {
             build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
         },
     },
-    opts = {
-        defaults = {
-            file_ignore_patterns = {
-                'Cargo.lock',
-            },
-            layout_strategy = 'flex',
-            layout_config = {
-                flex = {
-                    flip_columns = 130,
-                },
-            },
-            mappings = {
-                n = {
-                    ['dd'] = require('telescope.actions').delete_buffer,
-                },
-            },
-        },
-    },
     pickers = {
         find_files = {
             find_command = { "fd", "--type", "file", "--hidden", "--glob", "--no-ignore-vcs", },
@@ -43,10 +25,45 @@ return {
     config = function(opts)
         local telescope = require('telescope')
         local builtin = require('telescope.builtin')
+        local actions = require('telescope.actions')
 
         telescope.load_extension('fzf')
 
-        telescope.setup(opts)
+        telescope.setup({
+            defaults = {
+                file_ignore_patterns = {
+                    'Cargo.lock',
+                },
+                layout_strategy = 'flex',
+                layout_config = {
+                    flex = {
+                        flip_columns = 120,
+                    },
+                },
+                mappings = {
+                },
+            },
+            pickers = {
+                buffers = {
+                    mappings = {
+                        n = {
+                            ['dd'] = actions.delete_buffer,
+                        },
+                        i = {
+                            ['<M-d>'] = actions.delete_buffer,
+                        },
+                    },
+                },
+                git_branches = {
+                    i = {
+                        ['<M-d>'] = actions.git_delete_branch,
+                    },
+                    n = {
+                        ['dd'] = actions.git_delete_branch,
+                    },
+                },
+            },
+        })
 
         -- files/buffers
         vim.keymap.set('n', '<leader>fa', function() builtin.live_grep() end)
