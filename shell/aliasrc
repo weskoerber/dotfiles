@@ -67,7 +67,18 @@ sd() {
         exit 0
     fi
 
-    cd $selected_dir
+    cd "$selected_dir" || return 1
+}
+
+hexdec() {
+    [ -n "$1" ] && case "$1" in
+        0x*) printf '%d\n' "$1" ;;
+        *) printf '%d\n' "0x$1" ;;
+    esac
+}
+
+dechex() {
+    [ -n "$1" ] && printf '%x\n' "$1"
 }
 
 gogit() {
