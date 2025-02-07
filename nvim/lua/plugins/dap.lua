@@ -23,7 +23,11 @@ return {
             id = 'cppdbg',
             type = 'executable',
             command = vim.fs.normalize(
-                '~/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7'),
+                vim.fs.joinpath(
+                    vim.fn.stdpath('data'),
+                    '/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7'
+                )
+            ),
         }
 
         dap.adapters.lldb = {
@@ -78,7 +82,14 @@ return {
         dap.adapters.php = {
             type = 'executable',
             command = 'node',
-            args = { '/usr/lib/node_modules/php-debug/out/phpDebug.js' },
+            args = {
+                vim.fs.normalize(
+                    vim.fs.joinpath(
+                        vim.fn.stdpath('data'),
+                        'mason/packages/php-debug-adapter/extension/out/phpDebug.js'
+                    )
+                )
+            },
         }
     end,
 }
