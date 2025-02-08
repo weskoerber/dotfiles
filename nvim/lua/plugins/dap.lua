@@ -15,6 +15,13 @@ return {
     },
     config = function()
         local dap = require('dap')
+        local utils = require('dap.utils')
+
+        local pickers = require("telescope.pickers")
+        local finders = require("telescope.finders")
+        local conf = require("telescope.config").values
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
 
         require('dap.ext.vscode').json_decode = require('json5').parse
 
@@ -44,13 +51,73 @@ return {
                 request = "launch",
                 MIMode = 'lldb',
                 miDebuggerPath = '/usr/bin/lldb',
+                args = function()
+                    return vim.split(vim.fn.input('Args: ') or '', ' ')
+                end,
                 program = function()
-                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                    return coroutine.create(function(coro)
+                        local opts = {}
+                        pickers
+                            .new(opts, {
+                                prompt_title = "Path to executable",
+                                finder = finders.new_oneshot_job({ "fd", "--no-ignore", "--type", "x" }, {}),
+                                sorter = conf.generic_sorter(opts),
+                                initial_mode = 'normal',
+                                attach_mappings = function(buffer_number)
+                                    actions.select_default:replace(function()
+                                        actions.close(buffer_number)
+                                        coroutine.resume(coro, action_state.get_selected_entry()[1])
+                                    end)
+                                    return true
+                                end,
+                            })
+                            :find()
+                    end)
                 end,
                 cwd = '${workspaceFolder}',
                 stopAtEntry = true,
-                args = {
-                },
+            },
+            {
+                name = "Attach to process",
+                type = "lldb",
+                request = "attach",
+                MIMode = 'lldb',
+                miDebuggerPath = '/usr/bin/lldb',
+                cwd = '${workspaceFolder}',
+                pid = function()
+                    return coroutine.create(function(coro)
+                        local opts = {}
+                        local procs = utils.get_processes({})
+                        pickers
+                            .new(opts, {
+                                prompt_title = "Running processes (user)",
+                                finder = finders.new_table({
+                                    results = procs,
+                                    entry_maker = function(entry)
+                                        local formatted_entry = string.format('%8d | %s', entry.pid, entry.name)
+                                        return {
+                                            value = entry,
+                                            display = formatted_entry,
+                                            ordinal = formatted_entry,
+                                        }
+                                    end,
+                                }),
+                                attach_mappings = function(prompt_bufnr, map)
+                                    actions.select_default:replace(function()
+                                        actions.close(prompt_bufnr)
+                                        local selection = action_state.get_selected_entry()
+                                        local pid = selection.value.pid
+
+                                        coroutine.resume(coro, pid)
+                                    end)
+                                    return true
+                                end,
+                                sorter = conf.generic_sorter(opts),
+                            })
+                            :find()
+                    end)
+                end,
+                stopAtEntry = true,
             }
         }
 
