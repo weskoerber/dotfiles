@@ -35,7 +35,7 @@ export BROWSER="firefox"
 export EDITOR="nvim"
 export TERM="ghostty"
 export TERMINAL="$TERM"
-export MANWIDTH=999
+export MANWIDTH=80
 export MANPAGER="nvim +Man!"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
