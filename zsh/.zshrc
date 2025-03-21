@@ -86,6 +86,16 @@ source ~/.config/zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.z
 source ~/.config/zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
+
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+    echo "sourced init-nvm.sh @ $(date)"  profile.log
+    source /usr/share/nvm/init-nvm.sh
+fi
+
+if [ -r "$CARGO_HOME/env" ]; then
+    source "$CARGO_HOME/env"
+fi
+
 # Key bindings
 export KEYTIMEOUT=1
 # bindkey '^R' history-incremental-pattern-search-backward

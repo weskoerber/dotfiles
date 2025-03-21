@@ -31,13 +31,19 @@ fi
 ######################
 # Setup applications #
 ######################
-export BROWSER="firefox"
+export BROWSER="zen-browser"
 export EDITOR="nvim"
 export TERM="ghostty"
 export TERMINAL="$TERM"
 export MANWIDTH=80
 export MANPAGER="nvim +Man!"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+
+#############
+# GTK Theme #
+#############
+export GTK_THEME=Adwaita:dark
 
 #################
 # Clean up home #
@@ -52,6 +58,7 @@ export DOTNET_ROOT="$DOTNET_INSTALL_DIR"
 export DOTNET_HOME="$DOTNET_ROOT"
 export DOTNET_TOOL_ROOT="$DOTNET_ROOT/tools"
 export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 
 ###############
 # zsh history #
@@ -79,22 +86,15 @@ append_path () {
     esac
 }
 
-# append_path "$HOME/.local/bin"
 append_path "$CARGO_HOME/bin"
 append_path "$XDG_DATA_HOME/dotnet"
 append_path "$DOTNET_ROOT/tools"
 append_path "$HOME/.yarn/bin"
 append_path "$COMPOSER_HOME/vendor/bin"
 
-node_version=$(node --version 2> /dev/null)
-if [ -n "$node_version" ]; then
-    # https://flaviocopes.com/where-npm-install-packages/
-    append_path "$HOME/.nvm/versions/node/$node_version/bin"
-fi
-
-
 # This adds ~/.local/bin and all immediate subdirs (non-recursively) to PATH
-PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
+local_bin_paths="$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)"
+PATH="$PATH:${local_bin_paths%%:}"
 
 export PATH
 
@@ -103,21 +103,9 @@ export PATH
 ##########################
 export DOTNET_CLI_TELEMETRY_OUTPUT='true'
 
-if [ -r "$CARGO_HOME/env" ]; then
-    source "$CARGO_HOME/env"
-fi
-
-#######
-# NVM #
-######
-if [ -f /usr/share/nvm/init-nvm.sh ]; then
-    source /usr/share/nvm/init-nvm.sh
-fi
-
 ################
 # Run programs #
 ################
-
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
     # mkdir -p "$HOME/.var/log/hypr"
     # exec Hyprland > "$HOME/.var/log/hypr/hyprland.log" 2> "$HOME/.var/log/hypr/hyprland_err.log"
