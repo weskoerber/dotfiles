@@ -88,7 +88,6 @@ source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
-    echo "sourced init-nvm.sh @ $(date)"  profile.log
     source /usr/share/nvm/init-nvm.sh
 fi
 
