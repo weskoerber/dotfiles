@@ -64,7 +64,7 @@ source "${ZDOTDIR:-$HOME/.config/zsh}/first_run.sh"
 
 if [ -z "$LS_COLORS" ]; then
     if ! [ -f "$HOME/.dir_colors" ]; then
-        echo "TERM alacritty" > "$HOME/.dir_colors"
+        echo "TERM $TERM" > "$HOME/.dir_colors"
         dircolors --print-database >> "$HOME/.dir_colors"
     fi
 
