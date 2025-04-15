@@ -50,3 +50,9 @@ vim.filetype.add({
         wxs = 'xml',
     },
 })
+
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldlevelstart = 1
+opt.foldnestmax = 4
+opt.foldtext = ''
