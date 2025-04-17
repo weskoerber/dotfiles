@@ -8,8 +8,10 @@ return {
         { '<F17>', "<cmd>lua require('dapui').toggle()<CR>" },
     },
     config = function(opts)
-        local dapui = require('dapui').setup(opts)
+        local dapui = require('dapui')
         local dap = require('dap')
+
+        dapui.setup(opts)
 
         vim.keymap.set('n', '<space>?', function()
             dapui.eval(nil, { enter = true })
