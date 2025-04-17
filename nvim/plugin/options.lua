@@ -51,7 +51,7 @@ vim.filetype.add({
     },
 })
 
-opt.foldenable = true
+opt.foldenable = false
 opt.foldlevel = 99
 opt.foldlevelstart = 1
 opt.foldnestmax = 4
