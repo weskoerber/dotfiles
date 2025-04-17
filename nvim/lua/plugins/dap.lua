@@ -16,12 +16,74 @@ return {
     config = function()
         local dap = require('dap')
         local utils = require('dap.utils')
-
         local pickers = require("telescope.pickers")
         local finders = require("telescope.finders")
         local conf = require("telescope.config").values
         local actions = require("telescope.actions")
         local action_state = require("telescope.actions.state")
+
+        local get_exe_path_coro = function(opts)
+            local find_opts = { 'fd', '--no-ignore' }
+
+            for _, v in ipairs(opts) do
+                table.insert(find_opts, v)
+            end
+
+            vim.print(find_opts);
+
+            return coroutine.create(function(coro)
+                local ts_opts = {}
+                pickers
+                    .new(ts_opts, {
+                        prompt_title = "Path to executable",
+                        finder = finders.new_oneshot_job(find_opts),
+                        sorter = conf.generic_sorter(ts_opts),
+                        initial_mode = 'normal',
+                        attach_mappings = function(buffer_number)
+                            actions.select_default:replace(function()
+                                actions.close(buffer_number)
+                                coroutine.resume(coro, action_state.get_selected_entry()[1])
+                            end)
+                            return true
+                        end,
+                    })
+                    :find()
+            end)
+        end
+
+        local get_pid_coro = function()
+            return coroutine.create(function(coro)
+                local opts = {}
+                local procs = utils.get_processes({})
+                pickers
+                    .new(opts, {
+                        prompt_title = "Running processes (user)",
+                        finder = finders.new_table({
+                            results = procs,
+                            entry_maker = function(entry)
+                                local formatted_entry = string.format('%8d | %s', entry.pid, entry.name)
+                                return {
+                                    value = entry,
+                                    display = formatted_entry,
+                                    ordinal = formatted_entry,
+                                }
+                            end,
+                        }),
+                        attach_mappings = function(prompt_bufnr, map)
+                            actions.select_default:replace(function()
+                                actions.close(prompt_bufnr)
+                                local selection = action_state.get_selected_entry()
+                                local pid = selection.value.pid
+
+                                coroutine.resume(coro, pid)
+                            end)
+                            return true
+                        end,
+                        sorter = conf.generic_sorter(opts),
+                    })
+                    :find()
+            end)
+        end
 
         require('dap.ext.vscode').json_decode = require('json5').parse
 
@@ -55,24 +117,9 @@ return {
                     return vim.split(vim.fn.input('Args: ') or '', ' ')
                 end,
                 program = function()
-                    return coroutine.create(function(coro)
-                        local opts = {}
-                        pickers
-                            .new(opts, {
-                                prompt_title = "Path to executable",
-                                finder = finders.new_oneshot_job({ "fd", "--no-ignore", "--type", "x" }, {}),
-                                sorter = conf.generic_sorter(opts),
-                                initial_mode = 'normal',
-                                attach_mappings = function(buffer_number)
-                                    actions.select_default:replace(function()
-                                        actions.close(buffer_number)
-                                        coroutine.resume(coro, action_state.get_selected_entry()[1])
-                                    end)
-                                    return true
-                                end,
-                            })
-                            :find()
-                    end)
+                    return get_exe_path_coro({
+                        '--type', 'executable',
+                    })
                 end,
                 cwd = '${workspaceFolder}',
                 stopAtEntry = true,
@@ -84,39 +131,7 @@ return {
                 MIMode = 'lldb',
                 miDebuggerPath = '/usr/bin/lldb',
                 cwd = '${workspaceFolder}',
-                pid = function()
-                    return coroutine.create(function(coro)
-                        local opts = {}
-                        local procs = utils.get_processes({})
-                        pickers
-                            .new(opts, {
-                                prompt_title = "Running processes (user)",
-                                finder = finders.new_table({
-                                    results = procs,
-                                    entry_maker = function(entry)
-                                        local formatted_entry = string.format('%8d | %s', entry.pid, entry.name)
-                                        return {
-                                            value = entry,
-                                            display = formatted_entry,
-                                            ordinal = formatted_entry,
-                                        }
-                                    end,
-                                }),
-                                attach_mappings = function(prompt_bufnr, map)
-                                    actions.select_default:replace(function()
-                                        actions.close(prompt_bufnr)
-                                        local selection = action_state.get_selected_entry()
-                                        local pid = selection.value.pid
-
-                                        coroutine.resume(coro, pid)
-                                    end)
-                                    return true
-                                end,
-                                sorter = conf.generic_sorter(opts),
-                            })
-                            :find()
-                    end)
-                end,
+                pid = get_pid_coro,
                 stopAtEntry = true,
             }
         }
@@ -129,7 +144,7 @@ return {
         -- -- C#
         dap.adapters.coreclr = {
             type = 'executable',
-            command = os.getenv("HOME") .. '/.local/share/netcoredbg/netcoredbg',
+            command = vim.fn.stdpath('data') .. '/mason/bin/netcoredbg',
             args = {
                 '--interpreter=vscode',
             },
@@ -141,9 +156,19 @@ return {
                 name = 'launch - netcoredbg',
                 request = 'launch',
                 program = function()
-                    return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/', 'file')
+                    return get_exe_path_coro({
+                        '--extension', 'dll',
+                    })
                 end,
             },
+            {
+                name = "Attach to process",
+                type = "coreclr",
+                request = "attach",
+                cwd = '${workspaceFolder}',
+                processId = get_pid_coro,
+                stopAtEntry = true,
+            }
         }
 
         dap.adapters.php = {
