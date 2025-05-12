@@ -55,8 +55,8 @@ return {
                 cmd = {
                     vim.fs.normalize(
                         vim.fs.joinpath(
-                            mason_registry.get_package('omnisharp'):get_install_path(),
-                            'omnisharp'
+                            vim.fn.stdpath('data'),
+                            'mason/bin/omnisharp'
                         )
                     )
                 },
