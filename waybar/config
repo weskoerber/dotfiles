@@ -25,8 +25,23 @@
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<big>{:%B %d, %Y}</big>\n\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%H:%M}"
+        "format": "{:%I:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#cc241d'><b>{}</b></span>",
+                "days": "<span color='#bdae93'><b>{}</b></span>",
+                "weekdays": "<span color='#b8bb26'><b>{}</b></span>",
+                "today": "<span color='#fe8019'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+            "on-click-right": "mode",
+        }
     },
     "cpu": {
         "interval": 1,
