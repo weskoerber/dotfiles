@@ -1,23 +1,15 @@
-// # vim: ft=jsonc
+// # vim: ft=jsonc, cole=0
 
 {
     "layer": "top",
     "position": "top",
-    "height": 24,
+    "height": 32,
     "spacing": 0,
 
     // Choose the order of the modules
-    // "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-left": ["sway/workspaces"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/package-updates", "pulseaudio", "network", "cpu", "memory", "tray"],
-
-    // "hyprland/window": {
-    //     "max-length": 50
-    // },
-    "sway/workspaces": {
-        "max-length": 50
-    },
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
 
     // Modules configuration
     "tray": {
@@ -25,8 +17,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%I:%M}",
-        "format-alt": "{:%A, %B %d, %Y (%R)}",
+        "format": "{:%I:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "year",
@@ -61,6 +53,38 @@
         "format": "{used:.2f} GiB ",
         "on-click": "ghostty -e btop"
     },
+    "battery": {
+        "bat": "BAT0",
+        "interval": 5,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󱐋 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
+    },
+    "battery#bat2": {
+        "bat": "BAT1",
+        "interval": 5,
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󱐋 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
+    },
     "network": {
         "interval": 1,
         "format-wifi": "{signalStrength}% ",
@@ -90,11 +114,5 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    },
-    "custom/package-updates": {
-        "interval": 5,
-        "format": "󰏕 {}",
-        "exec": "$HOME/.config/waybar/scripts/package-updates.sh",
-        "return-type": "json"
     }
 }

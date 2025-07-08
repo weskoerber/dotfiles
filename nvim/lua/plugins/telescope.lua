@@ -5,7 +5,7 @@ return {
         -- 'nvim-treesitter/nvim-treesitter', -- has its own plugin spec file, see lua/plugins/treesitter.lua
         {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+            build = 'make'
         },
     },
     pickers = {
