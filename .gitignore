@@ -1,3 +1,8 @@
+# don't commit:
+nvim/lua/weskoerber.old/
+nvim/after.old/
+nvim/old/
+
 # private items
 .local/bin/smbmount.sh
 .local/bin/hvovpn.sh

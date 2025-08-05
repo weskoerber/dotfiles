@@ -1,7 +1,7 @@
 [user]
     email = wes@weskoerber.com
     name = Wes Koerber
-	signingkey = C5328283A360641D
+	signingkey = C89CACDBE24DA40A
 
 [core]
     editor = nvim

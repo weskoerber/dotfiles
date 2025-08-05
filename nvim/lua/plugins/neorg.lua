@@ -45,7 +45,7 @@ return {
             ['core.dirman'] = {
                 config = {
                     index = 'index.norg',
-                    default_workspace = 'acsd',
+                    default_workspace = 'personal',
                     workspaces = {
                         acsd = '~/Documents/notes/acsd',
                         personal = '~/Documents/notes/personal',

@@ -4,7 +4,7 @@ return {
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
         -- { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
-        'stevearc/conform.nvim',
+        -- 'stevearc/conform.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
@@ -13,7 +13,7 @@ return {
         local mason = require('mason')
         local mason_registry = require('mason-registry')
         local mti = require('mason-tool-installer')
-        local conform = require('conform')
+        -- local conform = require('conform')
 
         local capabilities = nil
         if pcall(require, 'cmp_nvim_lsp') then
@@ -135,35 +135,35 @@ return {
             end,
         })
 
-        conform.setup({
-            notify_on_error = false,
-            format_on_save = {
-                timeout_ms = 30000, -- yuck; looking at you, zigfmt
-                lsp_format = 'fallback',
-                async = false,
-            },
-            formatters_by_ft = {
-                c = { 'clang_format' },
-                cpp = { 'clang_format' },
-                php = { 'php_cs_fixer' },
-                zig = { 'zigfmt' },
-            },
-            formatters = {
-                php_cs_fixer = function()
-                    return {
-                        command = require('conform.util').find_executable({
-                            'vendor/bin/php-cs-fixer',
-                        }, 'php-cs-fixer'),
-                        args = {
-                            'fix',
-                            '$FILENAME',
-                            '--quiet',
-                            '--config=.cs.php'
-                        },
-                    }
-                end,
-            },
-        })
+        -- conform.setup({
+        --     notify_on_error = false,
+        --     format_on_save = {
+        --         timeout_ms = 30000, -- yuck; looking at you, zigfmt
+        --         lsp_format = 'fallback',
+        --         async = false,
+        --     },
+        --     formatters_by_ft = {
+        --         c = { 'clang_format' },
+        --         cpp = { 'clang_format' },
+        --         php = { 'php_cs_fixer' },
+        --         zig = { 'zigfmt' },
+        --     },
+        --     formatters = {
+        --         php_cs_fixer = function()
+        --             return {
+        --                 command = require('conform.util').find_executable({
+        --                     'vendor/bin/php-cs-fixer',
+        --                 }, 'php-cs-fixer'),
+        --                 args = {
+        --                     'fix',
+        --                     '$FILENAME',
+        --                     '--quiet',
+        --                     '--config=.cs.php'
+        --                 },
+        --             }
+        --         end,
+        --     },
+        -- })
 
         -- require('lsp_lines').setup()
         -- vim.diagnostic.config({ virtual_text = false, virtual_lines = true })

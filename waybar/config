@@ -3,14 +3,14 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 24,
+    "height": 32,
     "spacing": 0,
 
     // Choose the order of the modules
     // "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/package-updates", "pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
 
     // "hyprland/window": {
     //     "max-length": 50
@@ -123,10 +123,4 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/package-updates": {
-        "interval": 5,
-        "format": "󰏕 {}",
-        "exec": "$HOME/.config/waybar/scripts/package-updates.sh",
-        "return-type": "json"
-    }
 }
