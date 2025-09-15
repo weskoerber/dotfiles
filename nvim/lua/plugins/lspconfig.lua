@@ -3,7 +3,7 @@ return {
     dependencies = {
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
-        -- { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+        'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
         'stevearc/conform.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
@@ -24,12 +24,15 @@ return {
 
         local tools = {}
 
+        vim.lsp.log.set_level('error')
+
         mason.setup()
 
         local servers = {
             bashls = {},
             clangd = {},
             intelephense = {},
+            -- lemminx = {},
             lua_ls = {
                 settings = {
                     Lua = {
@@ -51,12 +54,13 @@ return {
                 },
             },
             html = {},
+            ols = {},
             omnisharp = {
                 cmd = {
                     vim.fs.normalize(
                         vim.fs.joinpath(
                             vim.fn.stdpath('data'),
-                            'mason/bin/omnisharp'
+                            'mason/bin/OmniSharp'
                         )
                     )
                 },
@@ -76,14 +80,47 @@ return {
             rust_analyzer = {
                 settings = {
                     ['rust_analyzer'] = {
+                        cargo = {
+                            target = 'x86_64-unknown-linux-gnu',
+                        },
                         check = {
                             command = { 'clippy' },
                         },
                     },
                 },
             },
+            ts_ls = {},
             zls = {
                 manual_install = true,
+                settings = {
+                    -- https://github.com/zigtools/zls/blob/master/schema.json
+                    enable_snippets = false,
+                    enable_argument_placeholders = false,
+                    completion_label_details = false,
+                    enable_build_on_save = true,
+                    build_on_save_args = {
+                        '-fincremental',
+                        'check',
+                    },
+                    semantic_tokens = 'full',
+                    inlay_hints_show_variable_type_hints = false,
+                    inlay_hints_show_struct_literal_field_type = false,
+                    inlay_hints_show_parameter_name = false,
+                    inlay_hints_show_builtin = false,
+                    inlay_hints_exclude_single_argument = false,
+                    inlay_hints_hide_redundant_param_names = false,
+                    inlay_hints_hide_redundant_param_names_last_token = false,
+                    force_autofix = false,
+                    warn_style = true,
+                    highlight_global_var_declarations = true,
+                    skip_std_references = false,
+                    prefer_ast_check_as_child_process = true,
+                    builtin_path = nil,
+                    zig_lib_path = nil,
+                    zig_exe_path = nil,
+                    build_runner_path = nil,
+                    global_cache_path = nil,
+                },
             },
         }
 
@@ -115,9 +152,20 @@ return {
                 vim.keymap.set('n', '<leader>vh', function() vim.lsp.buf.signature_help() end, { buffer = 0 })
                 vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, { buffer = 0 })
                 vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, { buffer = 0 })
-                vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, { buffer = 0 })
-                vim.keymap.set('n', '[u', function() vim.diagnostic.goto_prev() end, { buffer = 0 })
+                vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = 1 }) end, { buffer = 0 })
+                vim.keymap.set('n', '[u', function() vim.diagnostic.jump({ count = -1 }) end, { buffer = 0 })
                 vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, { buffer = 0 })
+                vim.keymap.set('n', '<leader>vcf',
+                    function()
+                        vim.lsp.buf.code_action({
+                            context = {
+                                only = {
+                                    'source.fixAll',
+                                },
+                            },
+                            apply = true,
+                        })
+                    end)
 
                 local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
                 local settings = servers[client.name]
@@ -146,6 +194,10 @@ return {
                 c = { 'clang_format' },
                 cpp = { 'clang_format' },
                 php = { 'php_cs_fixer' },
+                javascript = { 'prettier' },
+                javascriptreact = { 'prettier' },
+                typescript = { 'prettier' },
+                typescriptreact = { 'prettier' },
                 zig = { 'zigfmt' },
             },
             formatters = {
@@ -165,17 +217,17 @@ return {
             },
         })
 
-        -- require('lsp_lines').setup()
-        -- vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+        require('lsp_lines').setup()
+        vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 
-        -- vim.keymap.set('n', '<leader>ll', function()
-        --     local config = vim.diagnostic.config() or {}
-        --     if config.virtual_text then
-        --         vim.diagnostic.config { virtual_text = false, virtual_lines = true }
-        --     else
-        --         vim.diagnostic.config { virtual_text = true, virtual_lines = false }
-        --     end
-        -- end, { desc = 'Toggle lsp_lines' })
+        vim.keymap.set('n', '<leader>ll', function()
+            local config = vim.diagnostic.config() or {}
+            if config.virtual_text then
+                vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+            else
+                vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+            end
+        end, { desc = 'Toggle lsp_lines' })
 
         vim.keymap.set('n', '<leader>lh', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

@@ -8,6 +8,7 @@ return {
             'c',
             'cpp',
             'c_sharp',
+            'go',
             'rust',
 
             'bash',

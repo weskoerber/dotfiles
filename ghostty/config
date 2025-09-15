@@ -10,6 +10,10 @@ window-theme = ghostty
 window-padding-x = 10
 window-padding-y = 10
 
+gtk-single-instance = false
+
+mouse-scroll-multiplier = 0.5
+
 ################################################################################
 #### Splits                                                                 ####
 ################################################################################

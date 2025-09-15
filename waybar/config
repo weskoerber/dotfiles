@@ -10,7 +10,7 @@
     // "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/package-updates", "pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
+    "modules-right": ["custom/package-updates", "pulseaudio", "network", "cpu", "memory", "tray"],
 
     // "hyprland/window": {
     //     "max-length": 50
@@ -25,8 +25,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%I:%M}  ",
-        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "format": "{:%I:%M}",
+        "format-alt": "{:%A, %B %d, %Y (%R)}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "year",
@@ -54,44 +54,12 @@
         },
         // "tooltip": false
         "tooltip-format": "load: {load:<4}",
-        "on-click": "kitty btop --preset 1"
+        "on-click": "ghostty -e btop --preset 1"
     },
     "memory": {
         "interval": 1,
         "format": "{used:.2f} GiB ",
-        "on-click": "kitty btop"
-    },
-    "battery": {
-        "bat": "BAT0",
-        "interval": 5,
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󱐋 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
-    },
-    "battery#bat2": {
-        "bat": "BAT1",
-        "interval": 5,
-        "states": {
-            "good": 90,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󱐋 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
+        "on-click": "ghostty -e btop"
     },
     "network": {
         "interval": 1,

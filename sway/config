@@ -98,6 +98,10 @@ input "type:keyboard" {
     xkb_options "caps:swapescape"
 }
 
+input "9580:109:HUION_Huion_Tablet_Pen" {
+    map_to_output HDMI-A-1
+}
+
 ### Key bindings
 #
 # Basics:
@@ -242,7 +246,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+bindsym Print exec grim -c -g "$(slurp)" - | swappy -f -
+bindsym shift+Print exec grim -c -o "$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).output')" - | swappy -f -
 
 # Audio
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
