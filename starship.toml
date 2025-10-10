@@ -3,29 +3,47 @@
 add_newline = true
 
 format = """
+$username$hostname\
+$jobs\
 $directory\
 $git_branch\
 $git_state\
-$git_commit\
 $git_status\
-$sudo\
-$shell\
-$fill\
-$cmd_duration\
-$username\
-$hostname
+$rust\
+$zig\
+$fill$cmd_duration$time
 $character\
 """
 
-[cmd_duration]
-format = "took [$duration](bold yellow)\n"
+[directory]
+truncate_to_repo = true
+use_os_path_sep = false
 
-[git_status]
-ahead = '⇡${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-behind = '⇣${count}'
-conflicted = '🏳'
-modified = '!'
-untracked = '?'
-staged = '+'
-deleted = '-'
+[time]
+disabled = false
+format = '[$time]($style)'
+
+[username]
+show_always = false
+format = '$fill[$user]($style)@'
+
+[hostname]
+ssh_only = true
+format = '[$ssh_symbol$hostname]($style) '
+
+
+
+[c]
+detect_extensions = []
+detect_files = [ 'Makefile', 'CMakeLists.txt' ]
+
+[cpp]
+detect_extensions = []
+detect_files = [ 'Makefile', 'CMakeLists.txt' ]
+
+[rust]
+detect_extensions = []
+
+[zig]
+detect_extensions = []
+detect_files = [ 'build.zig', 'build.zig.zon' ]
