@@ -11,4 +11,7 @@ SAVEHIST=1000000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/bash/history"
 HISTTIMEFORMAT="[%F %T]"
 
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
 eval "$(starship init bash)"
