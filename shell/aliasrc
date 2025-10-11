@@ -11,7 +11,8 @@ alias \
     up="cd .."
 
 alias \
-    ls="ls --color=auto --group-directories-first --time-style=long-iso"
+    ls="ls --color=auto --group-directories-first --time-style=long-iso" \
+    ll="ls -l"
 
 # Abbreviate commands
 alias \
