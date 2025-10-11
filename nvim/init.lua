@@ -4,6 +4,7 @@ vim.pack.add({
     'https://github.com/savq/melange-nvim',
     'https://github.com/tpope/vim-fugitive',
     'https://github.com/stevearc/oil.nvim',
+    'https://github.com/stevearc/conform.nvim',
     'https://github.com/neovim/nvim-lspconfig',
     'https://github.com/nvim-treesitter/nvim-treesitter',
     'https://github.com/kylechui/nvim-surround',
