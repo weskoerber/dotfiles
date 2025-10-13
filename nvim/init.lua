@@ -19,6 +19,7 @@ vim.g.mapleader = ' '
 -- Behavior
 vim.o.swapfile = false
 vim.o.wrap = false
+vim.o.smartcase = true
 
 -- Appearance
 vim.o.number = true

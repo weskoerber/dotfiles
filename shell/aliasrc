@@ -19,7 +19,7 @@ alias \
     fpk="flatpak" \
     g="git" \
     v="nvim" \
-    lzd="lazydocker"
+    org="nvim $HOME/Documents/org"
 
 alias \
     zb="zig build" \

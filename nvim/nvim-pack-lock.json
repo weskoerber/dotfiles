@@ -36,6 +36,10 @@
       "rev": "919e155",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "org-bullets.nvim": {
+      "rev": "21437cf",
+      "src": "https://github.com/nvim-orgmode/org-bullets.nvim"
+    },
     "orgmode": {
       "rev": "03777ca",
       "src": "https://github.com/nvim-orgmode/orgmode"
