@@ -10,6 +10,7 @@ vim.pack.add({
     'https://github.com/kylechui/nvim-surround',
     'https://github.com/nvim-tree/nvim-web-devicons',
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    'https://github.com/nvim-orgmode/orgmode',
 }, { confirm = false })
 
 -- Vim Keybinds

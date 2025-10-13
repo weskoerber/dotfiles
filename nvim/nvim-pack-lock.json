@@ -36,6 +36,10 @@
       "rev": "919e155",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "orgmode": {
+      "rev": "03777ca",
+      "src": "https://github.com/nvim-orgmode/orgmode"
+    },
     "vim-fugitive": {
       "rev": "61b51c0",
       "src": "https://github.com/tpope/vim-fugitive"
