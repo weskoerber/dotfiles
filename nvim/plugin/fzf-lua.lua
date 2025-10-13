@@ -3,6 +3,8 @@ local fzf_cmd = require('fzf-lua.cmd');
 
 vim.keymap.set('n', '<leader>fz', fzf_cmd.run_command)
 
+vim.keymap.set('n', '<leader>fa', fzf.live_grep)
+
 vim.keymap.set('n', '<leader>ff', fzf.files)
 
 vim.keymap.set('n', '<leader>fc', fzf.git_commits)

@@ -1,19 +1,16 @@
-// # vim: ft=jsonc, cole=0
-
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
+    "height": 24,
     "spacing": 0,
 
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["sway/workspaces","hyprland/workspaces", "hyprland/window", "sway/window",],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
 
     // Modules configuration
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
@@ -32,7 +29,7 @@
             }
         },
         "actions":  {
-            "on-click-right": "mode",
+            "on-click-right": "mode"
         }
     },
     "cpu": {
@@ -44,7 +41,6 @@
             "high": 60,
             "crit": 85
         },
-        // "tooltip": false
         "tooltip-format": "load: {load:<4}",
         "on-click": "ghostty -e btop --preset 1"
     },
@@ -65,9 +61,7 @@
         "format-charging": "󱐋 {capacity}%",
         "format-plugged": "󰚥 {capacity}%",
         "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "battery#bat2": {
         "bat": "BAT1",
@@ -81,9 +75,7 @@
         "format-charging": "󱐋 {capacity}%",
         "format-plugged": "󰚥 {capacity}%",
         "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹",]
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "network": {
         "interval": 1,
