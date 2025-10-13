@@ -19,6 +19,7 @@ vim.g.mapleader = ' '
 -- Behavior
 vim.o.swapfile = false
 vim.o.wrap = false
+vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Appearance
@@ -32,3 +33,10 @@ vim.cmd.colorscheme('melange')
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = true
+
+-- cmdline
+vim.o.wildmode = 'noselect:lastused,full'
+vim.o.wildoptions = 'pum'
+vim.api.nvim_create_autocmd('CmdlineChanged', {
+    callback = function() vim.fn.wildtrigger() end,
+})
