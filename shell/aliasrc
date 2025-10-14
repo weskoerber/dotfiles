@@ -111,5 +111,3 @@ gogit() {
 pathl() {
     echo "$PATH" | sed 's/:/\n/g'
 }
-
-source $XDG_CONFIG_HOME/shell/functions/hexdate
