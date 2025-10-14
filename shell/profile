@@ -98,8 +98,4 @@ export DOTNET_CLI_TELEMETRY_OUTPUT='true'
 
 ################
 # Run programs #
-################
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-    mkdir -p "$HOME/.var/log/sway"
-    exec sway > "$HOME/.var/log/sway/sway.log" 2> "$HOME/.var/log/sway/sway_err.log"
-fi
+# ################
