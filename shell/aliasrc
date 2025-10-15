@@ -19,7 +19,7 @@ alias \
     fpk="flatpak" \
     g="git" \
     v="nvim" \
-    org="nvim $HOME/Documents/org"
+    org="nvim $HOME/Documents/org +'Org agenda a'"
 
 alias \
     zb="zig build" \
