@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             autotrigger = true,
         })
 
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
         vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float)
         vim.keymap.set('n', '<localleader>rn', vim.lsp.buf.rename)

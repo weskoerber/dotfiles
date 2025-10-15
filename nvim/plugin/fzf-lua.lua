@@ -7,6 +7,8 @@ vim.keymap.set('n', '<leader>fa', fzf.live_grep)
 
 vim.keymap.set('n', '<leader>ff', fzf.files)
 
+vim.keymap.set('n', '<leader>lf', fzf.lsp_document_symbols);
+
 vim.keymap.set('n', '<leader>fc', fzf.git_commits)
 vim.keymap.set('n', '<leader>fg', fzf.git_files)
 
