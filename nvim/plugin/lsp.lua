@@ -1,5 +1,16 @@
 local configs = {
     clangd = {},
+    lua_ls = {
+        settings = {
+            Lua = {
+                workspace = {
+                    library = {
+                        vim.env.VIMRUNTIME,
+                    },
+                },
+            }
+        },
+    },
     zls = {},
 }
 
