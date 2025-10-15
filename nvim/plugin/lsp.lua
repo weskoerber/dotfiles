@@ -11,6 +11,7 @@ local configs = {
             }
         },
     },
+    rust_analyzer = {},
     zls = {},
 }
 
