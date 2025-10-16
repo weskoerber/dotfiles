@@ -12,6 +12,10 @@
       "rev": "83e4080",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "known-folders.nvim": {
+      "rev": "ede0b79",
+      "src": "https://github.com/weskoerber/known-folders.nvim"
+    },
     "lsp_lines.nvim": {
       "rev": "a92c755",
       "src": "https://git.sr.ht/~whynothugo/lsp_lines.nvim"

@@ -14,6 +14,7 @@ vim.pack.add({
 
     -- Quality of life
     'https://github.com/kylechui/nvim-surround',
+    'https://github.com/weskoerber/known-folders.nvim',
 
     -- Integrations
     'https://github.com/nvim-orgmode/orgmode',
