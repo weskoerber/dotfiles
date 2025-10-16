@@ -24,30 +24,5 @@ vim.pack.add({
     'https://github.com/savq/melange-nvim',
 }, { confirm = false })
 
--- Vim Keybinds
-vim.g.mapleader = ' '
-
--- Behavior
-vim.o.swapfile = false
-vim.o.wrap = false
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Appearance
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.cursorline = true
-vim.o.signcolumn = 'yes'
-vim.cmd.colorscheme('melange')
-
--- Tabs (if you forget how you set this up, see :h 30.5)
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
-vim.o.expandtab = true
-
--- cmdline
-vim.o.wildmode = 'noselect:lastused,full'
-vim.o.wildoptions = 'pum'
-vim.api.nvim_create_autocmd('CmdlineChanged', {
-    callback = function() vim.fn.wildtrigger() end,
-})
+-- Custom configuration
+require('weskoerber')

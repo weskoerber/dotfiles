@@ -1,0 +1,1 @@
+require('known-folders').setup()
