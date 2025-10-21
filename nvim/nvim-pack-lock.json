@@ -1,7 +1,7 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "fbcb4fa",
+      "rev": "235dd79",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fidget.nvim": {
@@ -9,7 +9,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "83e4080",
+      "rev": "c102a4e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "known-folders.nvim": {
@@ -29,11 +29,11 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "nvim-lspconfig": {
-      "rev": "ac98db2",
+      "rev": "e5c61b0",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
-      "rev": "75de178",
+      "rev": "0cadeb0",
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
-      "rev": "7194872",
+      "rev": "7e1cd77",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "org-bullets.nvim": {
