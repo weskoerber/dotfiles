@@ -22,7 +22,7 @@ vim.pack.add({
 
     -- Eye candy
     'https://github.com/nvim-tree/nvim-web-devicons',
-    'https://github.com/savq/melange-nvim',
+    'https://github.com/ellisonleao/gruvbox.nvim',
 }, { confirm = false })
 
 -- Custom configuration

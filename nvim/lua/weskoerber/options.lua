@@ -14,7 +14,7 @@ local M = {
         vim.o.relativenumber = true
         vim.o.cursorline = true
         vim.o.signcolumn = 'yes'
-        vim.cmd.colorscheme('melange')
+        vim.cmd.colorscheme('gruvbox')
 
         -- Not enough contrast with the 'Melange Dark' colorscheme, so disabled for now.
         vim.o.list = false
