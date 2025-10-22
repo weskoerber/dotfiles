@@ -30,18 +30,18 @@ set $menu fuzzel --list-executables-in-path
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output "eDP-1" {
-    bg /home/wes/Pictures/Wallpapers/outer_wilds.jpeg fill
+    bg /home/wes/.local/share/wallpaper fill
     mode 1920x1080@60Hz
 }
 
 output "HDMI-A-1" {
-    bg /home/wes/Pictures/Wallpapers/outer_wilds.jpeg fill
+    bg /home/wes/.local/share/wallpaper fill
     mode 1920x1080@60Hz
     pos 1080 420
 }
 
 output "DP-1" {
-    bg /home/wes/Pictures/Wallpapers/outer_wilds.jpeg fill
+    bg /home/wes/.local/share/wallpaper fill
     mode 1920x1080@60Hz
     transform 270
     pos 0 0
