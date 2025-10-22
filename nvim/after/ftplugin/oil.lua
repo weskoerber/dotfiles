@@ -2,12 +2,17 @@ local oil = require('oil')
 local view = require('oil.view')
 local stringx = require('stringx')
 
-vim.keymap.set('n', 'gp', function()
+vim.keymap.set('n', 'gop', function()
     local dest = vim.fn.input('Go to > ', '', 'file')
     oil.open(dest)
 end, {})
 
-vim.keymap.set('n', 'gz', function()
+vim.keymap.set('n', 'gor', function()
+    -- TODO: figure out how to restore cursor position, as this causes the cursor to reset to origin
+    oil.open(oil.get_current_dir())
+end, {})
+
+vim.keymap.set('n', 'goz', function()
     local bufnr = vim.api.nvim_get_current_buf()
     local lnum = vim.api.nvim_win_get_cursor(0)[1]
 
