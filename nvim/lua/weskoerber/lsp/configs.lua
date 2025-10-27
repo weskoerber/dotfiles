@@ -1,5 +1,6 @@
 return {
     clangd = {},
+    intelephense = {},
     lua_ls = {
         settings = {
             Lua = {
