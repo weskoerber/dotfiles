@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# A common init script for interactive shells
+
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+    source /usr/share/nvm/init-nvm.sh
+fi

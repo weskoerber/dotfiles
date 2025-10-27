@@ -2,6 +2,7 @@
 [[ $- != *i* ]] && return
 
 . ~/.config/shell/aliasrc
+. ~/.config/shell/initrc
 
 HISTSIZE=100000
 HISTFILESIZE=1000000000
