@@ -1,13 +1,14 @@
 local configs = require('weskoerber.lsp.configs')
 
+vim.lsp.config('*', {
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
+})
+
 for name, config in pairs(configs) do
     vim.lsp.config(name, config)
     vim.lsp.enable(name, true)
 end
 
-vim.lsp.config('*', {
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
-})
 
 vim.opt.completeopt = { 'menuone', 'noselect', 'popup', }
 vim.api.nvim_create_autocmd('LspAttach', {
