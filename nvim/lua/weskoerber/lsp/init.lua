@@ -25,6 +25,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         vim.keymap.set('n', 'K', vim.lsp.buf.hover)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+        vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition)
         vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action)
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
         vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
@@ -34,7 +37,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
             function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end)
         vim.keymap.set('n', ']e',
             function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end)
-
-        -- vim.print(client)
     end,
 })

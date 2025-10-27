@@ -7,6 +7,7 @@ vim.pack.add({
     'https://github.com/stevearc/conform.nvim',
     'https://github.com/mason-org/mason.nvim',
     'https://github.com/j-hui/fidget.nvim',
+    'https://github.com/Hoffs/omnisharp-extended-lsp.nvim',
 
     -- Files/buffers
     'https://github.com/ibhagwan/fzf-lua',

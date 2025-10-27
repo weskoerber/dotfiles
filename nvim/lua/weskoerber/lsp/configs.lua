@@ -11,12 +11,28 @@ return {
         },
     },
     omnisharp = {
-        cmd = vim.fs.joinpath(vim.fn.stdpath('data'), 'mason', 'bin', 'OmniSharp'),
+        -- NOTE: For some reason, specifying the command doesn't work
+        -- cmd = {
+        --     vim.fn.resolve(
+        --         vim.fs.joinpath(vim.fn.stdpath('data'), 'mason', 'bin', 'OmniSharp')
+        --     ),
+        -- },
         settings = {
-            ['RoslynExtensionsOptions'] = {
-                ['enableDecompilationSupport'] = true,
+            FormattingOptions = {
+                EnabledEditorConfigSupport = true,
+                OrganizeImports = true,
             },
+            RoslynExtensionsOptions = {
+                enableDecompilationSupport = true,
+            }
         },
+        on_attach = function(_)
+            local oe = require('omnisharp_extended')
+            vim.keymap.set('n', 'gd', oe.lsp_definition)
+            vim.keymap.set('n', 'gt', oe.lsp_type_definition)
+            vim.keymap.set('n', 'gr', oe.lsp_references)
+            vim.keymap.set('n', 'gi', oe.lsp_implementation)
+        end,
     },
     rust_analyzer = {},
     zls = {
