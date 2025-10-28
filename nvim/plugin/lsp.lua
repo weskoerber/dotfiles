@@ -1,1 +1,1 @@
-require('weskoerber.lsp')
+require('weskoerber.lsp').setup({})
