@@ -1,4 +1,7 @@
 local conform = require('conform')
+
+local js_cfg = { 'prettier', stop_after_first = true }
+
 conform.setup({
     format_on_save = {
         timeout_ms = 500,
@@ -6,6 +9,11 @@ conform.setup({
     },
     formatters_by_ft = {
         php = { 'php_cs_fixer' },
+
+        javascript = js_cfg,
+        javascriptreact = js_cfg,
+        typescript = js_cfg,
+        typescriptreact = js_cfg,
     },
     formatters = {
         php_cs_fixer = {

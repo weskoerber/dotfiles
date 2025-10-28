@@ -49,19 +49,6 @@ return {
             if default_cbs.ts_ls.on_attach then
                 default_cbs.ts_ls.on_attach(client, bufnr)
             end
-
-            vim.api.nvim_create_autocmd('BufWritePre', {
-                callback = function()
-                    vim.lsp.buf.code_action({
-                        apply = true,
-                        context = {
-                            only = {
-                                'source.organizeImports',
-                            },
-                        }
-                    })
-                end
-            })
         end,
     },
     zls = {
