@@ -45,6 +45,10 @@ M.setup = function(opts)
                 function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end)
             vim.keymap.set('n', ']e',
                 function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end)
+
+            if configs.on_attach then
+                client:on_attach(bufnr)
+            end
         end,
     })
 end

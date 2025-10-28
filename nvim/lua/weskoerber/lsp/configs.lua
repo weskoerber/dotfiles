@@ -1,3 +1,11 @@
+-- Save default config callbacks here
+-- https://github.com/neovim/neovim/issues/33577#issuecomment-2832231240
+local default_cbs = {
+    ts_ls = {
+        on_attach = vim.lsp.config.ts_ls.on_attach,
+    },
+}
+
 return {
     clangd = {},
     intelephense = {},
@@ -36,6 +44,26 @@ return {
         end,
     },
     rust_analyzer = {},
+    ts_ls = {
+        on_attach = function(client, bufnr)
+            if default_cbs.ts_ls.on_attach then
+                default_cbs.ts_ls.on_attach(client, bufnr)
+            end
+
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                callback = function()
+                    vim.lsp.buf.code_action({
+                        apply = true,
+                        context = {
+                            only = {
+                                'source.organizeImports',
+                            },
+                        }
+                    })
+                end
+            })
+        end,
+    },
     zls = {
         settings = {
             -- https://github.com/zigtools/zls/blob/master/schema.json
