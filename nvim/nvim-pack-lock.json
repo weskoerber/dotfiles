@@ -32,6 +32,10 @@
       "rev": "ce42f6b",
       "src": "https://github.com/savq/melange-nvim"
     },
+    "nvim-lint": {
+      "rev": "9da1fb9",
+      "src": "https://github.com/mfussenegger/nvim-lint"
+    },
     "nvim-lspconfig": {
       "rev": "a9b2fb5",
       "src": "https://github.com/neovim/nvim-lspconfig"
