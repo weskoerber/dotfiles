@@ -10,6 +10,11 @@ vim.pack.add({
     'https://github.com/Hoffs/omnisharp-extended-lsp.nvim',
     'https://github.com/mfussenegger/nvim-lint',
 
+    -- Debugging
+    'https://codeberg.org/mfussenegger/nvim-dap.git',
+    'https://github.com/rcarriga/nvim-dap-ui',
+    'https://github.com/nvim-neotest/nvim-nio',     -- dependency of nvim-dap-ui
+
     -- Files/buffers
     'https://github.com/ibhagwan/fzf-lua',
     'https://github.com/stevearc/oil.nvim',

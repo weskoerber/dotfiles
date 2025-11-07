@@ -1,7 +1,7 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "9fd3d5e",
+      "rev": "26c02e1",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fidget.nvim": {
@@ -32,13 +32,25 @@
       "rev": "ce42f6b",
       "src": "https://github.com/savq/melange-nvim"
     },
+    "nvim-dap": {
+      "rev": "e97dc47",
+      "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
+    },
+    "nvim-dap-ui": {
+      "rev": "cf91d5e",
+      "src": "https://github.com/rcarriga/nvim-dap-ui"
+    },
     "nvim-lint": {
-      "rev": "9da1fb9",
+      "rev": "8c694e1",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "e25994a",
+      "rev": "a89bfcf",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-nio": {
+      "rev": "21f5324",
+      "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-surround": {
       "rev": "fcfa7e0",
@@ -69,7 +81,7 @@
       "src": "https://github.com/nvim-orgmode/org-bullets.nvim"
     },
     "orgmode": {
-      "rev": "638b2b4",
+      "rev": "0312641",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "vim-fugitive": {
