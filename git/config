@@ -16,9 +16,6 @@
     navigate = true
     line-numbers = true
 
-[diff]
-    tool = nvimdiff
-
 [init]
     defaultBranch = main
 
@@ -41,3 +38,8 @@
 	process = git-lfs filter-process
 [commit]
 	gpgsign = true
+[merge]
+    tool = nvimdiff
+
+[diff]
+    tool = nvimdiff
