@@ -9,7 +9,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "b19dabe",
+      "rev": "996b236",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gruvbox.nvim": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "nvim-dap": {
-      "rev": "4c0e3a9",
+      "rev": "b38f7d3",
       "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
     },
     "nvim-dap-ui": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "2010fc6",
+      "rev": "b34fbdf",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/Hoffs/omnisharp-extended-lsp.nvim"
     },
     "onedark.nvim": {
-      "rev": "918e89e",
+      "rev": "6c10964",
       "src": "https://github.com/navarasu/onedark.nvim"
     },
     "org-bullets.nvim": {
