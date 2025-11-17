@@ -16,6 +16,7 @@ local M = {
         vim.o.signcolumn = 'yes'
         vim.cmd.colorscheme('gruvbox')
         vim.o.scrolloff = 10
+        vim.o.hlsearch = false
 
         -- Not enough contrast with the 'Melange Dark' colorscheme, so disabled for now.
         vim.o.list = false
