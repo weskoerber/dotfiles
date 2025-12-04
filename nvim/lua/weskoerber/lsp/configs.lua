@@ -43,7 +43,19 @@ return {
             vim.keymap.set('n', 'gi', oe.lsp_implementation)
         end,
     },
-    rust_analyzer = {},
+    rust_analyzer = {
+        settings = {
+            ['rust_analyzer'] = {
+                cargo = {
+                    -- target = 'x86_64-unknown-linux-gnu',
+                    target = 'x86_64-pc-windows-gnu',
+                },
+                check = {
+                    command = { 'clippy' },
+                },
+            }
+        },
+    },
     ts_ls = {
         on_attach = function(client, bufnr)
             if default_cbs.ts_ls.on_attach then
