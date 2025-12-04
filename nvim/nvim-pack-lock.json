@@ -1,7 +1,7 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "cde4da5",
+      "rev": "ffe26e8df8115c9665d24231f8a49fadb2d611ce",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fidget.nvim": {
@@ -9,7 +9,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "996b236",
+      "rev": "cae96b04f6cad98a3ad24349731df5e56b384c3c",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gruvbox.nvim": {
@@ -25,7 +25,7 @@
       "src": "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
     },
     "mason.nvim": {
-      "rev": "ad7146a",
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "melange-nvim": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "nvim-dap": {
-      "rev": "b38f7d3",
+      "rev": "5860c7c501eb428d3137ee22c522828d20cca0b3",
       "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
     },
     "nvim-dap-ui": {
@@ -41,11 +41,11 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lint": {
-      "rev": "8b349e8",
+      "rev": "5122c0c00a65cf6ce434b16b6a7587b62b6af00d",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "b34fbdf",
+      "rev": "f7c6e585fd80d5a2c075ab27ac312ac55bcf1550",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -65,7 +65,7 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
-      "rev": "7e1cd77",
+      "rev": "cbcb3f997f6f261c577b943ec94e4ef55108dd95",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "omnisharp-extended-lsp.nvim": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/Hoffs/omnisharp-extended-lsp.nvim"
     },
     "onedark.nvim": {
-      "rev": "6c10964",
+      "rev": "213c23ae45a04797572242568d5d51937181792d",
       "src": "https://github.com/navarasu/onedark.nvim"
     },
     "org-bullets.nvim": {
@@ -81,7 +81,7 @@
       "src": "https://github.com/nvim-orgmode/org-bullets.nvim"
     },
     "orgmode": {
-      "rev": "b7bcb90",
+      "rev": "ca572cccdf5f401deb478e64af90aff8fcd2c43a",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "vim-fugitive": {
