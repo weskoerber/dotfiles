@@ -18,4 +18,8 @@ orgmode.setup({
             datetree = { reversed = true },
         },
     },
+    org_todo_keywords = {
+        'TODO', 'NEXT', 'WAIT', 'HOLD', 'IDEA', '|',
+        'DONE', 'DELE', 'NOTE', 'STOP',
+    },
 })
