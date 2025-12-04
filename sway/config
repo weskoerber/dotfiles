@@ -271,6 +271,7 @@ client.urgent #000000 #cc241d #000000
 gaps inner 10
 
 for_window [class="Pinentry-gtk"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
 
 #
 # Status Bar:
