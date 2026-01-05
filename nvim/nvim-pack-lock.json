@@ -1,15 +1,15 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "ffe26e8df8115c9665d24231f8a49fadb2d611ce",
+      "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fidget.nvim": {
-      "rev": "e32b672d8fd343f9d6a76944fedb8c61d7d8111a",
+      "rev": "64463022a1f2ff1318ab22a2ea4125ed9313a483",
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "bd69cbae60eeb4589fbd285cb112265530fe1a5e",
+      "rev": "a03d68e40eea835a1cdbd9f93049708dab3621e6",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gruvbox.nvim": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "nvim-dap": {
-      "rev": "5860c7c501eb428d3137ee22c522828d20cca0b3",
+      "rev": "cdfd55a133f63228c55f91378f12908cb2a78ded",
       "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
     },
     "nvim-dap-ui": {
@@ -41,11 +41,11 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lint": {
-      "rev": "ae64d6466ed92b68353122d920e314ff2c8dd0a8",
+      "rev": "1e6b2ac034d1a7588d11b0b8e862a7ad89368376",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "0044d0987ef7e624d04141d0f90d0481fd3c3663",
+      "rev": "0b38bc74487e73489624d61396af7805af9cc75f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-surround": {
-      "rev": "a0f5ab44268d22c8b0b19cb89fd9cabbd21e361c",
+      "rev": "1098d7b3c34adcfa7feb3289ee434529abd4afd1",
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
@@ -61,27 +61,19 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-web-devicons": {
-      "rev": "8dcb311b0c92d460fac00eac706abd43d94d68af",
+      "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
-      "rev": "cbcb3f997f6f261c577b943ec94e4ef55108dd95",
+      "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "omnisharp-extended-lsp.nvim": {
       "rev": "a47388e5417e7f1cfa6962cc441a23c4c5fb2151",
       "src": "https://github.com/Hoffs/omnisharp-extended-lsp.nvim"
     },
-    "onedark.nvim": {
-      "rev": "213c23ae45a04797572242568d5d51937181792d",
-      "src": "https://github.com/navarasu/onedark.nvim"
-    },
-    "org-bullets.nvim": {
-      "rev": "21437cfa99c70f2c18977bffd423f912a7b832ea",
-      "src": "https://github.com/nvim-orgmode/org-bullets.nvim"
-    },
     "orgmode": {
-      "rev": "ca572cccdf5f401deb478e64af90aff8fcd2c43a",
+      "rev": "3629625199b9a45bdb41fa734bc2c6ef86d251bd",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "vim-fugitive": {
