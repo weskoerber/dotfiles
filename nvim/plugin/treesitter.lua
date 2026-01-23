@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter.config').setup({
     ensure_installed = {
         'c', 'cpp', 'c_sharp', 'go', 'rust',
         'bash', 'javascript', 'lua', 'php', 'phpdoc', 'sql',
