@@ -5,9 +5,9 @@
     "spacing": 0,
 
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces","hyprland/workspaces", "hyprland/window", "sway/window",],
+    "modules-left": ["sway/workspaces","sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
+    "modules-right": ["custom/keymap", "wireplumber", "network", "cpu", "memory", "tray"],
 
     // Modules configuration
     "tray": {
@@ -49,34 +49,6 @@
         "format": "{used:.2f} GiB ",
         "on-click": "ghostty -e btop"
     },
-    "battery": {
-        "bat": "BAT0",
-        "interval": 5,
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󱐋 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-    "battery#bat2": {
-        "bat": "BAT1",
-        "interval": 5,
-        "states": {
-            "good": 90,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󱐋 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
     "network": {
         "interval": 1,
         "format-wifi": "{signalStrength}% ",
@@ -88,9 +60,9 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "Disconnected"
     },
-    "pulseaudio": {
+    "wireplumber": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}% {format_source}",
+        "format": "{icon} {volume: 4}% {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
@@ -106,5 +78,11 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "custom/keymap": {
+        "exec": "swaymsg -t get_inputs | jq -r '[.[]|select(.type == \"keyboard\")]|.[0].xkb_active_layout_name'",
+        "format": "{}",
+        "interval": 1,
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
     }
 }

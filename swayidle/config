@@ -1,0 +1,6 @@
+# Turn off displays
+# timeout 3 'notify-send -w --category="presence" --icon=$HOME/.local/share/icons/Sway_Tree.png "Notice" "Turning off display in 1 minute."'
+
+timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+
+# vim: ft=conf wrap linebreak
