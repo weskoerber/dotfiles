@@ -9,11 +9,15 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "6b5bb1c8d86845c4b21e2146cc11e934a7f831cb",
+      "rev": "1749fedca3a0efdd47918f8b588f7c7abb4e5bd6",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "gitsigns.nvim": {
+      "rev": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "gruvbox.nvim": {
-      "rev": "a472496e1a4465a2dd574389dcf6cdb29af9bf1b",
+      "rev": "561126520034a1dac2f78ab063db025d12555998",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "known-folders.nvim": {
@@ -33,7 +37,7 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "nvim-dap": {
-      "rev": "b9639ca05dd692647594733554640377ec6b1ab9",
+      "rev": "db321947bb289a2d4d76a32e76e4d2bd6103d7df",
       "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
     },
     "nvim-dap-ui": {
@@ -41,11 +45,11 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lint": {
-      "rev": "ca6ea12daf0a4d92dc24c5c9ae22a1f0418ade37",
+      "rev": "a3d17105a79fc12055c2a0d732665d9c2b1c2dc3",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "419b082102fa813739588dd82e19a8b6b2442855",
+      "rev": "44acfe887d4056f704ccc4f17513ed41c9e2b2e6",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -57,11 +61,11 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "511e5ccf404f8a96ee31866b079fca033a8a7c4e",
+      "rev": "2bd9b9b4f12eed175fba35ca2db8e8584546a4ec",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-web-devicons": {
-      "rev": "803353450c374192393f5387b6a0176d0972b848",
+      "rev": "746ffbb17975ebd6c40142362eee1b0249969c5c",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
@@ -76,12 +80,16 @@
       "rev": "213c23ae45a04797572242568d5d51937181792d",
       "src": "https://github.com/navarasu/onedark.nvim"
     },
+    "org-bullets": {
+      "rev": "b70ac2ec805bcb626a6e39ea696354577c681b36",
+      "src": "https://github.com/sabof/org-bullets"
+    },
     "org-bullets.nvim": {
       "rev": "21437cfa99c70f2c18977bffd423f912a7b832ea",
       "src": "https://github.com/nvim-orgmode/org-bullets.nvim"
     },
     "orgmode": {
-      "rev": "0f8653283bb7af84ef75b3d664851584963c64a3",
+      "rev": "26aa4fa26c570da6eb6798fb1b8df364204c3d99",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "vim-fugitive": {
