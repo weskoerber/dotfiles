@@ -1,5 +1,18 @@
 local M = {}
 
+local function highlight_symbol(event)
+    local group = vim.api.nvim_create_augroup('highlight_symbol', { clear = false })
+    vim.api.nvim_clear_autocmds({ buffer = event.buf, group = group })
+
+    vim.lsp.buf.document_highlight()
+
+    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+        group = group,
+        buffer = event.buf,
+        callback = vim.lsp.buf.clear_references,
+    })
+end
+
 ---@class SetupOpts
 
 M.setup = function(opts)
@@ -17,7 +30,7 @@ M.setup = function(opts)
     end
 
 
-    vim.opt.completeopt = { 'menuone', 'noselect', 'popup', }
+    vim.opt.completeopt = { 'menuone', 'noselect', 'popup', 'preview' }
     vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
             vim.g.maplocalleader = ','
@@ -35,6 +48,7 @@ M.setup = function(opts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
             vim.keymap.set('n', 'gr', vim.lsp.buf.references)
             vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition)
+            vim.keymap.set('n', 'gh', function() highlight_symbol(client) end)
             vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float)
             vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action)
             vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
