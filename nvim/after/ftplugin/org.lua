@@ -1,3 +1,5 @@
+local org = require('orgmode')
+local orgapi = require('orgmode.api')
 local orgst = require('org-structure-templates')
 
 vim.opt.textwidth = 120

@@ -1,5 +1,6 @@
 local orgmode = require('orgmode')
 
+-- orgmode.setup_ts_grammar();
 orgmode.setup({
     org_agenda_files = '~/Documents/org/**/*',
     org_default_notes_file = '~/Documents/org/refile.org',
@@ -21,5 +22,11 @@ orgmode.setup({
     org_todo_keywords = {
         'TODO', 'NEXT', 'WAIT', 'HOLD', 'IDEA', '|',
         'DONE', 'DELE', 'NOTE', 'STOP',
+    },
+})
+
+require('org-bullets').setup({
+    symbols = {
+        headlines = { '◉', '○', '◆', '◇', '▶', '▷' },
     },
 })

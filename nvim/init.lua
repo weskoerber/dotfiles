@@ -25,7 +25,10 @@ vim.pack.add({
 
     -- Integrations
     'https://github.com/nvim-orgmode/orgmode',
+    'https://github.com/nvim-orgmode/org-bullets.nvim',
     'https://github.com/tpope/vim-fugitive',
+    'https://github.com/lewis6991/gitsigns.nvim',
+    -- 'https://github.com/airblade/vim-gitgutter',
 
     -- Eye candy
     'https://github.com/nvim-tree/nvim-web-devicons',
