@@ -9,6 +9,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$docker_context\
 $rust\
 $zig\
 $fill$cmd_duration$time
