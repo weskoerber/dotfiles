@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# SSW - Sink SWitcher
+
+output="$(wpctl status)"
+
+audio=0
+audio_sinks=0
+
+parse_sinks() {
+    IFS=$'\n'; for line in $output; do
+        # find the 'Audio' section
+        if [ $audio -eq 0 ]; then
+            case "$line" in
+                Audio) audio=1; continue;;
+                *) continue ;;
+            esac
+        fi
+
+        # find the 'Sinks' section
+        if [ $audio_sinks -eq 0 ]; then
+            case "$line" in
+                ' ├─ Sinks:') audio_sinks=1; continue ;;
+                *) continue ;;
+            esac
+        fi
+
+        case "$line" in
+            ' │'*) ;;
+            *) break ;;
+        esac
+
+        # skip empty lines
+        if [ ${#line} -lt 5 ]; then
+            continue
+        fi
+
+        echo "$line" | sed -E 's/^\s+│\s+\**\s+([0-9]+)\.\s+(.*)\s+\[vol:.*/\1:\2/'
+    done
+}
+
+list_sinks() {
+    parse_sinks | awk -F: '{print $2}'
+}
+
+choose_sink() {
+    parse_sinks | grep "$1" | awk -F: '{print $1}'
+}
+
+case "$1" in
+    list) list_sinks; exit 0 ;;
+    choose)
+        id="$(choose_sink "$(list_sinks | fuzzel --dmenu --no-exit-on-keyboard-focus-loss)" | awk -F: '{print $1}')"
+        wpctl set-default "$id"
+        ;;
+esac
