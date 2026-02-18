@@ -1,6 +1,10 @@
 # Turn off displays
 # timeout 3 'notify-send -w --category="presence" --icon=$HOME/.local/share/icons/Sway_Tree.png "Notice" "Turning off display in 1 minute."'
 
-timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+# 5 mins - Turn of displays
+timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+
+# 30 mins - Sleep (then hibernate)
+timeout 1800 'systemctl suspend-then-hibernate'
 
 # vim: ft=conf wrap linebreak
