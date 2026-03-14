@@ -62,6 +62,7 @@
     },
     "wireplumber": {
         // "scroll-step": 1, // %, can be a float
+        "max-volume": 150,
         "format": "{icon} {volume: 4}% {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
