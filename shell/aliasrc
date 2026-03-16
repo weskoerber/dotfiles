@@ -18,6 +18,7 @@ alias \
 alias \
     fpk="flatpak" \
     g="git" \
+    gb="git branch" \
     v="nvim" \
     org="nvim $HOME/Documents/org +'Org agenda a'"
 

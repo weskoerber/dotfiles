@@ -24,6 +24,11 @@ bind 'set colored-stats on'
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
 
+bind '"\C-gl": "git glog\n"'
+bind '"\C-gg": "cd \"$(fd -HI -t d -g .git | fzf | sed \"s/\\.git\\/$//g\")\"\n"'
+
+bind '"\C-ee": "ls -lAh\n"'
+
 if command -v fzf > /dev/null; then
     eval "$(fzf --bash)"
 fi
