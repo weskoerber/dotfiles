@@ -19,6 +19,9 @@ conform.setup({
         php_cs_fixer = {
             command = vim.fn.resolve(vim.fs.joinpath('vendor', 'bin', 'php-cs-fixer')),
             args = { 'fix', '$FILENAME', '--quiet', '--config=.cs.php' },
+            env = {
+                PHP_CS_FIXER_IGNORE_ENV = 1,
+            },
         },
     },
 })
