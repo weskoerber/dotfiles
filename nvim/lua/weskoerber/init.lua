@@ -8,3 +8,4 @@ local opts = {
 
 require('weskoerber.options').setup(opts)
 require('weskoerber.commands').setup(opts)
+require('weskoerber.keybinds')
