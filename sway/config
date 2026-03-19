@@ -1,6 +1,5 @@
 # `man 5 sway`
 include ~/.config/sway/*.conf
-include /etc/sway/config.d/*
 
 #
 # Variables
