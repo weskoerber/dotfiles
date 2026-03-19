@@ -23,6 +23,13 @@ $env.config = {
   show_banner: false
 }
 
+alias g = git
+alias v = nvim
+
+alias zvm = zvm.sh
+
+alias org = nvim ($env.HOME | path join "Documents/org") +"Org agenda a"
+
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
