@@ -37,3 +37,6 @@ if command -v starship > /dev/null; then
     [ "$STARSHIP_DISABLED" = 'true' ] || eval "$(starship init bash)"
 fi
 
+if command -v direnv > /dev/null; then
+    eval "$(direnv hook bash)"
+fi
