@@ -86,12 +86,6 @@ button:hover {
     color: #d79921;
 }
 
-/* Active battery indicator */
-#battery.charging,
-#battery.discharging {
-    box-shadow: inset 0 -2px #fe8019;
-}
-
 label:focus {
     background-color: #000000;
 }
