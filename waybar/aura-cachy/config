@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces","sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/keymap", "wireplumber", "battery", "network", "cpu", "memory", "tray"],
+    "modules-right": ["wireplumber", "battery", "network", "cpu", "memory", "tray"],
 
     // Modules configuration
     "tray": {
@@ -23,8 +23,8 @@
         },
     },
     "clock": {
-        "format": "{:%I:%M}  ",
-        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "format": "{:%I:%M} ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "year",
