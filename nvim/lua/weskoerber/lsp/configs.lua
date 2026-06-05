@@ -107,13 +107,14 @@ return {
     },
     rust_analyzer = {
         settings = {
-            ['rust_analyzer'] = {
+            ['rust-analyzer'] = {
                 cargo = {
-                    -- target = 'x86_64-unknown-linux-gnu',
-                    target = 'x86_64-pc-windows-gnu',
+                    -- target = 'x86_64-pc-windows-gnu',
+                    features = 'all',
                 },
                 check = {
-                    command = { 'clippy' },
+                    command = 'clippy',
+                    features = 'all',
                 },
             }
         },

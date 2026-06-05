@@ -25,7 +25,9 @@ alias \
 alias \
     zb="zig build" \
     zbr="zig build run" \
-    zbt="zig build test"
+    zbt="zig build test" \
+    zbtw="zig build test --watch --error-style minimal_clear" \
+    zbtwi="zig build test --watch -fincremental --error-style minimal_clear"
 
 alias \
     dcp="docker compose"
