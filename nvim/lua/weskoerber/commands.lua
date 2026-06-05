@@ -10,10 +10,14 @@ local function trim_trailing_whitespace()
 end
 
 local function highlight_yanked_text()
-    vim.highlight.on_yank({
+    vim.hl.hl_op({
         higroup = 'IncSearch',
         timeout = 75,
     })
+    -- vim.hl.on_yank({
+    --     higroup = 'IncSearch',
+    --     timeout = 75,
+    -- })
 end
 
 M.setup = function(opts)
