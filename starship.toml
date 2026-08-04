@@ -16,9 +16,12 @@ $fill$cmd_duration$time
 $character\
 """
 
+palette = "cendre-soft"
+
 [directory]
 truncate_to_repo = true
 use_os_path_sep = false
+style = "ember bold"
 
 [time]
 disabled = false
@@ -44,7 +47,49 @@ detect_files = [ 'Makefile', 'CMakeLists.txt' ]
 
 [rust]
 detect_extensions = []
+style = "cinder"
 
 [zig]
 detect_extensions = []
 detect_files = [ 'build.zig', 'build.zig.zon' ]
+
+[palettes.cendre-soft]
+bg      = "#231f1d"
+fg      = "#e6d5c2"
+fg_dim  = "#a09384"
+comment = "#73665b"
+cinder  = "#d1766e"
+ember   = "#ea9875"
+brass   = "#fcba81"
+sap     = "#99af6b"
+frost   = "#4e89a2"
+error   = "#d25780"
+warning = "#f4a21c"
+ok      = "#43b16a"
+info    = "#58bdff"
+
+[git_branch]
+style = "cinder"
+
+[git_status]
+style = "warning"
+
+[cmd_duration]
+style = "comment"
+
+[character]
+success_symbol = "[❯](ember)"
+error_symbol = "[❯](error)"
+vimcmd_symbol = "[❮](sap)"
+
+[nodejs]
+style = "sap"
+
+[golang]
+style = "frost"
+
+[python]
+style = "brass"
+
+[lua]
+style = "frost"
