@@ -33,6 +33,8 @@ vim.pack.add({
     -- Eye candy
     'https://github.com/nvim-tree/nvim-web-devicons',
     'https://github.com/ellisonleao/gruvbox.nvim',
+    'https://github.com/ellisonleao/gruvbox.nvim',
+    'https://github.com/Aejkatappaja/cendre',
 }, { confirm = false })
 
 -- Custom configuration

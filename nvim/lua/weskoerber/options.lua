@@ -14,7 +14,8 @@ local M = {
         vim.o.relativenumber = true
         vim.o.cursorline = true
         vim.o.signcolumn = 'yes'
-        vim.cmd.colorscheme('gruvbox')
+        vim.cmd.colorscheme('cendre')
+        vim.cmd('CendreBackground soft')
         vim.o.scrolloff = 10
         vim.o.hlsearch = false
 
