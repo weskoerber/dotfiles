@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "cendre": {
+      "rev": "6c6e8823515257e6a779ab9a0b5eeba39818c4f1",
+      "src": "https://github.com/Aejkatappaja/cendre"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -91,6 +95,10 @@
     "orgmode": {
       "rev": "5f7fbf738c500f6cdd15f0353e7fe2ad5e5f7a35",
       "src": "https://github.com/nvim-orgmode/orgmode"
+    },
+    "tree-sitter-manager.nvim": {
+      "rev": "9dc4ffc4fb010e7abb976a92360c2c5a7d324c15",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",

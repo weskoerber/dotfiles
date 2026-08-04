@@ -2,7 +2,7 @@
 vim.pack.add({
     -- LSP
     'https://github.com/neovim/nvim-lspconfig',
-    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/romus204/tree-sitter-manager.nvim',
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     'https://github.com/stevearc/conform.nvim',
     'https://github.com/mason-org/mason.nvim',
