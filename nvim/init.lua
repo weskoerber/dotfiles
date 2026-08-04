@@ -23,6 +23,10 @@ vim.pack.add({
     'https://github.com/kylechui/nvim-surround',
     'https://github.com/weskoerber/known-folders.nvim',
 
+    -- Completions
+    'https://github.com/saghen/blink.lib',
+    'https://github.com/saghen/blink.cmp',
+
     -- Integrations
     'https://github.com/nvim-orgmode/orgmode',
     'https://github.com/nvim-orgmode/org-bullets.nvim',
