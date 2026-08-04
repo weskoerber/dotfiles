@@ -17,3 +17,6 @@ end
 vim.api.nvim_create_user_command('DapuiToggle', toggle_ui, {})
 
 vim.keymap.set('n', '<F17>', toggle_ui, {})
+vim.keymap.set('n', '<leader>?', function()
+    dapui.eval(nil, {})
+end, {})
