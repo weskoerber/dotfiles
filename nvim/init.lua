@@ -26,6 +26,7 @@ vim.pack.add({
     -- Completions
     'https://github.com/saghen/blink.lib',
     'https://github.com/saghen/blink.cmp',
+    'https://github.com/rafamadriz/friendly-snippets',
 
     -- Integrations
     'https://github.com/nvim-orgmode/orgmode',

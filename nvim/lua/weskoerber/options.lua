@@ -33,12 +33,12 @@ local M = {
         vim.o.expandtab = true
 
         -- cmdline
-        vim.o.wildmode = 'noselect:lastused,full'
-        vim.o.wildoptions = 'pum'
-        vim.api.nvim_create_autocmd('CmdlineChanged', {
-            callback = function() vim.fn.wildtrigger() end,
-            group = opts.default_group,
-        })
+        -- vim.o.wildmode = 'noselect:lastused,full'
+        -- vim.o.wildoptions = 'pum'
+        -- vim.api.nvim_create_autocmd('CmdlineChanged', {
+        --     callback = function() vim.fn.wildtrigger() end,
+        --     group = opts.default_group,
+        -- })
     end
 }
 

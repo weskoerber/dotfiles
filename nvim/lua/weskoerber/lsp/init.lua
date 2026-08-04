@@ -29,8 +29,6 @@ M.setup = function(opts)
         vim.lsp.enable(name, true)
     end
 
-
-    vim.opt.completeopt = { 'menuone', 'noselect', 'popup', 'preview' }
     vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
             vim.g.maplocalleader = ','
@@ -38,10 +36,6 @@ M.setup = function(opts)
             local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
             assert(client ~= nil, 'must have valid client')
-
-            vim.lsp.completion.enable(true, client.id, bufnr, {
-                autotrigger = true,
-            })
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover)
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
