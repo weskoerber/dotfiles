@@ -6,8 +6,8 @@
 
     // Choose the order of the modules
     "modules-left": ["sway/workspaces","sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["wireplumber", "network", "cpu", "memory", "tray"],
+    // "modules-right": ["wireplumber", "network", "cpu", "memory", "clock", "tray"],
+    "modules-right": ["group/drawer", "clock", "tray"],
 
     // Modules configuration
     "tray": {
@@ -15,7 +15,7 @@
     },
     "clock": {
         "interval": 1,
-        "format": "{:%I:%M}",
+        "format": "{:%H:%M}",
         "format-alt": "{:%A, %B %d, %Y (%T)}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
@@ -32,6 +32,16 @@
         "actions":  {
             "on-click-right": "mode"
         }
+    },
+    "group/drawer": {
+        "drawer": {
+            "children-class": "hw-tray",
+            "click-to-reveal": false,
+            "transition-duration": 100,
+            "transition-left-to-right": false
+        },
+        "modules": ["wireplumber#sink", "cpu", "memory", "network", "wireplumber#source"],
+        "orientation": "horizontal"
     },
     "cpu": {
         "interval": 1,
@@ -61,15 +71,13 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "Disconnected"
     },
-    "wireplumber": {
-        // "scroll-step": 1, // %, can be a float
+    "wireplumber#sink": {
+        "node-type": "Audio/Sink",
         "max-volume": 150,
-        "format": "{icon} {volume: 4}% {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}% ",
-        "format-source-muted": "",
+        "format": "{icon}{volume: 4}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -81,10 +89,15 @@
         },
         "on-click": "ssw choose"
     },
-    "custom/keymap": {
-        "exec": "swaymsg -t get_inputs | jq -r '[.[]|select(.type == \"keyboard\")]|.[0].xkb_active_layout_name'",
-        "format": "{}",
-        "interval": 1,
-        "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    "wireplumber#source": {
+        "node-type": "Audio/Source",
+        "format": "{icon}{volume: 4}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-icons": [""]
+    },
+    "custom/hw": {
+        "format": "Hardware"
     }
 }

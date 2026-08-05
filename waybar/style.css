@@ -1,116 +1,28 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: BerkeleyMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-
-    color: #fbf1c7;
+  border: none;
+  border-radius: 0;
+  font-family: BerkeleyMono Nerd Font;
+  font-size: 16px;
+  color: #e6d5c2;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
 }
 
-#window {
-    padding-left: 0.25em;
-}
-
-window#waybar {
-    background: #282828;
-}
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -2px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -2px #8ec07c;
+#waybar {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
+  padding: 0 0.5rem;
 }
 
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+.modules-right > widget > * {
+  padding: 0 0.5rem;
 }
 
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -2px #fe8019;
+.hw-tray > .module {
+  padding: 0 1.0rem;
 }
 
-#workspaces button.active {
-    box-shadow: inset 0 -2px #fe8019;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 2px solid #ffffff;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#network,
-#pulseaudio,
-#wireplumber,
-#tray,
-#mode {
-    padding: 0 10px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
-}
-
-#battery.critical:not(.plugged):not(.charging) {
-    color: #cc241d;
-}
-
-#battery.warning:not(.plugged):not(.charging) {
-    color: #d79921;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu.med {
-    color: yellow;
-}
-
-#cpu.high {
-    color: orange;
-}
-
-#cpu.crit {
-    color: red;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray>.passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray>.needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
+/* vim: shiftwidth=2 softtabstop=2 : */
