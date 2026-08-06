@@ -1,0 +1,48 @@
+{
+  "juicy main": {
+    "prefix": "juicymain",
+    "description": "Juicy main",
+    "body": [
+      "const std = @import(\"std\");",
+      "",
+      "pub fn main(init: std.process.Init) !void {",
+      "\ttry std.Io.File.stdout().writeStreamingAll(init.io, \"Hello, world!\\n\");",
+      "}"
+    ]
+  },
+
+  "build run step": {
+    "prefix": "brun",
+    "description": "Build run step",
+    "body": [
+      "const run_${1} = b.addRunArtifact(${2});",
+      "run_${1}.addPassthruArgs();",
+      "",
+      "const run_step = b.step(\"run\", \"Run the program\");",
+      "run_step.dependOn(&run_${1}.step);"
+    ]
+  },
+
+  "build step": {
+    "prefix": "bstep",
+    "description": "Build step",
+    "body": [
+      "const ${1}_step = b.step(\"${2}\", \"${3}\");"
+    ]
+  },
+
+  "build exe artifact": {
+    "prefix": "bexe",
+    "description": "Executable build artifact",
+    "body": [
+      "const ${1:exe} = b.addExecutable(.{",
+      "\t.name = \"${2}\",",
+      "\t.root_module = b.createModule(.{",
+      "\t\t.root_source_file = b.path(\"${3:src/main.zig}\"),",
+      "\t\t.target = target,",
+      "\t\t.optimize = optimize,",
+      "\t}),",
+      "});"
+    ]
+  }
+}
