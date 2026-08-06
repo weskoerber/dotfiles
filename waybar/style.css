@@ -7,6 +7,7 @@
   background-color: transparent;
   padding: 0;
   margin: 0;
+  border-radius: 0.25rem;
 }
 
 #waybar {
@@ -23,6 +24,29 @@
 
 .hw-tray > .module {
   padding: 0 1.0rem;
+}
+
+#tray menu  {
+  background-color: #171311;
+}
+
+menu > menuitem > label {
+}
+
+menu {
+  border: 2px solid #362f2c;
+}
+
+menu > menuitem {
+  padding: 0.25rem;
+}
+
+menu > menuitem:not(:last-child) {
+  border-bottom: 1px solid #362f2c;
+}
+
+menu > menuitem:hover {
+  background-color: #201b19;
 }
 
 /* vim: shiftwidth=2 softtabstop=2 : */

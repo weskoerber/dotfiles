@@ -41,5 +41,7 @@ vim.pack.add({
     'https://github.com/Aejkatappaja/cendre',
 }, { confirm = false })
 
+vim.cmd.colorscheme('cendre')
+
 -- Custom configuration
 require('weskoerber')
