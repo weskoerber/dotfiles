@@ -1,13 +1,48 @@
 #!/bin/sh
 
-# SSW - Sink SWitcher
+# set -eux -o pipefail
 
+#      ______    ______   __       __
+#     /      \  /      \ |  \  _  |  \
+#    |  $$$$$$\|  $$$$$$\| $$ / \ | $$
+#    | $$___\$$| $$___\$$| $$/  $\| $$       ______  ______  ______
+#     \$$    \  \$$    \ | $$  $$$\ $$      |      \|      \|      \
+#     _\$$$$$$\ _\$$$$$$\| $$ $$\$$\$$       \$$$$$$ \$$$$$$ \$$$$$$
+#    |  \__| $$|  \__| $$| $$$$  \$$$$
+#     \$$    $$ \$$    $$| $$$    \$$$
+#      \$$$$$$   \$$$$$$  \$$      \$$
+#
+#
+#
+#      ______   __            __               ______   __       __  __    __                __
+#     /      \ |  \          |  \             /      \ |  \  _  |  \|  \  |  \              |  \
+#    |  $$$$$$\ \$$ _______  | $$   __       |  $$$$$$\| $$ / \ | $$ \$$ _| $$_     _______ | $$____    ______    ______
+#    | $$___\$$|  \|       \ | $$  /  \      | $$___\$$| $$/  $\| $$|  \|   $$ \   /       \| $$    \  /      \  /      \
+#     \$$    \ | $$| $$$$$$$\| $$_/  $$       \$$    \ | $$  $$$\ $$| $$ \$$$$$$  |  $$$$$$$| $$$$$$$\|  $$$$$$\|  $$$$$$\
+#     _\$$$$$$\| $$| $$  | $$| $$   $$        _\$$$$$$\| $$ $$\$$\$$| $$  | $$ __ | $$      | $$  | $$| $$    $$| $$   \$$
+#    |  \__| $$| $$| $$  | $$| $$$$$$\       |  \__| $$| $$$$  \$$$$| $$  | $$|  \| $$_____ | $$  | $$| $$$$$$$$| $$
+#     \$$    $$| $$| $$  | $$| $$  \$$\       \$$    $$| $$$    \$$$| $$   \$$  $$ \$$     \| $$  | $$ \$$     \| $$
+#      \$$$$$$  \$$ \$$   \$$ \$$   \$$        \$$$$$$  \$$      \$$ \$$    \$$$$   \$$$$$$$ \$$   \$$  \$$$$$$$ \$$
+
+
+# CLI flags
+o_sources=0
+cmd='list'
+
+# wpctl output -- global variable used by functions
 output="$(wpctl status)"
+readonly output
 
-audio=0
-audio_sinks=0
+parse_output() {
+    audio=0
+    audio_sinks=0
 
-parse_sinks() {
+    key='Sinks'
+
+    if [ $o_sources -eq 1 ]; then
+        key='Sources'
+    fi
+
     IFS=$'\n'; for line in $output; do
         # find the 'Audio' section
         if [ $audio -eq 0 ]; then
@@ -20,7 +55,7 @@ parse_sinks() {
         # find the 'Sinks' section
         if [ $audio_sinks -eq 0 ]; then
             case "$line" in
-                ' ├─ Sinks:') audio_sinks=1; continue ;;
+                " ├─ $key:") audio_sinks=1; continue ;;
                 *) continue ;;
             esac
         fi
@@ -39,18 +74,29 @@ parse_sinks() {
     done
 }
 
-list_sinks() {
-    parse_sinks | awk -F: '{print $2}'
+list() {
+    parse_output | awk -F: '{print $2}'
 }
 
-choose_sink() {
-    parse_sinks | grep "$1" | awk -F: '{print $1}'
+choose() {
+    parse_output | grep "$1" | awk -F: '{print $1}'
 }
 
-case "$1" in
-    list) list_sinks; exit 0 ;;
-    choose)
-        id="$(choose_sink "$(list_sinks | fuzzel --dmenu --no-exit-on-keyboard-focus-loss)" | awk -F: '{print $1}')"
-        wpctl set-default "$id"
-        ;;
-esac
+# parse CLI
+while [ -n "$1" ]; do
+    case "$1" in
+        --sources) o_sources=1; shift ;;
+        list) cmd='list'; shift ;;
+        choose) cmd='choose'; shift ;;
+        *) echo "unknown option: '$1'" >&2 && exit 2 ;;
+    esac
+done
+
+if [ $cmd = 'list' ]; then
+    list
+    exit 0
+elif [ $cmd = 'choose' ]; then
+    id="$(choose "$(list | fuzzel --dmenu --no-exit-on-keyboard-focus-loss)" | awk -F: '{print $1}')"
+    wpctl set-default "$id"
+    exit 0
+fi
