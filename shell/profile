@@ -40,7 +40,7 @@ export TERMINAL="$TERM"
 export MANWIDTH=80
 export MANPAGER="nvim +Man!"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
+export ZIG_BUILD_ERROR_STYLE=minimal_clear
 
 #############
 # GTK Theme #
