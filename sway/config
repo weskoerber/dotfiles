@@ -1,87 +1,32 @@
 # `man 5 sway`
-include ~/.config/sway/*.conf
 
-#
-# Variables
-#
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
-# Your preferred terminal emulator
-set $term ghostty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu fuzzel --list-executables-in-path
+bindsym Super+Return exec ghostty +new-window
+bindsym Super+f exec zen-browser
+bindsym Super+d exec fuzzel --list-executables-in-path
 
-### Key bindings
-#
-# Basics:
-#
-# Start a terminal
-bindsym $mod+Return exec $term
-bindsym $mod+f exec $BROWSER
+bindsym Alt+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes' 'swaymsg exit'
 
-# Start your launcher
-bindsym $mod+d exec $menu
+bindsym Super+z splith
+bindsym Super+v splitv
 
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
+bindsym Super+s layout stacking
+bindsym Super+w layout tabbed
+bindsym Super+e layout toggle split
 
-# Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+focus_wrapping no
+floating_modifier Alt normal
 
-#
-# Layout stuff:
-#
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
-bindsym $mod+z splith
-bindsym $mod+v splitv
-
-# Switch the current container between different layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-#
-# Resizing containers:
-#
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    bindsym shift+$left resize shrink width 50px
-    bindsym shift+$down resize grow height 50px
-    bindsym shift+$up resize shrink height 50px
-    bindsym shift+$right resize grow width 50px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym h resize shrink width 3ppt
+    bindsym j resize shrink height 3ppt
+    bindsym k resize grow height 1ppt
+    bindsym l resize grow width 1ppt
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym Mod4+r mode "resize"
 
 # Audio
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
@@ -92,8 +37,12 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Mic
-# bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle # This opens fuzzel for some reason?
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle # This opens fuzzel for some reason?
 
-exec 'waybar --config ~/.config/waybar/$(hostnamectl hostname)/config'
+bar {
+    swaybar_command waybar
+}
 
 include ~/.config/sway/*.conf
+
+# vim: ft=swayconfig
