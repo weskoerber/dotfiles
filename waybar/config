@@ -41,7 +41,7 @@
             "transition-duration": 100,
             "transition-left-to-right": false
         },
-        "modules": ["custom/drawer_icon", "network", "cpu", "memory"],
+        "modules": ["custom/drawer_icon", "cpu", "memory", "network"],
         "orientation": "horizontal"
     },
 
