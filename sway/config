@@ -14,7 +14,7 @@ bindsym Super+w layout tabbed
 bindsym Super+e layout toggle split
 
 focus_wrapping no
-floating_modifier Alt normal
+floating_modifier Super normal
 
 mode "resize" {
     bindsym h resize shrink width 3ppt
