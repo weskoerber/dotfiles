@@ -46,4 +46,16 @@ menu > menuitem:hover {
   background-color: #201b19;
 }
 
+#battery.charging.full {
+  color: #43b16a;
+}
+
+#battery.warning {
+  color: #f4a21c;
+}
+
+#battery.critical {
+  color: #d25780;
+}
+
 /* vim: shiftwidth=2 softtabstop=2 : */

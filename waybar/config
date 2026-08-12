@@ -6,7 +6,7 @@
 
     // Choose the order of the modules
     "modules-left": ["sway/workspaces","sway/window"],
-    "modules-right": ["group/drawer", "custom/idle_inhibit", "wireplumber#source", "wireplumber#sink", "clock", "tray"],
+    "modules-right": ["group/drawer", "custom/idle_inhibit", "wireplumber#source", "wireplumber#sink", "battery", "clock", "tray"],
 
     // Modules configuration
     "tray": {
@@ -113,4 +113,19 @@
         "format": "",
         "tooltip": false
     },
+
+    "battery": {
+        "format": "{icon}",
+        "format-icons": {
+            "discharging": [ "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂁", "󰁹" ],
+            "charging": [ "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅" ]
+        },
+        "tooltip-format": "{capacity}% ({health}% health)\n{cycles} cycles",
+        "states": {
+            "full": 100,
+            "normal": 80,
+            "warning": 40,
+            "critical": 20,
+        }
+    }
 }
