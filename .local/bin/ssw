@@ -112,7 +112,7 @@ if [ $cmd = 'list' ]; then
     list
     exit 0
 elif [ $cmd = 'choose' ]; then
-    id="$(choose "$(list | fuzzel --dmenu --no-exit-on-keyboard-focus-loss)" | awk -F: '{print $1}')"
+    id="$(choose $(list | fuzzel --dmenu --no-exit-on-keyboard-focus-loss) | awk -F: '{print $1}')"
     wpctl set-default "$id"
     exit 0
 fi
