@@ -1,7 +1,7 @@
 ################################################################################
 #### Appearance                                                             ####
 ################################################################################
-background-opacity = 0.90
+background-opacity = 0.98
 font-family = BerkeleyMono Nerd Font
 font-size = 12
 gtk-titlebar = false
@@ -16,6 +16,9 @@ mouse-scroll-multiplier = 0.5
 quit-after-last-window-closed = false
 window-inherit-working-directory = false
 
+window-inherit-working-directory = false
+
+gtk-single-instance = true
 window-inherit-working-directory = false
 
 ################################################################################

@@ -43,7 +43,7 @@
             "transition-duration": 100,
             "transition-left-to-right": false
         },
-        "modules": ["custom/drawer_icon", "cpu", "memory", "network"],
+        "modules": ["custom/drawer_icon", "cpu", "memory", "bluetooth", "network"],
         "orientation": "horizontal"
     },
 
@@ -115,7 +115,6 @@
         "format": "",
         "tooltip": false
     },
-
     "battery": {
         "format": "{icon}",
         "format-icons": {
@@ -130,5 +129,23 @@
             "warning": 40,
             "critical": 20,
         }
+    },
+    "bluetooth": {
+	"format": "",
+	"format-connected": "",
+	// "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰅶",
+            "deactivated": "󰾪"
+        },
+        "timeout": "30"
     }
 }

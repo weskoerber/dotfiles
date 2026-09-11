@@ -24,6 +24,21 @@
 #     \$$    $$| $$| $$  | $$| $$  \$$\       \$$    $$| $$$    \$$$| $$   \$$  $$ \$$     \| $$  | $$ \$$     \| $$
 #      \$$$$$$  \$$ \$$   \$$ \$$   \$$        \$$$$$$  \$$      \$$ \$$    \$$$$   \$$$$$$$ \$$   \$$  \$$$$$$$ \$$
 
+usage() {
+    cat <<EOF
+Usage: ssw [options] [command]
+
+ssw - Sink SWitcher: Manage pipewire sinks/sources with ease.
+
+Options:
+  -h, --help   Print help and exit
+  --sources    List sources instead of sinks
+
+Commands:
+  list     Print a list of sinks/sources
+  choose   Choose from a list of sinks/sources
+EOF
+}
 
 # CLI flags
 o_sources=0
@@ -85,6 +100,7 @@ choose() {
 # parse CLI
 while [ -n "$1" ]; do
     case "$1" in
+        -h|--help) usage; exit 0 ;;
         --sources) o_sources=1; shift ;;
         list) cmd='list'; shift ;;
         choose) cmd='choose'; shift ;;
