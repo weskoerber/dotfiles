@@ -1,6 +1,6 @@
 # `man 5 sway`
 
-bindsym Super+Return exec ghostty +new-window
+bindsym Super+Return exec ghostty
 bindsym Super+f exec zen-browser
 bindsym Super+d exec fuzzel --list-executables-in-path
 

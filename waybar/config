@@ -19,18 +19,20 @@
         "format-alt": "{:%A, %B %d, %Y (%T)}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
-            "mode": "year",
+            "mode": "month",
             "mode-mon-col": 3,
             "on-scroll": 1,
             "format": {
-                "months": "<span color='#cc241d'><b>{}</b></span>",
-                "days": "<span color='#bdae93'><b>{}</b></span>",
-                "weekdays": "<span color='#b8bb26'><b>{}</b></span>",
-                "today": "<span color='#fe8019'><b><u>{}</u></b></span>"
+                "months": "<span color='#d1766e'><b>{}</b></span>",
+                "days": "<span color='#a09384'><b>{}</b></span>",
+                "weekdays": "<span color='#99af6b'><b>{}</b></span>",
+                "today": "<span color='#e6d5c2'><b><u>{}</u></b></span>"
             }
         },
         "actions":  {
-            "on-click-right": "mode"
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
         }
     },
 
