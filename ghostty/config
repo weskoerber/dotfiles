@@ -1,7 +1,7 @@
 ################################################################################
 #### Appearance                                                             ####
 ################################################################################
-background-opacity = 0.98
+background-opacity = 0.90
 font-family = BerkeleyMono Nerd Font
 font-size = 12
 gtk-titlebar = false
