@@ -120,7 +120,8 @@
         "format": "{icon}",
         "format-icons": {
             "discharging": [ "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂁", "󰁹" ],
-            "charging": [ "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅" ]
+            "charging": [ "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅" ],
+            "full": ["󰁹"],
         },
         "tooltip-format": "{capacity}% ({health}% health)\n{cycles} cycles",
         "states": {

@@ -1,7 +1,7 @@
 ################################################################################
 #### Appearance                                                             ####
 ################################################################################
-background-opacity = 0.90
+background-opacity = 0.98
 font-family = BerkeleyMono Nerd Font
 font-size = 12
 gtk-titlebar = false
@@ -10,7 +10,11 @@ window-theme = ghostty
 window-padding-x = 10
 window-padding-y = 10
 
+gtk-single-instance = true
+
 mouse-scroll-multiplier = 0.5
+quit-after-last-window-closed = false
+window-inherit-working-directory = false
 
 window-inherit-working-directory = false
 
